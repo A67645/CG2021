@@ -1,7 +1,7 @@
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
-#include <GL/glew.h>
+#include <windows.h>
 #include <GL/glut.h>
 #endif
 
@@ -13,8 +13,16 @@
 #include "tinyxml2.h"
 
 using namespace std;
+using namespace tinyxml2;
 
+float cx=0.0f;
+float cy=0.0f;
+float cz=0.0f;
+float angle = 0.0f;
+float angle2 = 0.0f;
+float size = 1.0f;
 
+void readXML(string file);
 
 void changeSize(int w, int h) {
 
@@ -49,7 +57,7 @@ void renderScene(void) {
 
 	// set the camera
 	glLoadIdentity();
-	gluLookAt(5.0f,5.0f,5.0f,
+	gluLookAt(10.0f,10.0f,10.0f,
 		0.0f, 0.0f, 0.0f,
 		0.0f, 1.0f, 0.0f);
 
@@ -71,10 +79,15 @@ void renderScene(void) {
 		
 
 	// put the geometric transformations here
+    glTranslatef(cx, cy, cz);
+    glRotatef(angle, 0.0f, 1.0f, 0.0f);
+    glRotatef(angle2, 0.0f, 0.0f, 1.0f);
 
+
+    glScalef(size, size, size);
 
 	// put drawing instructions here
-	
+    readXML("C:/Computacao Grafica/Projeto/Engine/code/configuration.xml");
 
 	// End of frame
 	glutSwapBuffers();
@@ -88,32 +101,31 @@ void readFile(string file) {
 
 	ifstream infile(file);
 	float x, y, z;
-	glPolygonMode(GL_FRONT | GL_FILL);
+	glPolygonMode(GL_FRONT, GL_LINE);
 
-	if (!file) {
+	if (!infile) {
 		cout << "Ocorreu um erro na leitura do ficheiro." << endl;
-		return -1;
+		return;
 	}
 
 	glBegin(GL_TRIANGLES);
 
-	glColor3f(0.33f, 0.42f, 0.18f);
+	glColor3f(0.8f, 0.5f, 0.8f);
 		while (infile >> x >> y >> z) {
 			glVertex3f(x, y, z);
 		}
-	
+
 	glEnd();
 }
 
 void readXML(string file) {
 	XMLDocument doc;
 	XMLElement* firstElem;
-
 	if (!doc.LoadFile(file.c_str())) {
 		firstElem = doc.FirstChildElement("scene");
-		for (XMLElement* model = firstElem->FirstChildElement("model"); model != NULL; nexElem = model->FirstChildElem("model") {
-			string 3dfile = model->Attribute("file");
-			readFile(3dfile);
+		for (XMLElement* model = firstElem->FirstChildElement("model"); model != NULL; model = model->NextSiblingElement("model")) {
+		    string file3d = model->Attribute("file");
+			readFile(file3d);
 		}
 	}
 	else {
@@ -122,6 +134,41 @@ void readXML(string file) {
 
 }
 
+// write function to process keyboard events
+void keyFunction(unsigned char key, int xx, int yy) {
+    switch (key) {
+        case 'x':	cx -= 0.2f; break;
+
+        case 'X':	cx += 0.2f; break;
+
+        case 'y':	cy -= 0.2f; break;
+
+        case 'Y':	cy += 0.2f; break;
+
+        case 'z':	cz -= 0.2f; break;
+
+        case 'Z':	cz += 0.2f; break;
+
+        case 'r':	angle -= 10.0f; break;
+
+        case 'R':	angle += 10.0f; break;
+
+        case 'T':	angle2 += 10.0f; break;
+
+        case 't':	angle2 -= 10.0f; break;
+
+        case '+':	size += 0.05f; break;
+
+        case '-':	size -= 0.05f; break;
+    }
+
+    if (size > 0)
+        glFrontFace(GL_CCW);
+    else
+        glFrontFace(GL_CW);
+
+    glutPostRedisplay();
+}
 
 int main(int argc, char** argv) {
 
@@ -137,16 +184,13 @@ int main(int argc, char** argv) {
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(changeSize);
 
-
-	// put here the registration of the keyboard callbacks
-	glutKeyboardFunc(keyboard);
-	glutSpecialFunc(keyboardSpecial);
+    glutKeyboardFunc(keyFunction);
 
 	//  OpenGL settings
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 
-	readXML(configuration);
+
 
 	// enter GLUT's main cycle
 	glutMainLoop();
