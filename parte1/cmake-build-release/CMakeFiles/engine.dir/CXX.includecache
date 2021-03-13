@@ -1,0 +1,78 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/melan/Desktop/Aulas/CG/.toolkits/glut/GL/glut.h
+windows.h
+-
+GL/gl.h
+-
+GL/glu.h
+-
+
+C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Engine/engine.cpp
+GLUT/glut.h
+-
+windows.h
+-
+GL/glut.h
+-
+cmath
+-
+iostream
+-
+fstream
+-
+string
+-
+tinyxml2.h
+C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Engine/tinyxml2.h
+
+C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Engine/tinyxml2.cpp
+tinyxml2.h
+C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Engine/tinyxml2.h
+new
+-
+stddef.h
+-
+stdarg.h
+-
+cstddef
+-
+cstdarg
+-
+
+C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Engine/tinyxml2.h
+ctype.h
+-
+limits.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+stddef.h
+-
+cctype
+-
+climits
+-
+cstdio
+-
+cstdlib
+-
+cstring
+-
+stdint.h
+-
+android/log.h
+-
+assert.h
+-
+
