@@ -31,19 +31,11 @@ string
 -
 tinyxml2.h
 C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Engine/tinyxml2.h
-
-C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Engine/tinyxml2.cpp
-tinyxml2.h
-C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Engine/tinyxml2.h
-new
+tuple
 -
-stddef.h
+list
 -
-stdarg.h
--
-cstddef
--
-cstdarg
+iterator
 -
 
 C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Engine/tinyxml2.h

@@ -12,6 +12,8 @@
 #include <string>
 #include "tinyxml2.h"
 #include <tuple>
+#include <list>
+#include <iterator>
 
 using namespace std;
 using namespace tinyxml2;
@@ -23,11 +25,10 @@ float angle = 0.0f;
 float angle2 = 0.0f;
 float size = 1.0f;
 
-tuple <float, float, float> ponto;
-
-
+list< tuple<float, float, float> > lista;
 
 void readXML(string file);
+void draw();
 
 void changeSize(int w, int h) {
 
@@ -92,36 +93,42 @@ void renderScene(void) {
     glScalef(size, size, size);
 
 	// put drawing instructions here
-    //readXML("C:/Computacao Grafica/Projeto/Engine/configuration.xml");
-    readXML("C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Engine/configuration.xml");
+    draw();
 
 	// End of frame
 	glutSwapBuffers();
 }
 
+void draw(){
+    float x,y,z;
+    glPolygonMode(GL_FRONT, GL_LINE);
 
-// write function to process keyboard events
+    glBegin(GL_TRIANGLES);
+        glColor3f(0.33f,0.71f,0.22f);
+            for(auto it = lista.begin(); it != lista.end(); it++){
+                x = get<0>(*it);
+                y = get<1>(*it);
+                z = get<2>(*it);
+                glVertex3f(x,y,z);
+            }
+
+    glEnd();
+}
 
 
 void readFile(string file) {
 
 	ifstream infile(file);
 	float x, y, z;
-	glPolygonMode(GL_FRONT, GL_LINE);
 
 	if (!infile) {
 		cout << "Ocorreu um erro na leitura do ficheiro." << endl;
 		return;
 	}
 
-	glBegin(GL_TRIANGLES);
-
-	glColor3f(0.8f, 0.5f, 0.8f);
-		while (infile >> x >> y >> z) {
-			glVertex3f(x, y, z);
-		}
-
-	glEnd();
+    while (infile >> x >> y >> z) {
+        lista.push_back(tuple<float,float,float>{x,y,z});
+    }
 }
 
 void readXML(string file) {
@@ -196,6 +203,12 @@ int main(int argc, char** argv) {
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 
+    readXML("../Engine/configuration.xml");
+    //readXML("../Engine/plane.xml");
+    //readXML("../Engine/box.xml");
+    //readXML("../Engine/boxN.xml");
+    //readXML("../Engine/sphere.xml");
+    //rrreadXML("../Engine/cone.xml");
 
 
 	// enter GLUT's main cycle

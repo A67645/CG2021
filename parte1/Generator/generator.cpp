@@ -209,7 +209,7 @@ void drawCone(float radius, float height, int slices, int stacks, string fileNam
 
 int main(int argc, char **argv) {
 
-    if (strcmp(argv[1], "plane") == 0 && argc == 4)
+    if (strcmp(argv[1], "plane.xml") == 0 && argc == 4)
         drawPlane(atof(argv[2]), argv[3]);
 
     else if (strcmp(argv[1], "box") == 0 && argc == 6)
@@ -220,7 +220,7 @@ int main(int argc, char **argv) {
     else if (strcmp(argv[1], "sphere") == 0 && argc == 6)
         drawSphere(atof(argv[2]), atoi(argv[3]), atoi(argv[4]), argv[5]);
 
-    else if (strcmp(argv[1], "cone") == 0 && argc == 7)
+    else if (strcmp(argv[1], "cone.xml") == 0 && argc == 7)
         drawCone(atof(argv[2]), atof(argv[3]), atoi(argv[4]), atoi(argv[5]), argv[6]);
 
     else printf("Invalid input format\n");
