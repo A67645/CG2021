@@ -1,3 +1,0 @@
-C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Generator/code/cmake-build-debug/CMakeFiles/generator.dir
-C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Generator/code/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Generator/code/cmake-build-debug/CMakeFiles/rebuild_cache.dir

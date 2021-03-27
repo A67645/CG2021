@@ -182,13 +182,13 @@ void keyFunction(unsigned char key, int xx, int yy) {
 }
 
 int main(int argc, char** argv) {
-    if(argc>2){cout << "Too many arguments! Expected 2 arguments!" << endl; return -1;}
-    if(argc<2){cout << "Not enough arguments! Expected 2 arguments!" << endl; return -1;}
+    if(argc>2){cout << "Too many arguments! Expected 1 argument!" << endl; return -1;}
+    if(argc<2){cout << "Not enough arguments! Expected 1 argument!" << endl; return -1;}
 
-    string path = "../Engine/";
+    string path = "../";
     string file = argv[1];
 
-    if(!readXML(path + file)){
+    if(!readXML(path + file + ".xml")){
         cout << "Ficheiro nao lido." << endl;
         return -1;
     }
