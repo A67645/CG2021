@@ -1,8 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scene>
-	<model file="../../Generator/cmake-build-release/plane.3d" />
-	<model file="../../Generator/cmake-build-release/boxWithoutN.3d" />
-	<model file="../../Generator/cmake-build-release/boxWithN.3d" />
-	<model file="../../Generator/cmake-build-release/sphere.3d" />
-	<model file="../../Generator/cmake-build-release/cone.3d" />
+	<group>
+		<models>
+<!--sol-->		<model file="../../Generator/cmake-build-release/sphere.3d"/>
+		</models>
+	</group>
+
+	<group>
+		<translate X=57910/>
+		<scale X=0.0034 Y=0.0034 Z=0.0034/>
+		<models>
+<!--mercurio-->		<model file="../../Generator/cmake-build-release/sphere.3d"/>
+		</models>
+	</group>
+
+	<group>
+		<translate X=108200/>
+		<scale X=0.0087 Y=0.0087 Z=0.0087/>
+		<models>
+<!--venus-->		<model file="../../Generator/cmake-build-release/sphere.3d"/>
+		</models>
+	</group>
+
+	<group>
+		<translate X=149600/>
+		<scale X=0.0091 Y=0.0091 Z=0.0091/>
+		<models>
+<!--terra-->		<model file="../../Generator/cmake-build-release/sphere.3d"/>
+		</models>
+		<group> 
+			<translate X=384/>
+			<scale X=0.27 Y=0.27 Z=0.27/>
+			<models>
+	<!--lua--> 		<model file="../../Generator/cmake-build-release/sphere.3d"/>
+			</models>
+		</group>
+	</group>
+
+	<group>
+		<translate X=227940/>
+		<scale X=0.0048 Y=0.0048 Z=0.0048/>
+		<models>
+<!--marte-->		<model file="../../Generator/cmake-build-release/sphere.3d"/>
+		</models>
+	</group>
+
+	<group>
+		<translate X=778330/>
+		<scale X=0.1026 Y=0.1026 Z=0.1026/>
+		<models>
+<!--jupiter-->		<model file="../../Generator/cmake-build-release/sphere.3d"/>
+		</models>
+	</group>
+
+	<group>
+		<translate X=1429400/>
+		<scale X=0.0862 Y=0.0862 Z=0.0862/>
+		<models>
+<!--saturno-->		<model file="../../Generator/cmake-build-release/sphere.3d"/>
+		</models>
+	</group>
+
+	<group>
+		<translate X=2870990/>
+		<scale X=0.0370 Y=0.0370 Z=0.0370/>
+		<models>
+<!--urano-->		<model file="../../Generator/cmake-build-release/sphere.3d"/>
+		</models>
+	</group>
+
+	<group>
+		<translate X=4504300/>
+		<scale X=0.0355 Y=0.0355 Z=0.0355/>
+		<models>
+<!--neptuno-->		<model file="../../Generator/cmake-build-release/sphere.3d"/>
+		</models>
+	<\group>
+
 </scene>
