@@ -24,7 +24,7 @@ float angle = 0.0f;
 float angle2 = 0.0f;
 float size = 1.0f;
 
-list< tuple<float, float, float> > lista;
+list< float > lista;
 
 void changeSize(int w, int h) {
 
@@ -58,9 +58,9 @@ void draw(){
     glBegin(GL_TRIANGLES);
     glColor3f(0.33f,0.71f,0.22f);
     for(auto it = lista.begin(); it != lista.end(); it++){
-        x = get<0>(*it);
-        y = get<1>(*it);
-        z = get<2>(*it);
+        x = *(it++);
+        y = *(it++);
+        z = *it;
         glVertex3f(x,y,z);
     }
 
@@ -123,7 +123,9 @@ void readFile(string file) {
 	}
 
     while (infile >> x >> y >> z) {
-        lista.emplace_back(x,y,z);
+        lista.push_back(x);
+        lista.push_back(y);
+        lista.push_back(z);
     }
 }
 
