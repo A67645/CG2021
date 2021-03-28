@@ -26,6 +26,8 @@ private:
     float red;
     float green;
     float blue;
+    std::list <Astro> luas;
+
 public:
     Astro();
     Astro(std::string file, float tX, float tY, float tZ, float a, float rX, float rY, float rZ, float sX, float sY, float sZ, float r, float g, float b);
@@ -45,6 +47,20 @@ public:
     float getGreen();
     float getBlue();
     void readFile();
+
+    void setFilename(const std::string &filename);
+
+    void setColor(float red, float green, float blue);
+
+    void setTranslate(float red, float green, float blue);
+
+    void setRotate(float angle, float x, float y, float z);
+
+    void setScale(float x, float y, float z);
+
+    void add(Astro astro);
+
+    std::list<Astro> getLuas();
 };
 
 #endif

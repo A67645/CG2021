@@ -1,8 +1,5 @@
-#include <cmath>
 #include <iostream>
-#include <fstream>
 #include <string>
-#include <tuple>
 #include <list>
 
 #include "Astro.h"
@@ -22,10 +19,10 @@ float scaleZ;
 float red;
 float green;
 float blue;
+std::list<Astro> luas;
 
     Astro::Astro(){
-        filename = "sol.3d";
-        Astro::readFile();
+        filename = "";
         translateX = 0.0f;
         translateY = 0.0f;
         translateZ = 0.0f;
@@ -36,37 +33,15 @@ float blue;
         scaleX = 1.0f;
         scaleY = 1.0f;
         scaleZ = 1.0f;
-        red = 0.99f;
-        green = 0.72f;
-        blue = 0.07f;
-    }
-
-    Astro::Astro(std::string file, float tX, float tY, float tZ, float a, float rX, float rY, float rZ, float sX, float sY, float sZ, float r, float g, float b){
-        filename = file;
-        Astro::readFile();
-        translateX = tX;
-        translateY = tY;
-        translateZ = tZ;
-        rotateAngle = a;
-        rotateX = rX;
-        rotateY = rY;
-        rotateZ = rZ;
-        scaleX = sX;
-        scaleY = sY;
-        scaleZ = sZ;
-        red = r;
-        green = g;
-        blue = b;
+        red = 0.0f;
+        green = 0.0f;
+        blue = 0.0f;
     }
 
     std::string Astro::getFilename(){ return filename; }
 
     std::list <float> Astro::getPoints() {
-        std::list <float> res;
-        for(float p : points){
-            res.push_back(p);
-        }
-        return res;
+        return points;
     }
 
     float Astro::getTranslateX(){ return translateX; }
@@ -83,8 +58,36 @@ float blue;
     float Astro::getGreen(){ return green; }
     float Astro::getBlue(){ return blue; }
 
-    void Astro::readFile() {
+void Astro::setFilename(const std::string &filename) {
+    Astro::filename = filename;
+}
 
+void Astro::setColor(float red, float green, float blue) {
+    Astro::red = red;
+    Astro::green=green;
+    Astro::blue = blue;
+}
+
+void Astro::setTranslate(float x, float y, float z) {
+    Astro::translateX = x;
+    Astro::translateY = y;
+    Astro::translateZ = z;
+}
+
+void Astro::setRotate(float angle, float x, float y, float z) {
+    Astro::rotateAngle = angle;
+    Astro::rotateX = x;
+    Astro::rotateY = y;
+    Astro::rotateZ = z;
+}
+
+void Astro::setScale(float x, float y, float z) {
+    Astro::scaleX = x;
+    Astro::scaleY = y;
+    Astro::scaleZ = z;
+}
+
+void Astro::readFile() {
         std::ifstream infile(filename);
         float x, y, z;
 
@@ -99,3 +102,11 @@ float blue;
             points.push_back(z);
         }
     }
+
+void Astro::add(Astro astro) {
+    luas.push_back(astro);
+}
+
+std::list<Astro> Astro::getLuas() {
+    return luas;
+}
