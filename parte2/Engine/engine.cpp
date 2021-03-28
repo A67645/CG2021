@@ -8,11 +8,9 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <iostream>
-#include <fstream>
 #include <string>
 #include "tinyxml2.h"
 #include "Astro.h"
-#include <tuple>
 #include <list>
 
 using namespace std;
@@ -26,7 +24,6 @@ float angle2 = 0.0f;
 float size = 1.0f;
 
 list< Astro > lista;
-
 
 void changeSize(int w, int h) {
 
@@ -58,14 +55,16 @@ void draw(){
     glPolygonMode(GL_FRONT, GL_LINE);
 
     glBegin(GL_TRIANGLES);
-    glColor3f(0.33f,0.71f,0.22f);
-    for(auto it = lista.begin(); it != lista.end(); it++){
-        x = *(it++);
-        y = *(it++);
-        z = *it;
-        glVertex3f(x,y,z);
+    for(auto itLista = lista.begin(); itLista != lista.end(); itLista++){
+        glColor3f(itLista->getRed(),itLista->getGreen(),itLista->getBlue());
+        list <float> points = itLista->getPoints();
+        for(auto itPoints = points.begin(); itPoints != points.end(); itPoints++) {
+            x = *(itPoints++);
+            y = *(itPoints++);
+            z = *itPoints;
+            glVertex3f(x, y, z);
+        }
     }
-
     glEnd();
 }
 
@@ -103,7 +102,6 @@ void renderScene(void) {
     glRotatef(angle, 0.0f, 1.0f, 0.0f);
     glRotatef(angle2, 0.0f, 0.0f, 1.0f);
 
-
     glScalef(size, size, size);
 
 	// put drawing instructions here
@@ -113,34 +111,21 @@ void renderScene(void) {
 	glutSwapBuffers();
 }
 
-
-void readFile(string file, Astro astro) {
-
-	ifstream infile(file);
-	float x, y, z;
-	list <float> pontos;
-
-	if (!infile) {
-		cout << "Ocorreu um erro na leitura do ficheiro." << endl;
-		return;
-	}
-
-    while (infile >> x >> y >> z) {
-        pontos.push_back(x);
-        pontos.push_back(y);
-        pontos.push_back(z);
-    }
-
-}
-
 void readGroup(XMLElement* group){
-    float tx=0, ty=0, tz=0, a=0, rx=0, ry=0, rz=0, sx=0, sy=0, sz=0;
+    float tx=0, ty=0, tz=0, a=0, rx=0, ry=0, rz=0, sx=0, sy=0, sz=0, r=0, g=0, b=0;
+    XMLElement *colour = group->FirstChildElement("colour");
+    if (colour != nullptr) {
+        r = atof(colour->Attribute("R"));
+        g = atof(colour->Attribute("G"));
+        b = atof(colour->Attribute("B"));
+        printf("colour-%f %f %f\n",r,g,b);
+    }
     XMLElement *translate = group->FirstChildElement("translate");
     if (translate != nullptr) {
         tx = atof(translate->Attribute("X"));
         ty = atof(translate->Attribute("Y"));
         tz = atof(translate->Attribute("Z"));
-
+        printf("translate-%f %f %f\n",tx,ty,tz);
     }
     XMLElement *rotate = group->FirstChildElement("rotate");
     if (rotate != nullptr) {
@@ -148,21 +133,22 @@ void readGroup(XMLElement* group){
         rx = atof(rotate->Attribute("axisX"));
         ry = atof(rotate->Attribute("axisY"));
         rz = atof(rotate->Attribute("axisZ"));
+        printf("rotate-%f %f %f\n",rx,ry,rz);
     }
     XMLElement *scale = group->FirstChildElement("scale");
     if (scale != nullptr) {
         sx = atof(scale->Attribute("X"));
         sy = atof(scale->Attribute("Y"));
         sz = atof(scale->Attribute("Z"));
+        printf("scale-%f %f %f\n",sx,sy,sz);
     }
     XMLElement *models = group->FirstChildElement("models");
     for (XMLElement *model = models->FirstChildElement("model");
         model != nullptr; model = model->NextSiblingElement("model")) {
         string file3d = model->Attribute("file");
-        Astro astro = Astro();
-        readFile(file3d, astro);
+        Astro astro = Astro(file3d, tx, ty, tz, a, rx, ry, rz, sx, sy, sz, r, g, b);
+        lista.push_back(astro);
     }
-
     XMLElement *childGroup = group->FirstChildElement("group");
     if(childGroup!=nullptr){readGroup(childGroup);}
 }

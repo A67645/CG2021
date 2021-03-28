@@ -16,7 +16,7 @@ private:
     float translateX;
     float translateY;
     float translateZ;
-    float angle;
+    float rotateAngle;
     float rotateX;
     float rotateY;
     float rotateZ;

@@ -12,7 +12,7 @@ std::list <float> points;
 float translateX;
 float translateY;
 float translateZ;
-float angle;
+float rotateAngle;
 float rotateX;
 float rotateY;
 float rotateZ;
@@ -29,7 +29,7 @@ float blue;
         translateX = 0.0f;
         translateY = 0.0f;
         translateZ = 0.0f;
-        angle = 0.0f;
+        rotateAngle = 0.0f;
         rotateX = 0.0f;
         rotateY = 0.0f;
         rotateZ = 0.0f;
@@ -47,7 +47,7 @@ float blue;
         translateX = tX;
         translateY = tY;
         translateZ = tZ;
-        angle = a;
+        rotateAngle = a;
         rotateX = rX;
         rotateY = rY;
         rotateZ = rZ;
@@ -72,7 +72,7 @@ float blue;
     float Astro::getTranslateX(){ return translateX; }
     float Astro::getTranslateY(){ return translateY; }
     float Astro::getTranslateZ(){ return translateZ; }
-    float Astro::getAngle(){ return angle; }
+    float Astro::getAngle(){ return rotateAngle; }
     float Astro::getRotateX(){ return rotateX; }
     float Astro::getRotateY(){ return rotateY; }
     float Astro::getRotateZ(){ return rotateZ; }
@@ -99,4 +99,3 @@ float blue;
             points.push_back(z);
         }
     }
-};

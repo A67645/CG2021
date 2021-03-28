@@ -14,6 +14,20 @@ GL/gl.h
 GL/glu.h
 -
 
+C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/Astro.h
+cmath
+-
+iostream
+-
+fstream
+-
+string
+-
+tuple
+-
+list
+-
+
 C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/engine.cpp
 GLUT/glut.h
 -
@@ -25,14 +39,12 @@ cmath
 -
 iostream
 -
-fstream
--
 string
 -
 tinyxml2.h
 C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/tinyxml2.h
-tuple
--
+Astro.h
+C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/Astro.h
 list
 -
 
