@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/Astro.cpp">
+			<Option target="Engine"/>
+		</Unit>
+		<Unit filename="C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/Astro.h">
+			<Option target="Engine"/>
+		</Unit>
 		<Unit filename="C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/engine.cpp">
 			<Option target="Engine"/>
 		</Unit>

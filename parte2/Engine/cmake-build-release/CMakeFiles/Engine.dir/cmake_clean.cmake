@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Engine.dir/Astro.cpp.obj"
   "CMakeFiles/Engine.dir/engine.cpp.obj"
   "CMakeFiles/Engine.dir/tinyxml2.cpp.obj"
   "Engine.exe"

@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/melan/Desktop/Aulas/CG/Trabalho pratico/Fase1/Engine/engine.cpp" "C:/Users/melan/Desktop/Aulas/CG/Trabalho pratico/Fase1/Engine/cmake-build-release/CMakeFiles/Engine.dir/engine.cpp.obj"
-  "C:/Users/melan/Desktop/Aulas/CG/Trabalho pratico/Fase1/Engine/tinyxml2.cpp" "C:/Users/melan/Desktop/Aulas/CG/Trabalho pratico/Fase1/Engine/cmake-build-release/CMakeFiles/Engine.dir/tinyxml2.cpp.obj"
+  "C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte1/Engine/engine.cpp" "C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte1/Engine/cmake-build-release/CMakeFiles/Engine.dir/engine.cpp.obj"
+  "C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte1/Engine/tinyxml2.cpp" "C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte1/Engine/cmake-build-release/CMakeFiles/Engine.dir/tinyxml2.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

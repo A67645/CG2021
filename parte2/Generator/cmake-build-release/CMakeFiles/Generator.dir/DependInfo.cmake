@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Generator/generator.cpp" "C:/Users/melan/OneDrive - Universidade do Minho/[CG]Projeto/Generator/cmake-build-release/CMakeFiles/Generator.dir/generator.cpp.obj"
+  "C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Generator/generator.cpp" "C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Generator/cmake-build-release/CMakeFiles/Generator.dir/generator.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

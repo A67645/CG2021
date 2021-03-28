@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/Astro.cpp" "C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/cmake-build-debug/CMakeFiles/Engine.dir/Astro.cpp.obj"
   "C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/engine.cpp" "C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/cmake-build-debug/CMakeFiles/Engine.dir/engine.cpp.obj"
   "C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/tinyxml2.cpp" "C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/cmake-build-debug/CMakeFiles/Engine.dir/tinyxml2.cpp.obj"
   )

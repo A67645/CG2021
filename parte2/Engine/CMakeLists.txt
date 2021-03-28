@@ -5,7 +5,7 @@ PROJECT(Engine)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_executable(${PROJECT_NAME} engine.cpp tinyxml2.cpp)
+add_executable(${PROJECT_NAME} engine.cpp tinyxml2.cpp Astro.cpp Astro.h)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})

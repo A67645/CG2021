@@ -11,6 +11,7 @@
 #include <fstream>
 #include <string>
 #include "tinyxml2.h"
+#include "Astro.h"
 #include <tuple>
 #include <list>
 
@@ -24,7 +25,8 @@ float angle = 0.0f;
 float angle2 = 0.0f;
 float size = 1.0f;
 
-list< float > lista;
+list< Astro > lista;
+
 
 void changeSize(int w, int h) {
 
@@ -112,10 +114,11 @@ void renderScene(void) {
 }
 
 
-void readFile(string file) {
+void readFile(string file, Astro astro) {
 
 	ifstream infile(file);
 	float x, y, z;
+	list <float> pontos;
 
 	if (!infile) {
 		cout << "Ocorreu um erro na leitura do ficheiro." << endl;
@@ -123,20 +126,55 @@ void readFile(string file) {
 	}
 
     while (infile >> x >> y >> z) {
-        lista.push_back(x);
-        lista.push_back(y);
-        lista.push_back(z);
+        pontos.push_back(x);
+        pontos.push_back(y);
+        pontos.push_back(z);
     }
+
+}
+
+void readGroup(XMLElement* group){
+    float tx=0, ty=0, tz=0, a=0, rx=0, ry=0, rz=0, sx=0, sy=0, sz=0;
+    XMLElement *translate = group->FirstChildElement("translate");
+    if (translate != nullptr) {
+        tx = atof(translate->Attribute("X"));
+        ty = atof(translate->Attribute("Y"));
+        tz = atof(translate->Attribute("Z"));
+
+    }
+    XMLElement *rotate = group->FirstChildElement("rotate");
+    if (rotate != nullptr) {
+        a = atof(rotate->Attribute("angle"));
+        rx = atof(rotate->Attribute("axisX"));
+        ry = atof(rotate->Attribute("axisY"));
+        rz = atof(rotate->Attribute("axisZ"));
+    }
+    XMLElement *scale = group->FirstChildElement("scale");
+    if (scale != nullptr) {
+        sx = atof(scale->Attribute("X"));
+        sy = atof(scale->Attribute("Y"));
+        sz = atof(scale->Attribute("Z"));
+    }
+    XMLElement *models = group->FirstChildElement("models");
+    for (XMLElement *model = models->FirstChildElement("model");
+        model != nullptr; model = model->NextSiblingElement("model")) {
+        string file3d = model->Attribute("file");
+        Astro astro = Astro();
+        readFile(file3d, astro);
+    }
+
+    XMLElement *childGroup = group->FirstChildElement("group");
+    if(childGroup!=nullptr){readGroup(childGroup);}
 }
 
 bool readXML(string file) {
 	XMLDocument doc;
 	XMLElement* firstElem;
+	printf("%s\n",file.c_str());
 	if (!doc.LoadFile(file.c_str())) {
 		firstElem = doc.FirstChildElement("scene");
-		for (XMLElement* model = firstElem->FirstChildElement("model"); model != NULL; model = model->NextSiblingElement("model")) {
-		    string file3d = model->Attribute("file");
-			readFile(file3d);
+		for (XMLElement* group = firstElem->FirstChildElement("group"); group != nullptr; group = group->NextSiblingElement("group")) {
+		    readGroup(group);
 		}
 		return true;
 	}

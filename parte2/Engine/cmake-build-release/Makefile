@@ -142,6 +142,33 @@ Engine/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Engine.dir\build.make CMakeFiles/Engine.dir/build
 .PHONY : Engine/fast
 
+Astro.obj: Astro.cpp.obj
+
+.PHONY : Astro.obj
+
+# target to build an object file
+Astro.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Engine.dir\build.make CMakeFiles/Engine.dir/Astro.cpp.obj
+.PHONY : Astro.cpp.obj
+
+Astro.i: Astro.cpp.i
+
+.PHONY : Astro.i
+
+# target to preprocess a source file
+Astro.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Engine.dir\build.make CMakeFiles/Engine.dir/Astro.cpp.i
+.PHONY : Astro.cpp.i
+
+Astro.s: Astro.cpp.s
+
+.PHONY : Astro.s
+
+# target to generate assembly for a file
+Astro.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Engine.dir\build.make CMakeFiles/Engine.dir/Astro.cpp.s
+.PHONY : Astro.cpp.s
+
 engine.obj: engine.cpp.obj
 
 .PHONY : engine.obj
@@ -205,6 +232,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Engine
+	@echo ... Astro.obj
+	@echo ... Astro.i
+	@echo ... Astro.s
 	@echo ... engine.obj
 	@echo ... engine.i
 	@echo ... engine.s
