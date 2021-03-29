@@ -30,7 +30,7 @@ float angle_=0.0;
 // actual vector representing the camera's direction
 float lx=0.0f,ly=0.1f,lz=-8.0f;
 // XZ position of the camera
-float x=0.0f,y=1.0f,z=80.0f;
+float x=0.0f,y=1.0f,z=10.0f;
 
 void readGroup(XMLElement *pElement, Astro astro);
 
@@ -53,13 +53,13 @@ void changeSize(int w, int h) {
 	glViewport(0, 0, w, h);
 
 	// Set perspective
-	gluPerspective(90.0f, ratio, 1.0f, 1000.0f);
+	gluPerspective(90.0f, ratio, 0.10f, 100.0f);
 
 	// return to the model view matrix mode
 	glMatrixMode(GL_MODELVIEW);
 }
 
-void draw(Astro astro){
+void draw(Astro astro, boolean b){
     float x,y,z;
     glPolygonMode(GL_FRONT, GL_FILL);
 
@@ -77,12 +77,16 @@ void draw(Astro astro){
             glVertex3f(x, y, z);
         }
     glEnd();
+
+    if(b) {
+        glRotatef(90.0f,1,0,0);
+        glutSolidTorus(0.1,3.5,20,20);
+    }
     for(Astro lua : astro.getLuas()){
-        draw(lua);
+        draw(lua, FALSE);
     }
     glPopMatrix();
 }
-
 
 void renderScene(void) {
 
@@ -117,9 +121,15 @@ void renderScene(void) {
     glRotatef(angle2, 0.0f, 0.0f, 1.0f);
     glScalef(size, size, size);
 
+    boolean b = false;
+    int count = 0;
+
 	// put drawing instructions here
     for(Astro a : lista) {
-        draw(a);
+        draw(a, b);
+        count++;
+        if (count==6) b = true;
+        else b =  false;
     }
 
 
@@ -143,12 +153,12 @@ Astro readGroup(XMLElement *group, Astro astro, boolean original) {
         float tx = atof(translate->Attribute("X"));
         float ty = atof(translate->Attribute("Y"));
         float tz = atof(translate->Attribute("Z"));
-        if(tx!=0)
-            tx = log(tx)-6;
-        if (ty!=0)
-            ty = log(ty)-6;
-        if (tz!=0)
-            tz = log(tz)-6;
+        if(tx>0)
+            tx = log(tx)-8;
+        if (ty>0)
+            ty = log(ty)-8;
+        if (tz>0)
+            tz = log(tz)-8;
         printf("translate-%f %f %f\n",tx,ty,tz);
         lua.setTranslate(tx, ty, tz);
     }
