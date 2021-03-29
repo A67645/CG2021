@@ -25,6 +25,13 @@ float size = 1.0f;
 
 list< Astro > lista;
 
+// angle of rotation for the camera direction
+float angle_=0.0;
+// actual vector representing the camera's direction
+float lx=0.0f,ly=0.1f,lz=-8.0f;
+// XZ position of the camera
+float x=0.0f,y=1.0f,z=80.0f;
+
 void readGroup(XMLElement *pElement, Astro astro);
 
 void changeSize(int w, int h) {
@@ -46,7 +53,7 @@ void changeSize(int w, int h) {
 	glViewport(0, 0, w, h);
 
 	// Set perspective
-	gluPerspective(90.0f, ratio, 10.0f, 10000.0f);
+	gluPerspective(90.0f, ratio, 1.0f, 1000.0f);
 
 	// return to the model view matrix mode
 	glMatrixMode(GL_MODELVIEW);
@@ -84,26 +91,25 @@ void renderScene(void) {
 
 	// set the camera
 	glLoadIdentity();
-	gluLookAt(3250.0f,500.0f,2000.0f,
-              3250.0f , 0.0f, 0.0f,
-		0.0f, 1.0f, 0.0f);
+    gluLookAt(x,y,z,x+lx,y+ly,z+lz,0.0f,1.0f,0.0f);
 
-	/*	glBegin(GL_LINES);
-			// X axis in red
-			glColor3f(1.0f, 0.0f, 0.0f);
-				glVertex3f(-100.0f, 0.0f, 0.0f);
-				glVertex3f(5000000.0f, 0.0f, 0.0f);
-			// Y Axis in Green
-			glColor3f(0.0f, 1.0f, 0.0f);
-				glVertex3f(0.0f, -100.0f, 0.0f);
-				glVertex3f(0.0f, 5000000.0f, 0.0f);
-			// Z Axis in Blue
-			glColor3f(0.0f, 0.0f, 1.0f);
-				glVertex3f(0.0f, 0.0f, -100.0f);
-				glVertex3f(0.0f, 0.0f, 5000000.0f);
-			glColor3f(0.0f, 0.0f, 0.0f);
-		glEnd();
-	*/
+
+    /*	glBegin(GL_LINES);
+            // X axis in red
+            glColor3f(1.0f, 0.0f, 0.0f);
+                glVertex3f(-100.0f, 0.0f, 0.0f);
+                glVertex3f(5000000.0f, 0.0f, 0.0f);
+            // Y Axis in Green
+            glColor3f(0.0f, 1.0f, 0.0f);
+                glVertex3f(0.0f, -100.0f, 0.0f);
+                glVertex3f(0.0f, 5000000.0f, 0.0f);
+            // Z Axis in Blue
+            glColor3f(0.0f, 0.0f, 1.0f);
+                glVertex3f(0.0f, 0.0f, -100.0f);
+                glVertex3f(0.0f, 0.0f, 5000000.0f);
+            glColor3f(0.0f, 0.0f, 0.0f);
+        glEnd();
+    */
 
 	// put the geometric transformations here
     glTranslatef(cx, cy, cz);
@@ -137,6 +143,12 @@ Astro readGroup(XMLElement *group, Astro astro, boolean original) {
         float tx = atof(translate->Attribute("X"));
         float ty = atof(translate->Attribute("Y"));
         float tz = atof(translate->Attribute("Z"));
+        if(tx!=0)
+            tx = log(tx)-6;
+        if (ty!=0)
+            ty = log(ty)-6;
+        if (tz!=0)
+            tz = log(tz)-6;
         printf("translate-%f %f %f\n",tx,ty,tz);
         lua.setTranslate(tx, ty, tz);
     }
@@ -197,20 +209,54 @@ bool readXML(string file) {
 
 }
 
+void processSpecialKeys(int key, int xx, int yy) {
+
+    float fraction = 0.5f;
+
+    switch (key) {
+        case GLUT_KEY_LEFT :
+            angle -= 0.05f;
+            lx = sin(angle_);
+            lz = -cos(angle_);
+            break;
+        case GLUT_KEY_RIGHT :
+            angle += 0.05f;
+            lx = sin(angle_);
+            lz = -cos(angle_);
+            break;
+        case GLUT_KEY_UP :
+            x += lx * fraction;
+            z += lz * fraction;
+            break;
+        case GLUT_KEY_DOWN :
+            x -= lx * fraction;
+            z -= lz * fraction;
+            break;
+        case GLUT_KEY_PAGE_UP :
+            y += ly * fraction;
+            break;
+        case GLUT_KEY_PAGE_DOWN :
+            y -= ly * fraction;
+            break;
+    }
+
+    glutPostRedisplay();
+}
+
 // write function to process keyboard events
 void keyFunction(unsigned char key, int xx, int yy) {
     switch (key) {
-        case 'x':	cx -= 100.0f; break;
+        case 'x':	cx -= 0.2f; break;
 
-        case 'X':	cx += 100.2f; break;
+        case 'X':	cx += 0.2f; break;
 
-        case 'y':	cy -= 100.2f; break;
+        case 'y':	cy -= 0.2f; break;
 
-        case 'Y':	cy += 100.2f; break;
+        case 'Y':	cy += 0.2f; break;
 
-        case 'z':	cz -= 100.2f; break;
+        case 'z':	cz -= 0.2f; break;
 
-        case 'Z':	cz += 100.2f; break;
+        case 'Z':	cz += 0.2f; break;
 
         case 'r':	angle -= 10.0f; break;
 
@@ -258,6 +304,7 @@ int main(int argc, char** argv) {
 	glutReshapeFunc(changeSize);
 
     glutKeyboardFunc(keyFunction);
+    glutSpecialFunc(processSpecialKeys);
 
 	//  OpenGL settings
 	glEnable(GL_DEPTH_TEST);
