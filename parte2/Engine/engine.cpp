@@ -28,9 +28,9 @@ list< Astro > lista;
 // angle of rotation for the camera direction
 float angle_=0.0;
 // actual vector representing the camera's direction
-float lx=0.0f,ly=0.1f,lz=-8.0f;
+float lx=2.0f,ly=0.0f,lz=0.0f;
 // XZ position of the camera
-float x=0.0f,y=1.0f,z=10.0f;
+float x=2.0f,y=0.0f,z=12.0f;
 
 void readGroup(XMLElement *pElement, Astro astro);
 
@@ -53,7 +53,7 @@ void changeSize(int w, int h) {
 	glViewport(0, 0, w, h);
 
 	// Set perspective
-	gluPerspective(90.0f, ratio, 0.10f, 100.0f);
+	gluPerspective(45.0f, ratio, 0.10f, 100.0f);
 
 	// return to the model view matrix mode
 	glMatrixMode(GL_MODELVIEW);
@@ -80,6 +80,7 @@ void draw(Astro astro, boolean b){
 
     if(b) {
         glRotatef(90.0f,1,0,0);
+        glColor3f(0.5f,0.5f,0.5f);
         glutSolidTorus(0.1,3.5,20,20);
     }
     for(Astro lua : astro.getLuas()){
@@ -95,10 +96,10 @@ void renderScene(void) {
 
 	// set the camera
 	glLoadIdentity();
-    gluLookAt(x,y,z,x+lx,y+ly,z+lz,0.0f,1.0f,0.0f);
+    gluLookAt(x,y,z,lx,ly,lz,0.0f,1.0f,0.0f);
 
 
-    /*	glBegin(GL_LINES);
+    /*  glBegin(GL_LINES);
             // X axis in red
             glColor3f(1.0f, 0.0f, 0.0f);
                 glVertex3f(-100.0f, 0.0f, 0.0f);
@@ -112,8 +113,8 @@ void renderScene(void) {
                 glVertex3f(0.0f, 0.0f, -100.0f);
                 glVertex3f(0.0f, 0.0f, 5000000.0f);
             glColor3f(0.0f, 0.0f, 0.0f);
-        glEnd();
-    */
+        glEnd(); */
+
 
 	// put the geometric transformations here
     glTranslatef(cx, cy, cz);
@@ -154,11 +155,11 @@ Astro readGroup(XMLElement *group, Astro astro, boolean original) {
         float ty = atof(translate->Attribute("Y"));
         float tz = atof(translate->Attribute("Z"));
         if(tx>0)
-            tx = log(tx)-8;
+            tx = log(tx)-9;
         if (ty>0)
-            ty = log(ty)-8;
+            ty = log(ty)-9;
         if (tz>0)
-            tz = log(tz)-8;
+            tz = log(tz)-9;
         printf("translate-%f %f %f\n",tx,ty,tz);
         lua.setTranslate(tx, ty, tz);
     }
@@ -221,32 +222,30 @@ bool readXML(string file) {
 
 void processSpecialKeys(int key, int xx, int yy) {
 
-    float fraction = 0.5f;
-
     switch (key) {
         case GLUT_KEY_LEFT :
-            angle -= 0.05f;
-            lx = sin(angle_);
-            lz = -cos(angle_);
+            x -= 0.5f;
+            lx -= 0.5f;
             break;
         case GLUT_KEY_RIGHT :
-            angle += 0.05f;
-            lx = sin(angle_);
-            lz = -cos(angle_);
+            x += 0.5f;
+            lx += 0.5f;
             break;
         case GLUT_KEY_UP :
-            x += lx * fraction;
-            z += lz * fraction;
+            z -= 0.5f;
+            lz -= 0.5f;
             break;
         case GLUT_KEY_DOWN :
-            x -= lx * fraction;
-            z -= lz * fraction;
+            z += 0.5f;
+            lz += 0.5f;
             break;
-        case GLUT_KEY_PAGE_UP :
-            y += ly * fraction;
+        case GLUT_KEY_PAGE_UP:
+            y += 0.5f;
+            ly += 0.5f;
             break;
-        case GLUT_KEY_PAGE_DOWN :
-            y -= ly * fraction;
+        case GLUT_KEY_PAGE_DOWN:
+            y -= 0.5f;
+            ly -= 0.5f;
             break;
     }
 

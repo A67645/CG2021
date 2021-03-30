@@ -6,7 +6,15 @@
 
 #IncludeRegexTransform: 
 
-C:/Computacao Grafica/Projeto/CG2021/parte2/Engine/Astro.h
+C:/Users/melan/Desktop/Aulas/CG/.toolkits/glut/GL/glut.h
+windows.h
+-
+GL/gl.h
+-
+GL/glu.h
+-
+
+C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/Astro.h
 cmath
 -
 iostream
@@ -20,7 +28,7 @@ tuple
 list
 -
 
-C:/Computacao Grafica/Projeto/CG2021/parte2/Engine/engine.cpp
+C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/engine.cpp
 GLUT/glut.h
 -
 windows.h
@@ -34,13 +42,13 @@ iostream
 string
 -
 tinyxml2.h
-C:/Computacao Grafica/Projeto/CG2021/parte2/Engine/tinyxml2.h
+C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/tinyxml2.h
 Astro.h
-C:/Computacao Grafica/Projeto/CG2021/parte2/Engine/Astro.h
+C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/Astro.h
 list
 -
 
-C:/Computacao Grafica/Projeto/CG2021/parte2/Engine/tinyxml2.h
+C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte2/Engine/tinyxml2.h
 ctype.h
 -
 limits.h
@@ -68,13 +76,5 @@ stdint.h
 android/log.h
 -
 assert.h
--
-
-C:/Computacao Grafica/toolkits/glut/GL/glut.h
-windows.h
--
-GL/gl.h
--
-GL/glu.h
 -
 

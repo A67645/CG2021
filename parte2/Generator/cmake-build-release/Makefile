@@ -67,10 +67,10 @@ RM = "C:\Program Files\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Computacao Grafica\Projeto\CG2021\parte2\Generator"
+CMAKE_SOURCE_DIR = C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte2\Generator
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Computacao Grafica\Projeto\CG2021\parte2\Generator\cmake-build-release"
+CMAKE_BINARY_DIR = C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte2\Generator\cmake-build-release
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Computacao Grafica\Projeto\CG2021\parte2\Generator\cmake-build-release\CMakeFiles" "C:\Computacao Grafica\Projeto\CG2021\parte2\Generator\cmake-build-release\CMakeFiles\progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte2\Generator\cmake-build-release\CMakeFiles C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte2\Generator\cmake-build-release\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Computacao Grafica\Projeto\CG2021\parte2\Generator\cmake-build-release\CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte2\Generator\cmake-build-release\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
