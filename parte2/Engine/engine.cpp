@@ -28,9 +28,9 @@ list< Astro > lista;
 // angle of rotation for the camera direction
 float angle_=0.0;
 // actual vector representing the camera's direction
-float lx=2.0f,ly=0.0f,lz=0.0f;
+float lx=2.5f,ly=0.0f,lz=0.0f;
 // XZ position of the camera
-float x=2.0f,y=0.0f,z=12.0f;
+float x=2.5f,y=0.0f,z=13.0f;
 
 void readGroup(XMLElement *pElement, Astro astro);
 
@@ -78,13 +78,14 @@ void draw(Astro astro, boolean b){
         }
     glEnd();
 
+    for(Astro lua : astro.getLuas()){
+        draw(lua, FALSE);
+    }
+
     if(b) {
         glRotatef(90.0f,1,0,0);
         glColor3f(0.5f,0.5f,0.5f);
         glutSolidTorus(0.1,3.5,20,20);
-    }
-    for(Astro lua : astro.getLuas()){
-        draw(lua, FALSE);
     }
     glPopMatrix();
 }
@@ -155,11 +156,11 @@ Astro readGroup(XMLElement *group, Astro astro, boolean original) {
         float ty = atof(translate->Attribute("Y"));
         float tz = atof(translate->Attribute("Z"));
         if(tx>0)
-            tx = log(tx)-9;
+            tx = log(tx)-8;
         if (ty>0)
-            ty = log(ty)-9;
+            ty = log(ty)-8;
         if (tz>0)
-            tz = log(tz)-9;
+            tz = log(tz)-8;
         printf("translate-%f %f %f\n",tx,ty,tz);
         lua.setTranslate(tx, ty, tz);
     }
@@ -224,28 +225,28 @@ void processSpecialKeys(int key, int xx, int yy) {
 
     switch (key) {
         case GLUT_KEY_LEFT :
-            x -= 0.5f;
-            lx -= 0.5f;
+            x -= 0.05f;
+            lx -= 0.05f;
             break;
         case GLUT_KEY_RIGHT :
-            x += 0.5f;
-            lx += 0.5f;
+            x += 0.05f;
+            lx += 0.05f;
             break;
         case GLUT_KEY_UP :
-            z -= 0.5f;
-            lz -= 0.5f;
+            z -= 0.05f;
+            lz -= 0.05f;
             break;
         case GLUT_KEY_DOWN :
-            z += 0.5f;
-            lz += 0.5f;
+            z += 0.05f;
+            lz += 0.05f;
             break;
         case GLUT_KEY_PAGE_UP:
-            y += 0.5f;
-            ly += 0.5f;
+            y += 0.05f;
+            ly += 0.05f;
             break;
         case GLUT_KEY_PAGE_DOWN:
-            y -= 0.5f;
-            ly -= 0.5f;
+            y -= 0.05f;
+            ly -= 0.05f;
             break;
     }
 
