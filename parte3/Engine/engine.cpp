@@ -311,7 +311,7 @@ Astro readGroup(XMLElement *group, Astro astro, boolean original) {
         float px = atof(translate->Attribute("X"));
         float py = atof(translate->Attribute("Y"));
         float pz = atof(translate->Attribute("Z"));
-        lua.setPointsTranslate(px, py, pz);
+        lua.setTranslate(px, py, pz);
     }
     XMLElement *rotate = group->FirstChildElement("rotate");
     if (rotate != nullptr) {

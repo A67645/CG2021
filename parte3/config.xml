@@ -68,7 +68,7 @@
 		</group>
 		<group><!--lua Calisto-->
 			<colour R="0.56" G="0.51" B="0.37"/>
-			<translate X="3" Y="4"/>
+			<translate X="3" Y="4.5"/>
 			<scale X="0.034" Y="0.034" Z="0.034"/>
 			<models>
 				<model file="../../Generator/cmake-build-release/sun.3d"/>

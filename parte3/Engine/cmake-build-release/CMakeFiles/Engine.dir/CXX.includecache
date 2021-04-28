@@ -6,43 +6,7 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/melan/Desktop/Aulas/CG/.toolkits/glew/GL/glew.h
-stddef.h
--
-inttypes.h
--
-stdint.h
--
-inttypes.h
--
-OpenGL/glu.h
--
-GL/glu.h
--
-
-C:/Users/melan/Desktop/Aulas/CG/.toolkits/glut/GL/glut.h
-windows.h
--
-GL/gl.h
--
-GL/glu.h
--
-
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte3/Engine/Astro.cpp
-iostream
--
-string
--
-list
--
-vector
--
-GL/glew.h
--
-Astro.h
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte3/Engine/Astro.h
-
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte3/Engine/Astro.h
+C:/Computacao Grafica/Projeto/CG2021/parte3/Engine/Astro.h
 list
 -
 vector
@@ -64,7 +28,7 @@ vector
 GL/glew.h
 -
 
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte3/Engine/engine.cpp
+C:/Computacao Grafica/Projeto/CG2021/parte3/Engine/engine.cpp
 GLUT/glut.h
 -
 windows.h
@@ -80,13 +44,13 @@ iostream
 string
 -
 tinyxml2.h
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte3/Engine/tinyxml2.h
+C:/Computacao Grafica/Projeto/CG2021/parte3/Engine/tinyxml2.h
 Astro.h
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte3/Engine/Astro.h
+C:/Computacao Grafica/Projeto/CG2021/parte3/Engine/Astro.h
 vector
 -
 
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte3/Engine/tinyxml2.h
+C:/Computacao Grafica/Projeto/CG2021/parte3/Engine/tinyxml2.h
 ctype.h
 -
 limits.h
@@ -114,5 +78,27 @@ stdint.h
 android/log.h
 -
 assert.h
+-
+
+C:/Computacao Grafica/toolkits/glew/GL/glew.h
+stddef.h
+-
+inttypes.h
+-
+stdint.h
+-
+inttypes.h
+-
+OpenGL/glu.h
+-
+GL/glu.h
+-
+
+C:/Computacao Grafica/toolkits/glut/GL/glut.h
+windows.h
+-
+GL/gl.h
+-
+GL/glu.h
 -
 
