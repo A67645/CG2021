@@ -12,15 +12,11 @@
 #include <vector>
 #include <GL/glew.h>
 
-
-
 class Astro{
 private:
     std::string filename;
     std::vector<float> points;
-    float translateX;
-    float translateY;
-    float translateZ;
+    std::vector<float*> translate;
     float rotateAngle;
     float rotateX;
     float rotateY;
@@ -41,9 +37,6 @@ public:
     Astro(std::string file, float tX, float tY, float tZ, float a, float rX, float rY, float rZ, float sX, float sY, float sZ, float r, float g, float b);
     std::string getFilename();
     std::vector<float> getPoints();
-    float getTranslateX();
-    float getTranslateY();
-    float getTranslateZ();
     float getAngle();
     float getRotateX();
     float getRotateY();
@@ -59,8 +52,6 @@ public:
     void setFilename(const std::string &filename);
 
     void setColor(float red, float green, float blue);
-
-    void setTranslate(float red, float green, float blue);
 
     void setRotate(float angle, float x, float y, float z);
 
@@ -79,6 +70,12 @@ public:
     void setAnel(bool anel);
 
     void setTime(float d);
+
+    float getTime();
+
+    void setPointsTranslate(std::vector<float*> translate);
+
+    std::vector<float *> getTranslate();
 };
 
 #endif
