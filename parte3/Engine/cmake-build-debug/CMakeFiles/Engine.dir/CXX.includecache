@@ -28,6 +28,20 @@ GL/gl.h
 GL/glu.h
 -
 
+C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte3/Engine/Astro.cpp
+iostream
+-
+string
+-
+list
+-
+vector
+-
+GL/glew.h
+-
+Astro.h
+C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte3/Engine/Astro.h
+
 C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte3/Engine/Astro.h
 list
 -
@@ -46,6 +60,8 @@ tuple
 list
 -
 vector
+-
+GL/glew.h
 -
 
 C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte3/Engine/engine.cpp

@@ -9,7 +9,12 @@
 
 	<group> <!--mercurio-->
 		<colour R="0.66" G="0.18" B="0.14"/>
-		<translate X="57910"/>
+		<translate time="1">
+				<point X="1" Y="2" Z="3"/>
+				<point X="1" Y="2" Z="3"/>
+				<point X="1" Y="2" Z="3"/>
+				<point X="1" Y="2" Z="3"/>
+		</translate>
 		<scale X="0.0034" Y="0.0034" Z="0.0034"/>
 		<models>
 			<model file="../../Generator/cmake-build-release/sun.3d"/>
@@ -18,7 +23,7 @@
 
 	<group><!--venus-->
 		<colour R="0.55" G="0.49" B="0.51"/>
-		<translate X="108200"/>
+		<translate time="1"/>
 		<scale X="0.0087" Y="0.0087" Z="0.0087"/>
 		<models>
 				<model file="../../Generator/cmake-build-release/sun.3d"/>
@@ -27,14 +32,14 @@
 
 	<group><!--terra-->
 		<colour R="0.55" G="0.69" B="0.87"/>
-		<translate X="149600"/>
+		<translate time="1"/>
 		<scale X="0.0091" Y="0.0091" Z="0.0091"/>
 		<models>
 				<model file="../../Generator/cmake-build-release/sun.3d"/>
 		</models>
 		<group><!--lua-->
 			<colour R="0.9" G="0.9" B="0.9"/>
-			<translate X="1" Y="1"/>
+			<translate time="1"/>
 			<scale X="0.27" Y="0.27" Z="0.27"/>
 			<models>
 					<model file="../../Generator/cmake-build-release/sun.3d"/>
@@ -44,7 +49,7 @@
 
 	<group><!--marte-->
 		<colour R="0.58" G="0.28" B="0.22"/>
-		<translate X="227940"/>
+		<translate time="1"/>
 		<scale X="0.0048" Y="0.0048" Z="0.0048"/>
 		<models>
 				<model file="../../Generator/cmake-build-release/sun.3d"/>
@@ -53,14 +58,14 @@
 
 	<group><!--jupiter-->
 		<colour R="0.75" G="0.5" B="0.3"/>
-		<translate X="778330"/>
+		<translate time="1"/>
 		<scale X="0.1026" Y="0.1026" Z="0.1026"/>
 		<models>
 				<model file="../../Generator/cmake-build-release/sun.3d"/>
 		</models>
 		<group><!--lua Ganimedes-->
 			<colour R="0.5" G="0.58" B="0.65"/>
-			<translate X="-3"/>
+			<translate time="1"/>
 			<scale X="0.038" Y="0.038" Z="0.038"/>
 			<models>
 				<model file="../../Generator/cmake-build-release/sun.3d"/>
@@ -68,7 +73,7 @@
 		</group>
 		<group><!--lua Calisto-->
 			<colour R="0.56" G="0.51" B="0.37"/>
-			<translate X="10000" Y="50000"/>
+			<translate time="1"/>
 			<scale X="0.034" Y="0.034" Z="0.034"/>
 			<models>
 				<model file="../../Generator/cmake-build-release/sun.3d"/>
@@ -76,7 +81,7 @@
 		</group>
 		<group><!--lua IO-->
 			<colour R="0.39" G="0.93" B="0"/>
-			<translate X="-1" Y="-3"/>
+			<translate time="1"/>
 			<scale X="0.026" Y="0.026" Z="0.026"/>
 			<models>
 				<model file="../../Generator/cmake-build-release/sun.3d"/>
@@ -86,7 +91,7 @@
 
 	<group><!--saturno-->
 		<colour R="0.81" G="0.72" B="0.72"/>
-		<translate X="1429400"/>
+		<translate time="1"/>
 		<scale X="0.0862" Y="0.0862" Z="0.0862"/>
 		<ring/>
 		<models>
@@ -94,7 +99,7 @@
 		</models>
 		<group><!--lua Titan-->
 			<colour R="0.55" G="0.69" B="0.23"/>
-			<translate X="50000" Y="50000"/>
+			<translate time="1"/>
 			<scale X="0.044" Y="0.044" Z="0.044"/>
 			<models>
 				<model file="../../Generator/cmake-build-release/sun.3d"/>
@@ -104,7 +109,7 @@
 
 	<group><!--urano-->
 		<colour R="0.73" G="0.88" B="0.89"/>
-		<translate X="2870990"/>
+		<translate time="1"/>
 		<scale X="0.0370" Y="0.0370" Z="0.0370"/>
 		<models>
 				<model file="../../Generator/cmake-build-release/sun.3d"/>
@@ -113,14 +118,14 @@
 
 	<group><!--neptuno-->
 		<colour R="0.36" G="0.36" B="0.87"/>
-		<translate X="4504300"/>
+		<translate time="1"/>
 		<scale X="0.0355" Y="0.0355" Z="0.0355"/>
 		<models>
 				<model file="../../Generator/cmake-build-release/sun.3d"/>
 		</models>
 		<group><!--lua Triton-->
 			<colour R="0.47" G="0.78" B="0.8"/>
-			<translate X="10" Y="10"/>
+			<translate time="1"/>
 			<scale X="0.055" Y="0.055" Z="0.055"/>
 			<models>
 				<model file="../../Generator/cmake-build-release/sun.3d"/>
@@ -129,7 +134,7 @@
 	</group>
 	<group><!--cometa - teapot-->
 		<colour R="0.43" G="0.67" B="0.9"/>
-		<translate X="160000" Y="129100"/>
+		<translate time="1"/>
 		<scale X="0.055" Y="0.055" Z="0.055"/>
 		<models>
 			<model file="../../Generator/cmake-build-release/teapot.3d"/>

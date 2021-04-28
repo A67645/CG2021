@@ -33,8 +33,7 @@ int startX, startY, tracking = 0;
 int alpha = 0, beta = 45, r = 50;
 
 
-#define POINT_COUNT 5
-float p[POINT_COUNT][3] = {{-.5,-.5,0},{-.5,.5,0},{.5,.5,0},{1,0,0},{.5,-.5,0}};
+int point_count = 0;
 
 // angle of rotation for the camera direction
 float angle_=0.0;
@@ -127,23 +126,23 @@ void getCatmullRomPoint(float t, float *p0, float *p1, float *p2, float *p3, flo
 }
 
 // given  global t, returns the point in the curve
-void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv) {
+void getGlobalCatmullRomPoint(float gt, vector<float*> p, float *pos, float *deriv) {
 
-    float t = gt * POINT_COUNT; // this is the real global t
+    float t = gt * point_count; // this is the real global t
     int index = floor(t);  // which segment
     t = t - index; // where within  the segment
 
     // indices store the points
     int indices[4];
-    indices[0] = (index + POINT_COUNT-1)%POINT_COUNT;
-    indices[1] = (indices[0]+1)%POINT_COUNT;
-    indices[2] = (indices[1]+1)%POINT_COUNT;
-    indices[3] = (indices[2]+1)%POINT_COUNT;
+    indices[0] = (index + point_count-1)%point_count;
+    indices[1] = (indices[0]+1)%point_count;
+    indices[2] = (indices[1]+1)%point_count;
+    indices[3] = (indices[2]+1)%point_count;
 
     getCatmullRomPoint(t, p[indices[0]], p[indices[1]], p[indices[2]], p[indices[3]], pos, deriv);
 }
 
-void renderCatmullRomCurve() {
+void renderCatmullRomCurve(float time, vector<float*> pontosTranslate) {
 
     // draw curve using line segments with GL_LINE_LOOP
     glColor3f(0, 0, 0);
@@ -152,20 +151,9 @@ void renderCatmullRomCurve() {
     float deriv[3];
 
     for(int i=0;i<10000; i++){
-        getGlobalCatmullRomPoint(i/100.f, pos, deriv);
+        getGlobalCatmullRomPoint(time,pontosTranslate, pos, deriv);
         glVertex3f(pos[0],pos[1],pos[2]);
     }
-    glEnd();
-
-    glColor3f(1.0,0.0,1.0);
-    for(int i=0;i<10000; i++) {
-        getGlobalCatmullRomPoint(i/100.f, pos, deriv);
-        glBegin(GL_LINES);
-        glVertex3f(pos[0], pos[1], pos[2]);
-        normalize(deriv);
-        glVertex3f(pos[0] + deriv[0], pos[1] + deriv[1], pos[2] + deriv[2]);
-    }
-
     glEnd();
 }
 
@@ -204,11 +192,33 @@ void setVBOs(){
 }
 
 void draw(Astro astro){
+
+    float t = glutGet(GLUT_ELAPSED_TIME) % (int) (astro.getTime() * 1000);
+    float tempo = t / (astro.getTime() * 1000.0);
+
     glPolygonMode(GL_FRONT, GL_FILL);
 
     glPushMatrix();
+    point_count = astro.getTranslate().size();
+    renderCatmullRomCurve(tempo,astro.getTranslate());
+    float X[3];
+    static float Y[3] = { 0, 1, 0 };
+    float Z[3];
+    float pos[4];
+    glPushMatrix();
+    getGlobalCatmullRomPoint(t, astro.getTranslate(), pos, X);
+    glTranslatef(pos[0], pos[1], pos[2]);
+
+    cross(X, Y, Z);
+    cross(Z, X, Y);
+    normalize(X);
+    normalize(Y);
+    normalize(Z);
+    float m[16];
+    buildRotMatrix(X, Y, Z, m);
+    glMultMatrixf(m);
+
     glColor3f(astro.getRed(),astro.getGreen(),astro.getBlue());
-    glTranslatef(astro.getTranslateX(), astro.getTranslateY(), astro.getTranslateZ());
     glScalef(astro.getScaleX(), astro.getScaleY(), astro.getScaleZ());
     glRotatef(astro.getAngle(), astro.getRotateX(), astro.getRotateY(), astro.getRotateZ());
 
@@ -305,13 +315,21 @@ Astro readGroup(XMLElement *group, Astro astro, boolean original) {
     if (translate != nullptr) {
         float time = atof(translate->Attribute("time"));
         lua.setTime(time);
-    }
-    for (XMLElement *point = translate->FirstChildElement("point");
-         point != nullptr; point = point->NextSiblingElement("point")) {
-        float px = atof(translate->Attribute("X"));
-        float py = atof(translate->Attribute("Y"));
-        float pz = atof(translate->Attribute("Z"));
-        lua.setPointsTranslate(px, py, pz);
+
+        vector<float*> translatePoints;
+        int i = 0;
+        for (XMLElement *point = translate->FirstChildElement("point");
+             point != nullptr; point = point->NextSiblingElement("point")) {
+            float px = atof(point->Attribute("X"));
+            float py = atof(point->Attribute("Y"));
+            float pz = atof(point->Attribute("Z"));
+            translatePoints.at(i)[0]=px;
+            translatePoints.at(i)[1]=py;
+            translatePoints.at(i)[2]=pz;
+            printf("translate-%f %f %f\n",px,py,pz);
+            i++;
+        }
+        lua.setPointsTranslate(translatePoints);
     }
     XMLElement *rotate = group->FirstChildElement("rotate");
     if (rotate != nullptr) {
@@ -553,7 +571,6 @@ int main(int argc, char** argv) {
 	glEnable(GL_CULL_FACE);
 
     setVBOs();
-
 	// enter GLUT's main cycle
 	glutMainLoop();
 

@@ -9,9 +9,6 @@
 
     Astro::Astro(){
         filename = "";
-        translateX = 0.0f;
-        translateY = 0.0f;
-        translateZ = 0.0f;
         rotateAngle = 0.0f;
         rotateX = 0.0f;
         rotateY = 0.0f;
@@ -32,9 +29,10 @@
         return points;
     }
 
-    float Astro::getTranslateX(){ return translateX; }
-    float Astro::getTranslateY(){ return translateY; }
-    float Astro::getTranslateZ(){ return translateZ; }
+    //float Astro::getTranslateX(){ return translateX; }
+    //float Astro::getTranslateY(){ return translateY; }
+    //float Astro::getTranslateZ(){ return translateZ; }
+    std::vector<float*> Astro::getTranslate(){ return translate; }
     float Astro::getAngle(){ return rotateAngle; }
     float Astro::getRotateX(){ return rotateX; }
     float Astro::getRotateY(){ return rotateY; }
@@ -55,12 +53,6 @@ void Astro::setColor(float red, float green, float blue) {
     Astro::red = red;
     Astro::green=green;
     Astro::blue = blue;
-}
-
-void Astro::setTranslate(float x, float y, float z) {
-    Astro::translateX = x;
-    Astro::translateY = y;
-    Astro::translateZ = z;
 }
 
 void Astro::setRotate(float angle, float x, float y, float z) {
@@ -109,6 +101,10 @@ void Astro::setTime(float time) {
     Astro::time = time;
 }
 
+float Astro::getTime() {
+    return Astro::time;
+}
+
 void Astro::makeVBO(){
     glEnableClientState(GL_VERTEX_ARRAY);
 
@@ -121,4 +117,8 @@ void Astro::draw(){
     glVertexPointer(3 , GL_FLOAT, 0 , 0);
     glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
     glDrawArrays(GL_TRIANGLES,0, points.size());
+}
+
+void Astro::setPointsTranslate(std::vector<float*> translate) {
+    Astro::translate = translate;
 }
