@@ -1,25 +1,13 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <vector>
+#include <windows.h>
+#include <GL/glew.h>
+#include <GL/glut.h>
 
 #include "Astro.h"
 
-std::string filename;
-std::list <float> points;
-float translateX;
-float translateY;
-float translateZ;
-float rotateAngle;
-float rotateX;
-float rotateY;
-float rotateZ;
-float scaleX;
-float scaleY;
-float scaleZ;
-float red;
-float green;
-float blue;
-std::list<Astro> luas;
 
     Astro::Astro(){
         filename = "";
@@ -36,11 +24,12 @@ std::list<Astro> luas;
         red = 0.0f;
         green = 0.0f;
         blue = 0.0f;
+        anel = false;
     }
 
     std::string Astro::getFilename(){ return filename; }
 
-    std::list <float> Astro::getPoints() {
+    std::vector <float> Astro::getPoints() {
         return points;
     }
 
@@ -57,6 +46,7 @@ std::list<Astro> luas;
     float Astro::getRed(){ return red; }
     float Astro::getGreen(){ return green; }
     float Astro::getBlue(){ return blue; }
+    bool Astro::getAnel(){ return anel; }
 
 void Astro::setFilename(const std::string &filename) {
     Astro::filename = filename;
@@ -87,6 +77,10 @@ void Astro::setScale(float x, float y, float z) {
     Astro::scaleZ = z;
 }
 
+void Astro::setAnel(bool anel){
+        Astro::anel = anel;
+    }
+
 void Astro::readFile() {
         std::ifstream infile(filename);
         float x, y, z;
@@ -109,4 +103,18 @@ void Astro::add(Astro astro) {
 
 std::list<Astro> Astro::getLuas() {
     return luas;
+}
+
+void Astro::makeVBO(){
+    glEnableClientState(GL_VERTEX_ARRAY);
+
+    glGenBuffers(1,buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
+    glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(float), points.data(), GL_STATIC_DRAW);
+}
+
+void Astro::draw(){
+    glVertexPointer(3 , GL_FLOAT, 0 , 0);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
+    glDrawArrays(GL_TRIANGLES,0, points.size());
 }

@@ -2,6 +2,7 @@
 #include <GLUT/glut.h>
 #else
 #include <windows.h>
+#include <GL/glew.h>
 #include <GL/glut.h>
 #endif
 
@@ -11,7 +12,8 @@
 #include <string>
 #include "tinyxml2.h"
 #include "Astro.h"
-#include <list>
+#include <vector>
+
 
 using namespace std;
 using namespace tinyxml2;
@@ -23,7 +25,13 @@ float angle = 0.0f;
 float angle2 = 0.0f;
 float size = 1.0f;
 
-list< Astro > lista;
+vector< Astro > lista;
+
+float camX = 00, camY = 30, camZ = 40;
+int startX, startY, tracking = 0;
+
+int alpha = 0, beta = 45, r = 50;
+
 
 #define POINT_COUNT 5
 float p[POINT_COUNT][3] = {{-.5,-.5,0},{-.5,.5,0},{.5,.5,0},{1,0,0},{.5,-.5,0}};
@@ -186,8 +194,16 @@ void changeSize(int w, int h) {
 	glMatrixMode(GL_MODELVIEW);
 }
 
-void draw(Astro astro, boolean b){
-    float x,y,z;
+void setVBOs(){
+    for(Astro a : lista){
+        a.makeVBO();
+        for(Astro lua : a.getLuas()){
+            lua.makeVBO();
+        }
+    }
+}
+
+void draw(Astro astro){
     glPolygonMode(GL_FRONT, GL_FILL);
 
     glPushMatrix();
@@ -195,18 +211,34 @@ void draw(Astro astro, boolean b){
     glTranslatef(astro.getTranslateX(), astro.getTranslateY(), astro.getTranslateZ());
     glScalef(astro.getScaleX(), astro.getScaleY(), astro.getScaleZ());
     glRotatef(astro.getAngle(), astro.getRotateX(), astro.getRotateY(), astro.getRotateZ());
-    list <float> points = astro.getPoints();
-    glBegin(GL_TRIANGLES);
-        for(auto itPoints = points.begin(); itPoints != points.end(); itPoints++) {
-            x = *(itPoints++);
-            y = *(itPoints++);
-            z = *itPoints;
-            glVertex3f(x, y, z);
-        }
-    glEnd();
+
+    astro.draw();
 
     for(Astro lua : astro.getLuas()){
-        draw(lua, FALSE);
+        draw(lua);
+    }
+
+    if(astro.getAnel()) {
+        glRotatef(90.0f,1,0,0);
+        glColor3f(0.5f,0.5f,0.5f);
+        glutSolidTorus(0.1,3.5,20,20);
+    }
+
+    glPopMatrix();
+
+    /*
+      vector <float> points = astro.getPoints();
+glBegin(GL_TRIANGLES);
+    for(auto itPoints = points.begin(); itPoints != points.end(); itPoints++) {
+        x = *(itPoints++);
+        y = *(itPoints++);
+        z = *itPoints;
+        glVertex3f(x, y, z);
+    }
+glEnd();
+
+    for(Astro lua : astro.getLuas()){
+        draw(lua);
     }
 
     if(b) {
@@ -215,6 +247,7 @@ void draw(Astro astro, boolean b){
         glutSolidTorus(0.1,3.5,20,20);
     }
     glPopMatrix();
+*/
 }
 
 void renderScene(void) {
@@ -223,7 +256,7 @@ void renderScene(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// set the camera
-	glLoadIdentity();
+    glLoadIdentity();
     gluLookAt(x,y,z,lx,ly,lz,0.0f,1.0f,0.0f);
 
 
@@ -250,18 +283,10 @@ void renderScene(void) {
     glRotatef(angle2, 0.0f, 0.0f, 1.0f);
     glScalef(size, size, size);
 
-    boolean b = false;
-    int count = 0;
-
 	// put drawing instructions here
     for(Astro a : lista) {
-        draw(a, b);
-        count++;
-        if (count==6) b = true;
-        else b =  false;
+        draw(a);
     }
-
-
 
 	// End of frame
 	glutSwapBuffers();
@@ -308,6 +333,10 @@ Astro readGroup(XMLElement *group, Astro astro, boolean original) {
         printf("scale-%f %f %f\n",sx,sy,sz);
         lua.setScale(sx, sy, sz);
     }
+    XMLElement *ring = group->FirstChildElement("ring");
+    if (ring != nullptr) {
+        lua.setAnel(TRUE);
+    }
     XMLElement *models = group->FirstChildElement("models");
     for (XMLElement *model = models->FirstChildElement("model");
          model != nullptr; model = model->NextSiblingElement("model")) {
@@ -339,6 +368,7 @@ bool readXML(string file) {
 		    astro = readGroup(group, astro, TRUE);
 		    lista.push_back(astro);
 		}
+
 		return true;
 	}
 	else {
@@ -417,6 +447,77 @@ void keyFunction(unsigned char key, int xx, int yy) {
     glutPostRedisplay();
 }
 
+
+void processMouseButtons(int button, int state, int xx, int yy) {
+
+    if (state == GLUT_DOWN)  {
+        startX = xx;
+        startY = yy;
+        if (button == GLUT_LEFT_BUTTON)
+            tracking = 1;
+        else if (button == GLUT_RIGHT_BUTTON)
+            tracking = 2;
+        else
+            tracking = 0;
+    }
+    else if (state == GLUT_UP) {
+        if (tracking == 1) {
+            alpha += (xx - startX);
+            beta += (yy - startY);
+        }
+        else if (tracking == 2) {
+
+            r -= yy - startY;
+            if (r < 3)
+                r = 3.0;
+        }
+        tracking = 0;
+    }
+    glutPostRedisplay();
+}
+
+void processMouseMotion(int xx, int yy) {
+
+    int deltaX, deltaY;
+    int alphaAux, betaAux;
+    int rAux;
+
+    if (!tracking)
+        return;
+
+    deltaX = xx - startX;
+    deltaY = yy - startY;
+
+    if (tracking == 1) {
+
+
+        alphaAux = alpha + deltaX;
+        betaAux = beta + deltaY;
+
+        if (betaAux > 85.0)
+            betaAux = 85.0;
+        else if (betaAux < -85.0)
+            betaAux = -85.0;
+
+        rAux = r;
+    }
+    else if (tracking == 2) {
+
+        alphaAux = alpha;
+        betaAux = beta;
+        rAux = r - deltaY;
+        if (rAux < 3)
+            rAux = 3;
+    }
+    camX = rAux * sin(alphaAux * 3.14 / 180.0) * cos(betaAux * 3.14 / 180.0);
+    camZ = rAux * cos(alphaAux * 3.14 / 180.0) * cos(betaAux * 3.14 / 180.0);
+    camY = rAux * 							     sin(betaAux * 3.14 / 180.0);
+
+    glutPostRedisplay();
+}
+
+
+
 int main(int argc, char** argv) {
     if(argc>2){cout << "Too many arguments! Expected 1 argument!" << endl; return -1;}
     if(argc<2){cout << "Not enough arguments! Expected 1 argument!" << endl; return -1;}
@@ -439,13 +540,22 @@ int main(int argc, char** argv) {
 	// Required callback registry 
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(changeSize);
+    glutIdleFunc(renderScene);
+
+    //glutMouseFunc(processMouseButtons);
+    //glutMotionFunc(processMouseMotion);
 
     glutKeyboardFunc(keyFunction);
     glutSpecialFunc(processSpecialKeys);
 
+    glewInit();
+
+    setVBOs();
+
 	//  OpenGL settings
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
+    glPolygonMode(GL_FRONT, GL_LINE);
 
 	// enter GLUT's main cycle
 	glutMainLoop();

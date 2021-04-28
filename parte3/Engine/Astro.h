@@ -1,18 +1,21 @@
 #ifndef ASTRO_H
 #define ASTRO_H
 
+#include <list>
+#include <vector>
 #include <cmath>
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <tuple>
 #include <list>
+#include <vector>
 
 
 class Astro{
 private:
     std::string filename;
-    std::list <float> points;
+    std::vector<float> points;
     float translateX;
     float translateY;
     float translateZ;
@@ -26,13 +29,15 @@ private:
     float red;
     float green;
     float blue;
+    bool anel;
     std::list <Astro> luas;
+    GLuint *buffer = (GLuint*) malloc(points.size() *sizeof(float));
 
 public:
     Astro();
     Astro(std::string file, float tX, float tY, float tZ, float a, float rX, float rY, float rZ, float sX, float sY, float sZ, float r, float g, float b);
     std::string getFilename();
-    std::list <float> getPoints();
+    std::vector<float> getPoints();
     float getTranslateX();
     float getTranslateY();
     float getTranslateZ();
@@ -61,6 +66,14 @@ public:
     void add(Astro astro);
 
     std::list<Astro> getLuas();
+
+    void makeVBO();
+
+    void draw();
+
+    bool getAnel();
+
+    void setAnel(bool anel);
 };
 
 #endif

@@ -88,6 +88,7 @@
 		<colour R="0.81" G="0.72" B="0.72"/>
 		<translate X="1429400"/>
 		<scale X="0.0862" Y="0.0862" Z="0.0862"/>
+		<ring/>
 		<models>
 				<model file="../../Generator/cmake-build-release/sun.3d"/>
 		</models>
@@ -126,4 +127,13 @@
 			</models>
 		</group>
 	</group>
+	<group><!--cometa - teapot-->
+		<colour R="0.43" G="0.67" B="0.9"/>
+		<translate X="160000" Y="129100"/>
+		<scale X="0.055" Y="0.055" Z="0.055"/>
+		<models>
+			<model file="../../Generator/cmake-build-release/teapot.3d"/>
+		</models>
+	</group>
+
 </scene>
