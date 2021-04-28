@@ -10,6 +10,8 @@
 #include <tuple>
 #include <list>
 #include <vector>
+#include <GL/glew.h>
+
 
 
 class Astro{
@@ -30,8 +32,9 @@ private:
     float green;
     float blue;
     bool anel;
+    float time;
     std::list <Astro> luas;
-    GLuint *buffer = (GLuint*) malloc(points.size() *sizeof(float));
+    GLuint *buffer = (GLuint*) malloc(16 *sizeof(GLuint));
 
 public:
     Astro();
@@ -74,6 +77,8 @@ public:
     bool getAnel();
 
     void setAnel(bool anel);
+
+    void setTime(float d);
 };
 
 #endif

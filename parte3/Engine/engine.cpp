@@ -213,7 +213,6 @@ void draw(Astro astro){
     glRotatef(astro.getAngle(), astro.getRotateX(), astro.getRotateY(), astro.getRotateZ());
 
     astro.draw();
-
     for(Astro lua : astro.getLuas()){
         draw(lua);
     }
@@ -304,17 +303,15 @@ Astro readGroup(XMLElement *group, Astro astro, boolean original) {
     }
     XMLElement *translate = group->FirstChildElement("translate");
     if (translate != nullptr) {
-        float tx = atof(translate->Attribute("X"));
-        float ty = atof(translate->Attribute("Y"));
-        float tz = atof(translate->Attribute("Z"));
-        if(tx>0)
-            tx = log(tx)-8;
-        if (ty>0)
-            ty = log(ty)-8;
-        if (tz>0)
-            tz = log(tz)-8;
-        printf("translate-%f %f %f\n",tx,ty,tz);
-        lua.setTranslate(tx, ty, tz);
+        float time = atof(translate->Attribute("time"));
+        lua.setTime(time);
+    }
+    for (XMLElement *point = translate->FirstChildElement("point");
+         point != nullptr; point = point->NextSiblingElement("point")) {
+        float px = atof(translate->Attribute("X"));
+        float py = atof(translate->Attribute("Y"));
+        float pz = atof(translate->Attribute("Z"));
+        lua.setPointsTranslate(px, py, pz);
     }
     XMLElement *rotate = group->FirstChildElement("rotate");
     if (rotate != nullptr) {
@@ -550,12 +547,12 @@ int main(int argc, char** argv) {
 
     glewInit();
 
-    setVBOs();
 
 	//  OpenGL settings
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
-    glPolygonMode(GL_FRONT, GL_LINE);
+
+    setVBOs();
 
 	// enter GLUT's main cycle
 	glutMainLoop();

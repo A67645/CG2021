@@ -2,9 +2,7 @@
 #include <string>
 #include <list>
 #include <vector>
-#include <windows.h>
 #include <GL/glew.h>
-#include <GL/glut.h>
 
 #include "Astro.h"
 
@@ -25,6 +23,7 @@
         green = 0.0f;
         blue = 0.0f;
         anel = false;
+        time=0.1;
     }
 
     std::string Astro::getFilename(){ return filename; }
@@ -103,6 +102,11 @@ void Astro::add(Astro astro) {
 
 std::list<Astro> Astro::getLuas() {
     return luas;
+}
+
+
+void Astro::setTime(float time) {
+    Astro::time = time;
 }
 
 void Astro::makeVBO(){
