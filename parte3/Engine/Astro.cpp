@@ -9,6 +9,9 @@
 Astro::Astro() {
     filename = "";
     rotateAngle = 0.0f;
+    translateX = 0.0f;
+    translateY = 0.0f;
+    translateZ = 0.0f;
     rotateX = 0.0f;
     rotateY = 0.0f;
     rotateZ = 0.0f;
@@ -50,6 +53,10 @@ float Astro::getBlue() { return blue; }
 
 bool Astro::getAnel() { return anel; }
 
+float Astro::getTranslateX(){ return translateX; }
+float Astro::getTranslateY(){ return translateY; }
+float Astro::getTranslateZ(){ return translateZ; }
+
 std::list<Astro> Astro::getLuas() { return luas; }
 
 float Astro::getTime() { return Astro::time; }
@@ -83,6 +90,12 @@ void Astro::setAnel(bool anel) {
 
 void Astro::setTime(float time) {
     Astro::time = time;
+}
+
+void Astro::setTranslate(float x, float y, float z) {
+    Astro::translateX = x;
+    Astro::translateY = y;
+    Astro::translateZ = z;
 }
 
 void Astro::setPointsTranslate(std::vector<float *> translate) {

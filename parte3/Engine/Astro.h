@@ -17,6 +17,9 @@ private:
     std::string filename;
     std::vector<float> points;
     std::vector<float*> translate;
+    float translateX;
+    float translateY;
+    float translateZ;
     float rotateAngle;
     float rotateX;
     float rotateY;
@@ -48,8 +51,12 @@ public:
     float getGreen();
     float getBlue();
     void readFile();
+    float getTranslateX();
+    float getTranslateY();
+    float getTranslateZ();
 
     void setFilename(const std::string &filename);
+    void setTranslate(float x, float y, float z);
 
     void setColor(float red, float green, float blue);
 

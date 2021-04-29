@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte3/Engine
+# Install script for directory: C:/Computacao Grafica/Projeto/CG2021/parte3/Engine
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte3/Engine/cmake-build-release/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Computacao Grafica/Projeto/CG2021/parte3/Engine/cmake-build-release/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

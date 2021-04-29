@@ -181,32 +181,35 @@ void setVBOs() {
 }
 
 void draw(Astro astro) {
+    if(astro.getTime() != 0) {
+        float t = glutGet(GLUT_ELAPSED_TIME) % (int) (astro.getTime() * 1000);
+        float tempo = t / (astro.getTime() * 1000.0);
 
-    float t = glutGet(GLUT_ELAPSED_TIME) % (int) (astro.getTime() * 1000);
-    float tempo = t / (astro.getTime() * 1000.0);
+        glPolygonMode(GL_FRONT, GL_FILL);
 
-    glPolygonMode(GL_FRONT, GL_FILL);
+        glPushMatrix();
 
-    glPushMatrix();
+        if ((point_count = astro.getTranslate().size()) > 0) {
+            renderCatmullRomCurve(tempo, astro.getTranslate());
+            float X[3];
+            static float Y[3] = {0, 1, 0};
+            float Z[3];
+            float pos[4];
+            //glPushMatrix();
+            getGlobalCatmullRomPoint(tempo, astro.getTranslate(), pos, X);
+            glTranslatef(pos[0], pos[1], pos[2]);
 
-    if ((point_count = astro.getTranslate().size()) > 0) {
-        renderCatmullRomCurve(tempo, astro.getTranslate());
-        float X[3];
-        static float Y[3] = {0, 1, 0};
-        float Z[3];
-        float pos[4];
-        //glPushMatrix();
-        getGlobalCatmullRomPoint(tempo, astro.getTranslate(), pos, X);
-        glTranslatef(pos[0], pos[1], pos[2]);
-
-        cross(X, Y, Z);
-        cross(Z, X, Y);
-        normalize(X);
-        normalize(Y);
-        normalize(Z);
-        float m[16];
-        buildRotMatrix(X, Y, Z, m);
-        glMultMatrixf(m);
+            cross(X, Y, Z);
+            cross(Z, X, Y);
+            normalize(X);
+            normalize(Y);
+            normalize(Z);
+            float m[16];
+            buildRotMatrix(X, Y, Z, m);
+            glMultMatrixf(m);
+        }
+    }else{
+        glTranslatef(astro.getTranslateX(), astro.getTranslateY(), astro.getTranslateZ());
     }
 
     glColor3f(astro.getRed(), astro.getGreen(), astro.getBlue());
@@ -292,24 +295,31 @@ Astro readGroup(XMLElement *group, Astro astro, boolean original) {
     XMLElement *translate = group->FirstChildElement("translate");
     if (translate != nullptr) {
         float time = atof(translate->Attribute("time"));
+        float tx = atof(translate->Attribute("X"));
+        float ty = atof(translate->Attribute("Y"));
+        float tz = atof(translate->Attribute("Z"));
         lua.setTime(time);
 
-        vector<float *> translatePoints;
-        int i = 0;
-        for (XMLElement *point = translate->FirstChildElement("point");
-             point != nullptr; point = point->NextSiblingElement("point")) {
-            float px = atof(point->Attribute("X"));
-            float py = atof(point->Attribute("Y"));
-            float pz = atof(point->Attribute("Z"));
-            float *pontos = new float[3];
-            pontos[0] = px;
-            pontos[1] = py;
-            pontos[2] = pz;
-            translatePoints.push_back(pontos);
-            printf("translate-%f %f %f\n", px, py, pz);
-            i++;
+        if(time) {
+            vector<float *> translatePoints;
+            int i = 0;
+            for (XMLElement *point = translate->FirstChildElement("point");
+                 point != nullptr; point = point->NextSiblingElement("point")) {
+                float px = atof(point->Attribute("X"));
+                float py = atof(point->Attribute("Y"));
+                float pz = atof(point->Attribute("Z"));
+                float *pontos = new float[3];
+                pontos[0] = px;
+                pontos[1] = py;
+                pontos[2] = pz;
+                translatePoints.push_back(pontos);
+                printf("translate-%f %f %f\n", px, py, pz);
+                i++;
+            }
+            lua.setPointsTranslate(translatePoints);
+        }else{
+            lua.setTranslate(tx, ty, tz);
         }
-        lua.setPointsTranslate(translatePoints);
     }
     XMLElement *rotate = group->FirstChildElement("rotate");
     if (rotate != nullptr) {

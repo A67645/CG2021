@@ -13,11 +13,13 @@ e = open("config2.xml",'w')
 tempo = 20
 
 for line in f:
-	placeholder = '<translate time="' + str(tempo) + '" >\n'
+	#placeholder = '<translate time="' + str(tempo) + '" >\n'
 	i = 0
-	tempo += 30
+	
 
 	if(linha :=	re.search(r'\<translate X\=\"(-?\d+)\"\/\>', line)):
+		tempo += 5
+		placeholder = '<translate time="' + str(tempo) + '" >\n'
 		if float(linha.group(1)) > 0:
 			r = math.log(float(linha.group(1)))-8			
 		else:
@@ -37,27 +39,28 @@ for line in f:
 		line = re.sub(rf'{linha.group(0)}', rf'{placeholder}', line)
 
 	elif(linha := re.search(r'\<translate X\=\"(-?\d+)\" Y=\"(-?\d+)\"\/\>', line)):
+		tempo += 5
 		xInit = float(linha.group(1))
 		yInit = float(linha.group(2))
 
 		r = calculaRaio(xInit, yInit)
 
-		while(i<(2*math.pi)):
-			if tempo%3 == 0:
+		if tempo == 680:
+			placeholder = '<translate time="' + str(0.5) + '" >\n'
+			while(i<(2*math.pi)):
 				x = r * round(math.cos(i), 6)
-				y = r * round(math.sin(i), 6)
-				z = 0
-			elif tempo%4 == 0:
+				y = 0
+				z = r * round(math.sin(i), 6)/2
+				i += math.pi / 6
+				placeholder += '\t\t <point X="' + str(x) + '" Y="' + str(y) + '" Z="' + str(z) + '"/>\n'
+		else:	
+			placeholder = '<translate time="' + str(tempo) + '" >\n'
+			while(i<(2*math.pi)):
 				x = r * round(math.cos(i), 6)
 				y = 0
 				z = r * round(math.sin(i), 6)
-			else:
-				x = 0
-				y = r * round(math.cos(i), 6)
-				z = r * round(math.sin(i), 6)
-
-			i += math.pi / 6
-			placeholder += '\t\t <point X="' + str(x) + '" Y="' + str(y) + '" Z="' + str(z) + '"/>\n'
+				i += math.pi / 6
+				placeholder += '\t\t <point X="' + str(x) + '" Y="' + str(y) + '" Z="' + str(z) + '"/>\n'
 
 		placeholder += "\t</translate>\n"
 		line = re.sub(rf'{linha.group(0)}', rf'{placeholder}', line)
