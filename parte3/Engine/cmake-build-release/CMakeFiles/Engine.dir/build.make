@@ -61,10 +61,10 @@ RM = "C:\Program Files\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine"
+CMAKE_SOURCE_DIR = C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\cmake-build-release"
+CMAKE_BINARY_DIR = C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\cmake-build-release
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Engine.dir/depend.make
@@ -78,44 +78,44 @@ include CMakeFiles/Engine.dir/flags.make
 CMakeFiles/Engine.dir/engine.cpp.obj: CMakeFiles/Engine.dir/flags.make
 CMakeFiles/Engine.dir/engine.cpp.obj: CMakeFiles/Engine.dir/includes_CXX.rsp
 CMakeFiles/Engine.dir/engine.cpp.obj: ../engine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\cmake-build-release\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Engine.dir/engine.cpp.obj"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Engine.dir\engine.cpp.obj -c "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\engine.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\cmake-build-release\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Engine.dir/engine.cpp.obj"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Engine.dir\engine.cpp.obj -c C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\engine.cpp
 
 CMakeFiles/Engine.dir/engine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine.cpp.i"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\engine.cpp" > CMakeFiles\Engine.dir\engine.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\engine.cpp > CMakeFiles\Engine.dir\engine.cpp.i
 
 CMakeFiles/Engine.dir/engine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine.cpp.s"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\engine.cpp" -o CMakeFiles\Engine.dir\engine.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\engine.cpp -o CMakeFiles\Engine.dir\engine.cpp.s
 
 CMakeFiles/Engine.dir/tinyxml2.cpp.obj: CMakeFiles/Engine.dir/flags.make
 CMakeFiles/Engine.dir/tinyxml2.cpp.obj: CMakeFiles/Engine.dir/includes_CXX.rsp
 CMakeFiles/Engine.dir/tinyxml2.cpp.obj: ../tinyxml2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\cmake-build-release\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Engine.dir/tinyxml2.cpp.obj"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Engine.dir\tinyxml2.cpp.obj -c "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\tinyxml2.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\cmake-build-release\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Engine.dir/tinyxml2.cpp.obj"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Engine.dir\tinyxml2.cpp.obj -c C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\tinyxml2.cpp
 
 CMakeFiles/Engine.dir/tinyxml2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Engine.dir/tinyxml2.cpp.i"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\tinyxml2.cpp" > CMakeFiles\Engine.dir\tinyxml2.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\tinyxml2.cpp > CMakeFiles\Engine.dir\tinyxml2.cpp.i
 
 CMakeFiles/Engine.dir/tinyxml2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/tinyxml2.cpp.s"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\tinyxml2.cpp" -o CMakeFiles\Engine.dir\tinyxml2.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\tinyxml2.cpp -o CMakeFiles\Engine.dir\tinyxml2.cpp.s
 
 CMakeFiles/Engine.dir/Astro.cpp.obj: CMakeFiles/Engine.dir/flags.make
 CMakeFiles/Engine.dir/Astro.cpp.obj: CMakeFiles/Engine.dir/includes_CXX.rsp
 CMakeFiles/Engine.dir/Astro.cpp.obj: ../Astro.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\cmake-build-release\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Engine.dir/Astro.cpp.obj"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Engine.dir\Astro.cpp.obj -c "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\Astro.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\cmake-build-release\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Engine.dir/Astro.cpp.obj"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Engine.dir\Astro.cpp.obj -c C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\Astro.cpp
 
 CMakeFiles/Engine.dir/Astro.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Engine.dir/Astro.cpp.i"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\Astro.cpp" > CMakeFiles\Engine.dir\Astro.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\Astro.cpp > CMakeFiles\Engine.dir\Astro.cpp.i
 
 CMakeFiles/Engine.dir/Astro.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/Astro.cpp.s"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\Astro.cpp" -o CMakeFiles\Engine.dir\Astro.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\Astro.cpp -o CMakeFiles\Engine.dir\Astro.cpp.s
 
 # Object files for target Engine
 Engine_OBJECTS = \
@@ -130,12 +130,12 @@ Engine.exe: CMakeFiles/Engine.dir/engine.cpp.obj
 Engine.exe: CMakeFiles/Engine.dir/tinyxml2.cpp.obj
 Engine.exe: CMakeFiles/Engine.dir/Astro.cpp.obj
 Engine.exe: CMakeFiles/Engine.dir/build.make
-Engine.exe: C:/Computacao\ Grafica/toolkits/glut/glut32.lib
-Engine.exe: C:/Computacao\ Grafica/toolkits/glew/glew32.lib
+Engine.exe: C:/Users/melan/Desktop/Aulas/CG/.toolkits/glut/glut32.lib
+Engine.exe: C:/Users/melan/Desktop/Aulas/CG/.toolkits/glew/glew32.lib
 Engine.exe: CMakeFiles/Engine.dir/linklibs.rsp
 Engine.exe: CMakeFiles/Engine.dir/objects1.rsp
 Engine.exe: CMakeFiles/Engine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\cmake-build-release\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Engine.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\cmake-build-release\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Engine.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Engine.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -148,6 +148,6 @@ CMakeFiles/Engine.dir/clean:
 .PHONY : CMakeFiles/Engine.dir/clean
 
 CMakeFiles/Engine.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine" "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine" "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\cmake-build-release" "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\cmake-build-release" "C:\Computacao Grafica\Projeto\CG2021\parte3\Engine\cmake-build-release\CMakeFiles\Engine.dir\DependInfo.cmake" --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\cmake-build-release C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\cmake-build-release C:\Users\melan\Desktop\GIT\ProjetoCG\CG2021\parte3\Engine\cmake-build-release\CMakeFiles\Engine.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Engine.dir/depend
 
