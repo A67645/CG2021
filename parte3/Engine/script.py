@@ -28,9 +28,9 @@ for line in f:
 
 		while(i<(2*math.pi)):
 				
-			x = r * round(math.cos(i), 6)
+			x = 0.9*r * round(math.cos(i), 6)
 		
-			z = r * round(math.sin(i), 6)
+			z = 1.1*r * round(math.sin(i), 6)
 
 			i += math.pi / 6
 			placeholder += '\t\t <point X="' + str(x) + '" Y="0" Z="' + str(z) + '"/>\n'
@@ -45,12 +45,13 @@ for line in f:
 
 		r = calculaRaio(xInit, yInit)
 
-		if tempo == 680:
+		if tempo == 95:
+			r = math.log(float(linha.group(1)))-8	
 			placeholder = '<translate time="' + str(0.5) + '" >\n'
 			while(i<(2*math.pi)):
-				x = r * round(math.cos(i), 6)
+				x = 2*r * round(math.cos(i), 6)
 				y = 0
-				z = r * round(math.sin(i), 6)/2
+				z = 1.5*r * round(math.sin(i), 6)
 				i += math.pi / 6
 				placeholder += '\t\t <point X="' + str(x) + '" Y="' + str(y) + '" Z="' + str(z) + '"/>\n'
 		else:	

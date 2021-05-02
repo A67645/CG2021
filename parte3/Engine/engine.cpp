@@ -133,13 +133,17 @@ void getGlobalCatmullRomPoint(float gt, vector<float *> p, float *pos, float *de
 void renderCatmullRomCurve(float time, vector<float *> pontosTranslate) {
 
     // draw curve using line segments with GL_LINE_LOOP
-    glColor3f(1, 1, 1);
+    glColor3f(.9f, .9f, .9f);
     glBegin(GL_LINE_LOOP);
+    float pos[3];
+    float deriv[3];
 
     for (int i = 0; i < 100; i++) {
-        float pos[3];
-        float deriv[3];
-        getGlobalCatmullRomPoint(time, pontosTranslate, pos, deriv);
+        if(i%2)
+            glColor3f(.3f, .3f, .3f);
+        else
+            glColor3f(.05f, 0.05f, 0.05f);
+        getGlobalCatmullRomPoint(i/100.0f, pontosTranslate, pos, deriv);
         glVertex3f(pos[0], pos[1], pos[2]);
     }
     glEnd();
@@ -258,6 +262,7 @@ glEnd();
 void renderScene(void) {
 
     // clear buffers
+    glClearColor(0.0f,0.0f,0.0f,0.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // set the camera
@@ -272,6 +277,7 @@ void renderScene(void) {
     glRotatef(angle, 0.0f, 1.0f, 0.0f);
     glRotatef(angle2, 0.0f, 0.0f, 1.0f);
     glScalef(size, size, size);
+
 
     // put drawing instructions here
     for (Astro a : lista) {
