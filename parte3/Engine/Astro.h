@@ -33,7 +33,7 @@ private:
     bool anel;
     float time;
     std::list <Astro> luas;
-    GLuint *buffer = (GLuint*) malloc(16 *sizeof(GLuint));
+    GLuint *buffer;
 
 public:
     Astro();

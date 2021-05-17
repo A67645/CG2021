@@ -23,6 +23,7 @@ Astro::Astro() {
     blue = 0.0f;
     anel = false;
     time = 0.1;
+    buffer =  (GLuint*) malloc(sizeof(GLuint));
 }
 
 std::string Astro::getFilename() { return filename; }
@@ -130,7 +131,7 @@ void Astro::makeVBO() {
 }
 
 void Astro::draw() {
-    glVertexPointer(3, GL_FLOAT, 0, 0);
     glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
+    glVertexPointer(3, GL_FLOAT, 0, 0);
     glDrawArrays(GL_TRIANGLES, 0, points.size());
-}
+} //glgeterror()
