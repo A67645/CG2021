@@ -28,9 +28,6 @@ Objeto::Objeto() {
     blue = 0.0f;
     anel = false;
     time = 0.1;
-    positions =  (GLuint*) malloc(sizeof(GLuint));
-    normals =  (GLuint*) malloc(sizeof(GLuint));
-    texCoords =  (GLuint*) malloc(sizeof(GLuint));
 }
 
 std::string Objeto::getFilename() { return filename; }
@@ -165,7 +162,9 @@ void Objeto::readFile() {
         points.push_back(z);
     }
 
-    makeVBO(points);
+    glGenBuffers(3, buffers);
+    glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
+    glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(float), points.data(), GL_STATIC_DRAW);
 
     size = points.size();
 
@@ -176,14 +175,9 @@ void Objeto::add(Objeto astro) {
     luas.push_back(astro);
 }
 
-void Objeto::makeVBO(std::vector<float> points) {
-    glGenBuffers(1, positions);
-    glBindBuffer(GL_ARRAY_BUFFER, positions[0]);
-    glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(float), points.data(), GL_STATIC_DRAW);
-}
 
 void Objeto::draw() {
-    glBindBuffer(GL_ARRAY_BUFFER, positions[0]);
+    glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
     glVertexPointer(3, GL_FLOAT, 0, 0);
     glDrawArrays(GL_TRIANGLES, 0, size);
 } //glgeterror()

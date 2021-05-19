@@ -395,25 +395,6 @@ bool readXML(string file) {
 
 }
 
-void initGL() {
-
-// alguns settings para OpenGL
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
-
-    spherical2Cartesian();
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_NORMAL_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
-    glClearColor(0, 0, 0, 0);
-
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-
-    glEnable(GL_TEXTURE_2D);
-}
-
 void processSpecialKeys(int key, int xx, int yy) {
     switch (key) {
 
@@ -472,6 +453,25 @@ void keyFunction(unsigned char key, int xx, int yy) {
     glutPostRedisplay();
 }
 
+void initGL() {
+
+// alguns settings para OpenGL
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+
+    spherical2Cartesian();
+    glEnableClientState(GL_VERTEX_ARRAY);
+//  glEnableClientState(GL_NORMAL_ARRAY);
+//  glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+    glClearColor(0, 0, 0, 0);
+
+//    glEnable(GL_LIGHTING);
+//    glEnable(GL_LIGHT0);
+
+//    glEnable(GL_TEXTURE_2D);
+}
+
 int main(int argc, char **argv) {
     if (argc > 2) {
         cout << "Too many arguments! Expected 1 argument!" << endl;
@@ -485,10 +485,6 @@ int main(int argc, char **argv) {
     string path = "../";
     string file = argv[1];
 
-    if (!readXML(path + file + ".xml")) {
-        cout << "Ficheiro nao lido." << endl;
-        return -1;
-    }
 
     // init GLUT and the window
     glutInit(&argc, argv);
@@ -506,6 +502,12 @@ int main(int argc, char **argv) {
     glutSpecialFunc(processSpecialKeys);
 
     glewInit();
+    initGL();
+
+    if (!readXML(path + file + ".xml")) {
+        cout << "Ficheiro nao lido." << endl;
+        return -1;
+    }
 
     //  OpenGL settings
     glEnable(GL_DEPTH_TEST);

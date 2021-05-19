@@ -39,9 +39,7 @@ private:
     bool anel;
     float time;
     std::list <Objeto> luas;
-    GLuint *positions;
-    GLuint *normals;
-    GLuint *texCoords;
+    GLuint buffers[3];
     void normalize2(float *a);
     void cross2(float *a, float *b, float *res);
     std::vector<float> computeNormal(std::vector<float> points);

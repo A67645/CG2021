@@ -2306,7 +2306,7 @@ public:
         return _buffer.Size();
     }
     /**
-    	If in print to memory mode, reset the positions to the
+    	If in print to memory mode, reset the buffers to the
     	beginning.
     */
     void ClearBuffer( bool resetToFirstElement = true ) {
