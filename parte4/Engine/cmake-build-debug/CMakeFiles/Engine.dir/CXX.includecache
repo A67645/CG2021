@@ -6,7 +6,29 @@
 
 #IncludeRegexTransform: 
 
-C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/Objeto.cpp
+C:/Users/melan/Desktop/Aulas/CG/.toolkits/devil/IL/il.h
+stdio.h
+-
+limits.h
+-
+wchar.h
+-
+
+C:/Users/melan/Desktop/Aulas/CG/.toolkits/glew/GL/glew.h
+stddef.h
+-
+inttypes.h
+-
+stdint.h
+-
+inttypes.h
+-
+OpenGL/glu.h
+-
+GL/glu.h
+-
+
+C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte4/Engine/Objeto.cpp
 iostream
 -
 string
@@ -20,9 +42,9 @@ GL/glew.h
 IL/il.h
 -
 Objeto.h
-C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/Objeto.h
+C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte4/Engine/Objeto.h
 
-C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/Objeto.h
+C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte4/Engine/Objeto.h
 list
 -
 vector
@@ -42,27 +64,5 @@ list
 vector
 -
 GL/glew.h
--
-
-C:/Computacao Grafica/toolkits/devil/IL/il.h
-stdio.h
--
-limits.h
--
-wchar.h
--
-
-C:/Computacao Grafica/toolkits/glew/GL/glew.h
-stddef.h
--
-inttypes.h
--
-stdint.h
--
-inttypes.h
--
-OpenGL/glu.h
--
-GL/glu.h
 -
 

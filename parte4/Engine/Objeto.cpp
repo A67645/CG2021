@@ -130,8 +130,8 @@ void Objeto::readFile() {
     while (infile) {
         getline(infile, buffer);
         int pos = 0;
-        while (pos >= 0 && buffer != "\n") {
-            int pos = buffer.find(' ');
+        while ((pos != -1) && (buffer != "\n")) {
+            pos = buffer.find(' ');
             std::string token = buffer.substr(0, pos);
             points.push_back(std::atof(token.c_str()));
             buffer.erase(0, pos + 1);
@@ -142,8 +142,8 @@ void Objeto::readFile() {
     while (infile) {
         getline(infile, buffer);
         int pos = 0;
-        while (pos != -1 && buffer != "\n") {
-            int pos = buffer.find(' ');
+        while ((pos != -1) && (buffer != "\n")) {
+            pos = buffer.find(' ');
             std::string token = buffer.substr(0, pos);
             normal.push_back(std::atof(token.c_str()));
             buffer.erase(0, pos + 1);
@@ -154,8 +154,8 @@ void Objeto::readFile() {
     while (infile) {
         getline(infile, buffer);
         int pos = 0;
-        while (pos != -1 && buffer != "\n") {
-            int pos = buffer.find(' ');
+        while ((pos != -1) && (buffer != "\n")) {
+            pos = buffer.find(' ');
             std::string token = buffer.substr(0, pos);
             textura.push_back(std::atof(token.c_str()));
             buffer.erase(0, pos + 1);
@@ -183,10 +183,10 @@ void Objeto::readFile() {
     glGenBuffers(3, buffers);
     glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(float), points.data(), GL_STATIC_DRAW);
-    //glBindBuffer(GL_ARRAY_BUFFER, buffers[1]);
-    //glBufferData(GL_ARRAY_BUFFER, normal.size() * sizeof(float), normal.data(), GL_STATIC_DRAW);
-    //glBindBuffer(GL_ARRAY_BUFFER, buffers[2]);
-    //glBufferData(GL_ARRAY_BUFFER, normal.size() * sizeof(float), textura.data(), GL_STATIC_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, buffers[1]);
+    glBufferData(GL_ARRAY_BUFFER, normal.size() * sizeof(float), normal.data(), GL_STATIC_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, buffers[2]);
+    glBufferData(GL_ARRAY_BUFFER, textura.size() * sizeof(float), textura.data(), GL_STATIC_DRAW);
 
 
     sizeP = points.size();
@@ -204,13 +204,14 @@ void Objeto::add(Objeto astro) {
 void Objeto::draw() {
     glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
     glVertexPointer(3, GL_FLOAT, 0, 0);
-    //glBindBuffer(GL_ARRAY_BUFFER,normal);
+    //glBindBuffer(GL_ARRAY_BUFFER,buffers[1]);
     //glNormalPointer(GL_FLOAT,0,0);
 
-    //glBindBuffer(GL_ARRAY_BUFFER,textura);
+    //glBindBuffer(GL_ARRAY_BUFFER,buffers[2]);
     //glTexCoordPointer(2,GL_FLOAT,0,0);
-    //glTexCoordPointer(2,GL_FLOAT,0,0);
+    //glBindTexture(GL_TEXTURE_2D,texID);
     glDrawArrays(GL_TRIANGLES, 0, sizeP);
+    //glBindTexture(GL_TEXTURE_2D,0);
 
 }
 
