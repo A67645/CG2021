@@ -3,12 +3,16 @@
 #include <list>
 #include <vector>
 #include <GL/glew.h>
+#include <IL/il.h>
 
 #include "Objeto.h"
 
 Objeto::Objeto() {
-    size = 0;
+    sizeP = 0;
+    sizeN = 0;
+    sizeT = 0;
     filename = "";
+    texfilename = "";
     texture = "";
     diffR = 0.0f;
     diffG = 0.0f;
@@ -68,6 +72,10 @@ void Objeto::setFilename(const std::string &filename) {
     Objeto::filename = filename;
 }
 
+//void Objeto::setTexfilename(const std::string &file){
+//  Objeto::texfilename = file
+//}
+
 void Objeto::setColor(float red, float green, float blue) {
     Objeto::red = red;
     Objeto::green = green;
@@ -105,70 +113,87 @@ void Objeto::setPointsTranslate(std::vector<float *> translate) {
     Objeto::translate = translate;
 }
 
-void cross2(float *a, float *b, float *res) {
-    res[0] = a[1]*b[2] - a[2]*b[1];
-    res[1] = a[2]*b[0] - a[0]*b[2];
-    res[2] = a[0]*b[1] - a[1]*b[0];
-}
-
-void normalize2(float *a) {
-
-    float l = sqrt(a[0] * a[0] + a[1] * a[1] + a[2] * a[2]);
-    a[0] = a[0] / l;
-    a[1] = a[1] / l;
-    a[2] = a[2] / l;
-}
-
-std::vector<float> computeNormal(std::vector<float> points){
-    std::vector<float> vertexNormal;
-
-    for(int i = 0; i < points.size(); i+=3*3){
-        float p1[3] = {points.at(3*i), points.at(3*i+1), points.at(3*i+2)};
-        float p2[3] = {points.at(3*(i+1)), points.at(3*(i+1)+1), points.at(3*(i+1)+2)};
-        float p3[3] = {points.at(3*(i+2)), points.at(3*(i+2)+1), points.at(3*(i+2)+2)};
-
-        float u[3] = {p2[0]-p1[0], p2[1]-p1[1], p2[2]-p1[2]};
-        float v[3] = {p3[0]-p1[0], p3[1]-p1[1], p3[2]-p1[2]};
-
-        float normal[3];
-
-        cross2(u,v,normal);
-        normalize2(normal);
-
-        for(int j = 0; j < 3; j++){
-            vertexNormal.push_back(normal[0]);
-            vertexNormal.push_back(normal[1]);
-            vertexNormal.push_back(normal[2]);
-        }
-    }
-
-    return vertexNormal;
-}
-
 void Objeto::readFile() {
     std::ifstream infile(filename);
     float x, y, z;
 
     std::vector<float> points;
+    std::vector<float> normal;
+    std::vector<float> textura;
 
     if (!infile) {
         std::cout << "Ocorreu um erro na leitura do ficheiro." << std::endl;
         return;
     }
 
+    std::string buffer;
+    while (infile) {
+        getline(infile, buffer);
+        int pos = 0;
+        while (pos >= 0 && buffer != "\n") {
+            int pos = buffer.find(' ');
+            std::string token = buffer.substr(0, pos);
+            points.push_back(std::atof(token.c_str()));
+            buffer.erase(0, pos + 1);
+        }
+        if (buffer == "\n") break;
+    }
+
+    while (infile) {
+        getline(infile, buffer);
+        int pos = 0;
+        while (pos != -1 && buffer != "\n") {
+            int pos = buffer.find(' ');
+            std::string token = buffer.substr(0, pos);
+            normal.push_back(std::atof(token.c_str()));
+            buffer.erase(0, pos + 1);
+        }
+        if (buffer == "\n") break;
+    }
+
+    while (infile) {
+        getline(infile, buffer);
+        int pos = 0;
+        while (pos != -1 && buffer != "\n") {
+            int pos = buffer.find(' ');
+            std::string token = buffer.substr(0, pos);
+            textura.push_back(std::atof(token.c_str()));
+            buffer.erase(0, pos + 1);
+        }
+        if (buffer == "\n") break;
+    }
+
+/*
     while (infile >> x >> y >> z) {
         points.push_back(x);
         points.push_back(y);
-        points.push_back(z);
+        points.push_back(z);         //TODO - separador de pontos
     }
-
+    while (infile >> x >> y >> z) {
+        normal.push_back(x);
+        normal.push_back(y);
+        normal.push_back(z);
+    }
+    while (infile >> x >> y >> z) {
+        textura.push_back(x);
+        textura.push_back(y);
+        textura.push_back(z);
+    }
+*/
     glGenBuffers(3, buffers);
     glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(float), points.data(), GL_STATIC_DRAW);
+    //glBindBuffer(GL_ARRAY_BUFFER, buffers[1]);
+    //glBufferData(GL_ARRAY_BUFFER, normal.size() * sizeof(float), normal.data(), GL_STATIC_DRAW);
+    //glBindBuffer(GL_ARRAY_BUFFER, buffers[2]);
+    //glBufferData(GL_ARRAY_BUFFER, normal.size() * sizeof(float), textura.data(), GL_STATIC_DRAW);
 
-    size = points.size();
 
-    points.clear();
+    sizeP = points.size();
+    sizeN = normal.size();
+    sizeT = textura.size();
+
+    points.clear(); normal.clear(); textura.clear();
 }
 
 void Objeto::add(Objeto astro) {
@@ -179,5 +204,45 @@ void Objeto::add(Objeto astro) {
 void Objeto::draw() {
     glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
     glVertexPointer(3, GL_FLOAT, 0, 0);
-    glDrawArrays(GL_TRIANGLES, 0, size);
-} //glgeterror()
+    //glBindBuffer(GL_ARRAY_BUFFER,normal);
+    //glNormalPointer(GL_FLOAT,0,0);
+
+    //glBindBuffer(GL_ARRAY_BUFFER,textura);
+    //glTexCoordPointer(2,GL_FLOAT,0,0);
+    //glTexCoordPointer(2,GL_FLOAT,0,0);
+    glDrawArrays(GL_TRIANGLES, 0, sizeP);
+
+}
+
+void Objeto::loadTexture() {
+
+    unsigned int t,tw,th;
+    unsigned char *texData;
+
+    ilInit();
+    ilEnable(IL_ORIGIN_SET);
+    ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
+    ilGenImages(1,&t);
+    ilBindImage(t);
+    ilLoadImage((ILstring)texfilename.c_str());
+    tw = ilGetInteger(IL_IMAGE_WIDTH);
+    th = ilGetInteger(IL_IMAGE_HEIGHT);
+    ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
+    texData = ilGetData();
+
+    glGenTextures(1,&texID);
+
+    glBindTexture(GL_TEXTURE_2D,texID);
+    glTexParameteri(GL_TEXTURE_2D,	GL_TEXTURE_WRAP_S,		GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D,	GL_TEXTURE_WRAP_T,		GL_REPEAT);
+
+    glTexParameteri(GL_TEXTURE_2D,	GL_TEXTURE_MAG_FILTER,   	GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,	GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
+    glGenerateMipmap(GL_TEXTURE_2D);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+//glgeterror()

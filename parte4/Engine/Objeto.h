@@ -15,8 +15,11 @@
 class Objeto{
 private:
     std::string filename;
+    std::string texfilename;
     std::string texture;
-    int size;
+    int sizeP;
+    int sizeN;
+    int sizeT;
     int td;
     int tw;
     float diffR;
@@ -40,9 +43,7 @@ private:
     float time;
     std::list <Objeto> luas;
     GLuint buffers[3];
-    void normalize2(float *a);
-    void cross2(float *a, float *b, float *res);
-    std::vector<float> computeNormal(std::vector<float> points);
+    unsigned int texID;
 
 public:
     Objeto();
@@ -92,7 +93,7 @@ public:
 
     std::vector<float *> getTranslate();
 
-    void makeVBO(std::vector<float> points);
+    void loadTexture();
 };
 
 #endif

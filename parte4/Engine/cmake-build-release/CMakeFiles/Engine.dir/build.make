@@ -131,6 +131,7 @@ Engine.exe: CMakeFiles/Engine.dir/tinyxml2.cpp.obj
 Engine.exe: CMakeFiles/Engine.dir/Objeto.cpp.obj
 Engine.exe: CMakeFiles/Engine.dir/build.make
 Engine.exe: C:/Computacao\ Grafica/toolkits/glut/glut32.lib
+Engine.exe: C:/Computacao\ Grafica/toolkits/devil/devIL.lib
 Engine.exe: C:/Computacao\ Grafica/toolkits/glew/glew32.lib
 Engine.exe: CMakeFiles/Engine.dir/linklibs.rsp
 Engine.exe: CMakeFiles/Engine.dir/objects1.rsp

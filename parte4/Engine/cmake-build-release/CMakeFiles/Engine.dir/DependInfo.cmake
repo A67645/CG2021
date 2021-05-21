@@ -14,6 +14,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "C:/Computacao Grafica/toolkits/glut"
   "C:/Computacao Grafica/toolkits/glew"
+  "C:/Computacao Grafica/toolkits/devil"
   )
 
 # Targets to which this target links.

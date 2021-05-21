@@ -1,3 +1,6 @@
+
+#include <IL/il.h>
+
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
@@ -7,6 +10,8 @@
 #include <GL/glut.h>
 
 #endif
+
+
 
 #include <cmath>
 #include <iostream>
@@ -26,8 +31,10 @@ float angle2 = 0.0f;
 float size = 1.0f;
 
 vector<Objeto> lista;
-
 int point_count = 0;
+
+string tipoLuz;
+float luzx,luzy,luzz;
 
 float alpha = 45.0f, beta = 90.0f;
 float cameraRadius = 15.0f;
@@ -180,7 +187,7 @@ void draw(Objeto astro) {
         float t = glutGet(GLUT_ELAPSED_TIME) % (int) (astro.getTime() * 1000);
         float tempo = t / (astro.getTime() * 1000.0);
 
-        glPolygonMode(GL_FRONT, GL_FILL);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
         glPushMatrix();
 
@@ -211,6 +218,7 @@ void draw(Objeto astro) {
     glScalef(astro.getScaleX(), astro.getScaleY(), astro.getScaleZ());
     glRotatef(astro.getAngle(), astro.getRotateX(), astro.getRotateY(), astro.getRotateZ());
 
+    astro.loadTexture();
     astro.draw();
     for (Objeto lua : astro.getLuas()) {
         draw(lua);
@@ -356,10 +364,12 @@ Objeto readGroup(XMLElement *group, Objeto astro, boolean original) {
     }
     XMLElement *models = group->FirstChildElement("models");
     for (XMLElement *model = models->FirstChildElement("model");
-         model != nullptr; model = model->NextSiblingElement("model")) {
+        model != nullptr; model = model->NextSiblingElement("model")) {
         string file3d = model->Attribute("file");
         lua.setFilename(file3d);
         lua.readFile();
+        string texFile = model->Attribute("texture");
+       // lua.setTexFileName(texFile);
     }
     if (original) {
         astro = lua;
@@ -380,8 +390,16 @@ bool readXML(string file) {
     printf("%s\n", file.c_str());
     if (!doc.LoadFile(file.c_str())) {
         firstElem = doc.FirstChildElement("scene");
+        XMLElement *lights = firstElem->FirstChildElement("lights");
+        for (XMLElement *light = lights->FirstChildElement("light");
+            light != nullptr; light = light->NextSiblingElement("light")) {
+            tipoLuz = light->Attribute("type");
+            luzx = atof(light->Attribute("posX"));
+            luzy = atof(light->Attribute("posY"));
+            luzx = atof(light->Attribute("posZ"));
+        }
         for (XMLElement *group = firstElem->FirstChildElement("group");
-             group != nullptr; group = group->NextSiblingElement("group")) {
+            group != nullptr; group = group->NextSiblingElement("group")) {
             Objeto astro = Objeto();
             astro = readGroup(group, astro, TRUE);
             lista.push_back(astro);
@@ -457,19 +475,19 @@ void initGL() {
 
 // alguns settings para OpenGL
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE_MODE);
 
     spherical2Cartesian();
     glEnableClientState(GL_VERTEX_ARRAY);
-//  glEnableClientState(GL_NORMAL_ARRAY);
-//  glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glEnableClientState(GL_NORMAL_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
     glClearColor(0, 0, 0, 0);
 
 //    glEnable(GL_LIGHTING);
 //    glEnable(GL_LIGHT0);
 
-//    glEnable(GL_TEXTURE_2D);
+ //   glEnable(GL_TEXTURE_2D);
 }
 
 int main(int argc, char **argv) {

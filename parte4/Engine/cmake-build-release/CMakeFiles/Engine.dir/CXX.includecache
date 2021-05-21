@@ -1,0 +1,114 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/Objeto.h
+list
+-
+vector
+-
+cmath
+-
+iostream
+-
+fstream
+-
+string
+-
+tuple
+-
+list
+-
+vector
+-
+GL/glew.h
+-
+
+C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/engine.cpp
+IL/il.h
+-
+GLUT/glut.h
+-
+windows.h
+-
+GL/glew.h
+-
+GL/glut.h
+-
+cmath
+-
+iostream
+-
+string
+-
+tinyxml2.h
+C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/tinyxml2.h
+Objeto.h
+C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/Objeto.h
+vector
+-
+
+C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/tinyxml2.h
+ctype.h
+-
+limits.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+stddef.h
+-
+cctype
+-
+climits
+-
+cstdio
+-
+cstdlib
+-
+cstring
+-
+stdint.h
+-
+android/log.h
+-
+assert.h
+-
+
+C:/Computacao Grafica/toolkits/devil/IL/il.h
+stdio.h
+-
+limits.h
+-
+wchar.h
+-
+
+C:/Computacao Grafica/toolkits/glew/GL/glew.h
+stddef.h
+-
+inttypes.h
+-
+stdint.h
+-
+inttypes.h
+-
+OpenGL/glu.h
+-
+GL/glu.h
+-
+
+C:/Computacao Grafica/toolkits/glut/GL/glut.h
+windows.h
+-
+GL/gl.h
+-
+GL/glu.h
+-
+
