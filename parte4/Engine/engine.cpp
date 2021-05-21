@@ -43,6 +43,8 @@ float xmove = 0;
 
 float camX, camY, camZ;
 
+float isPoint = 0.0;
+
 void spherical2Cartesian() {
 
     camX = cameraRadius * cos(beta) * sin(alpha);
@@ -187,7 +189,7 @@ void draw(Objeto astro) {
         float t = glutGet(GLUT_ELAPSED_TIME) % (int) (astro.getTime() * 1000);
         float tempo = t / (astro.getTime() * 1000.0);
 
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
         glPushMatrix();
 
@@ -218,7 +220,6 @@ void draw(Objeto astro) {
     glScalef(astro.getScaleX(), astro.getScaleY(), astro.getScaleZ());
     glRotatef(astro.getAngle(), astro.getRotateX(), astro.getRotateY(), astro.getRotateZ());
 
-    astro.loadTexture();
     astro.draw();
     for (Objeto lua : astro.getLuas()) {
         draw(lua);
@@ -269,6 +270,12 @@ void renderScene(void) {
     gluLookAt(camX, camY, camZ,
               0.0, 0.0, 0.0,
               0.0f, 1.0f, 0.0f);
+
+
+    GLfloat pos[4] = { luzx, luzy, luzz, isPoint};
+    glLightfv(GL_LIGHT0, GL_POSITION, pos);
+    float white[4] = { 1,1,0,1 };
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, white);
 
     glBegin(GL_LINES);
     // X axis in red
@@ -369,7 +376,7 @@ Objeto readGroup(XMLElement *group, Objeto astro, boolean original) {
         lua.setFilename(file3d);
         lua.readFile();
         string texFile = model->Attribute("texture");
-       // lua.setTexFileName(texFile);
+        lua.setTexfilename(texFile);
     }
     if (original) {
         astro = lua;
@@ -394,6 +401,7 @@ bool readXML(string file) {
         for (XMLElement *light = lights->FirstChildElement("light");
             light != nullptr; light = light->NextSiblingElement("light")) {
             tipoLuz = light->Attribute("type");
+            if(tipoLuz=="POINT") isPoint=0.0; else isPoint=1.0;
             luzx = atof(light->Attribute("posX"));
             luzy = atof(light->Attribute("posY"));
             luzx = atof(light->Attribute("posZ"));
@@ -484,8 +492,8 @@ void initGL() {
 
     glClearColor(0, 0, 0, 0);
 
-//    glEnable(GL_LIGHTING);
-//    glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
 
    glEnable(GL_TEXTURE_2D);
 }

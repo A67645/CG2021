@@ -7,7 +7,7 @@
 		<colour R="1" G="0" B="0"/>
 		<scale X="10" Y="10" Z="10"/>
 		<models>
-			<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_stars_milky_way.jpg"/>
+			<model file="../../Generator/cmake-build-release/sphere.3d" texture="Texturas/2k_stars_milky_way.jpg"/>
 		</models>
 	</group>
 
@@ -317,7 +317,7 @@
 			</translate>
 			<scale X="0.055" Y="0.055" Z="0.055"/>
 			<models>
-				<model file="../../Generator/cmake-build-release/teapot.3d" texture="Texturas/2k_eris_fictional.jpg"/>
+				<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_eris_fictional.jpg"/>
 			</models>
 		</group>
 	</group>
@@ -339,7 +339,7 @@
 		</translate>
 		<scale X="0.055" Y="0.055" Z="0.055"/>
 		<models>
-			<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_ceres_fictional.jpg"/>
+			<model file="../../Generator/cmake-build-release/teapot.3d"/>
 		</models>
 	</group>
 

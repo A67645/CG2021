@@ -94,6 +94,8 @@ public:
     std::vector<float *> getTranslate();
 
     void loadTexture();
+
+    void setTexfilename(const std::string &file);
 };
 
 #endif

@@ -1,9 +1,11 @@
 #include <iostream>
+#include <cstring>
 #include <string>
 #include <list>
 #include <vector>
 #include <GL/glew.h>
 #include <IL/il.h>
+#include <sstream>
 
 #include "Objeto.h"
 
@@ -72,9 +74,9 @@ void Objeto::setFilename(const std::string &filename) {
     Objeto::filename = filename;
 }
 
-//void Objeto::setTexfilename(const std::string &file){
-//  Objeto::texfilename = file
-//}
+void Objeto::setTexfilename(const std::string &file){
+  Objeto::texfilename = file;
+}
 
 void Objeto::setColor(float red, float green, float blue) {
     Objeto::red = red;
@@ -115,7 +117,7 @@ void Objeto::setPointsTranslate(std::vector<float *> translate) {
 
 void Objeto::readFile() {
     std::ifstream infile(filename);
-    float x, y, z;
+    std::string x, y, z;
 
     std::vector<float> points;
     std::vector<float> normal;
@@ -126,41 +128,40 @@ void Objeto::readFile() {
         return;
     }
 
+    loadTexture();
+
     std::string buffer;
-    while (infile) {
+    while (true) {
         getline(infile, buffer);
-        int pos = 0;
-        while ((pos != -1) && (buffer != "\n")) {
-            pos = buffer.find(' ');
-            std::string token = buffer.substr(0, pos);
-            points.push_back(std::atof(token.c_str()));
-            buffer.erase(0, pos + 1);
-        }
-        if (buffer == "\n") break;
+        std::stringstream ss(buffer);
+        ss >> x >> y >> z;
+        if(x == "cucu")
+            break;
+        points.push_back(std::atof(x.data()));
+        points.push_back(std::atof(y.data()));
+        points.push_back(std::atof(z.data()));
     }
 
-    while (infile) {
+    while (true) {
         getline(infile, buffer);
-        int pos = 0;
-        while ((pos != -1) && (buffer != "\n")) {
-            pos = buffer.find(' ');
-            std::string token = buffer.substr(0, pos);
-            normal.push_back(std::atof(token.c_str()));
-            buffer.erase(0, pos + 1);
-        }
-        if (buffer == "\n") break;
+        std::stringstream ss(buffer);
+        ss >> x >> y >> z;
+        if(x == "cucu")
+            break;
+        normal.push_back(std::atof(x.data()));
+        normal.push_back(std::atof(y.data()));
+        normal.push_back(std::atof(z.data()));
     }
 
-    while (infile) {
+    while (true) {
         getline(infile, buffer);
-        int pos = 0;
-        while ((pos != -1) && (buffer != "\n")) {
-            pos = buffer.find(' ');
-            std::string token = buffer.substr(0, pos);
-            textura.push_back(std::atof(token.c_str()));
-            buffer.erase(0, pos + 1);
-        }
-        if (buffer == "\n") break;
+        std::stringstream ss(buffer);
+        ss >> x >> y >> z;
+        if(x == "cucu")
+            break;
+        textura.push_back(std::atof(x.data()));
+        textura.push_back(std::atof(y.data()));
+        textura.push_back(std::atof(z.data()));
     }
 
 /*
@@ -204,11 +205,11 @@ void Objeto::add(Objeto astro) {
 void Objeto::draw() {
     glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
     glVertexPointer(3, GL_FLOAT, 0, 0);
-    //glBindBuffer(GL_ARRAY_BUFFER,buffers[1]);
-    //glNormalPointer(GL_FLOAT,0,0);
+    glBindBuffer(GL_ARRAY_BUFFER,buffers[1]);
+    glNormalPointer(GL_FLOAT,0,0);
 
-    //glBindBuffer(GL_ARRAY_BUFFER,buffers[2]);
-    //glTexCoordPointer(2,GL_FLOAT,0,0);
+    glBindBuffer(GL_ARRAY_BUFFER,buffers[2]);
+    glTexCoordPointer(2,GL_FLOAT,0,0);
     //glBindTexture(GL_TEXTURE_2D,texID);
     glDrawArrays(GL_TRIANGLES, 0, sizeP);
     //glBindTexture(GL_TEXTURE_2D,0);
