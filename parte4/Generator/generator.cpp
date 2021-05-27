@@ -29,77 +29,319 @@ void drawPlane(float size, string fileName) {
 
         file << halfSize	<< " " << 0.0 << " " << -halfSize   << "\n";
         file << -halfSize	<< " " << 0.0 << " " << -halfSize   << "\n";
-        file << -halfSize	<< " " << 0.0 << " " << halfSize    << "\n";s
+        file << -halfSize	<< " " << 0.0 << " " << halfSize    << "\n";
+
+        file << "---\n";
+
+        file << 0 << " " << 1 << " " << 0 << "\n";
+        file << 0 << " " << 1 << " " << 0 << "\n";
+        file << 0 << " " << 1 << " " << 0 << "\n";
+
+        file << 0 << " " << 1 << " " << 0 << "\n";
+        file << 0 << " " << 1 << " " << 0 << "\n";
+        file << 0 << " " << 1 << " " << 0 << "\n";
+
+        file << "---\n";
+
+        file << 1 << " " << 1 << "\n";
+        file << 1 << " " << 0 << "\n";
+        file << 0 << " " << 1 << "\n";
+
+        file << 1 << " " << 0 << "\n";
+        file << 0 << " " << 0 << "\n";
+        file << 0 << " " << 1 << "\n";
+
+        file << "---\n";
     }
     file.close();
 }
 
-void drawBox(float x, float y, float z, int n, string fileName) {
-    float xx = x / n;
-    float yy = y / n;
-    float zz = z / n;
+void drawBox(float x, float y, float z, int l, string fileName) { //TODO - rever texturas
+    float xx = x / l;
+    float yy = y / l;
+    float zz = z / l;
+
+    vector<float> n, t;
 
     ofstream file(fileName);
     if (file.is_open()) {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < l; j++) {
 
                 //Frente:
-                file << " " << i * xx		<< " " << j * yy		<< " " << z << "\n";
-                file << " " << i * xx + xx	<< " " << j * yy		<< " " << z << "\n";
-                file << " " << i * xx + xx	<< " " << j * yy + yy	<< " " << z << "\n";
+                file << i * xx		<< " " << j * yy		<< " " << z << "\n";
+                n.push_back(0);
+                n.push_back(0);
+                n.push_back(1);
+                t.push_back(i/l);
+                t.push_back(j/l);
 
-                file << " " << i * xx		<< " " << j * yy		<< " " << z << "\n";
-                file << " " << i * xx + xx	<< " " << j * yy + yy	<< " " << z << "\n";
-                file << " " << i * xx		<< " " << j * yy + yy	<< " " << z << "\n";
+                file << i * xx + xx	<< " " << j * yy		<< " " << z << "\n";
+                n.push_back(0);
+                n.push_back(0);
+                n.push_back(1);
+                t.push_back((i+1)/l);
+                t.push_back(j/l);
+
+                file << i * xx + xx	<< " " << j * yy + yy	<< " " << z << "\n";
+                n.push_back(0);
+                n.push_back(0);
+                n.push_back(1);
+                t.push_back((i+1)/l);
+                t.push_back((j+1)/l);
+
+
+                file << i * xx		<< " " << j * yy		<< " " << z << "\n";
+                n.push_back(0);
+                n.push_back(0);
+                n.push_back(1);
+                t.push_back(i/l);
+                t.push_back(j/l);
+
+                file << i * xx + xx	<< " " << j * yy + yy	<< " " << z << "\n";
+                n.push_back(0);
+                n.push_back(0);
+                n.push_back(1);
+                t.push_back((1+i)/l);
+                t.push_back((1+j)/l);
+
+                file << i * xx		<< " " << j * yy + yy	<< " " << z << "\n";
+                n.push_back(0);
+                n.push_back(0);
+                n.push_back(1);
+                t.push_back(i/l);
+                t.push_back((j+1)/l);
 
                 //Tras:
-                file << " " << i * xx		<< " " << j * yy		<< " " << 0 << "\n";
-                file << " " << i * xx + xx	<< " " << j * yy + yy	<< " " << 0 << "\n";
-                file << " " << i * xx + xx	<< " " << j * yy		<< " " << 0 << "\n";
+                file << i * xx		<< " " << j * yy		<< " " << 0 << "\n";
+                n.push_back(0);
+                n.push_back(0);
+                n.push_back(1);
+                t.push_back(i/l);
+                t.push_back(j/l);
 
-                file << " " << i * xx		<< " " << j * yy		<< " " << 0 << "\n";
-                file << " " << i * xx		<< " " << j * yy + yy	<< " " << 0 << "\n";
-                file << " " << i * xx + xx	<< " " << j * yy + yy	<< " " << 0 << "\n";
+                file << i * xx + xx	<< " " << j * yy + yy	<< " " << 0 << "\n";
+                n.push_back(0);
+                n.push_back(0);
+                n.push_back(1);
+                t.push_back((i+1)/l);
+                t.push_back((j+1)/l);
+
+                file << " " << i * xx + xx	<< " " << j * yy		<< " " << 0 << "\n";
+                n.push_back(0);
+                n.push_back(0);
+                n.push_back(1);
+                t.push_back((i+1)/l);
+                t.push_back(j/l);
+
+                file << i * xx		<< " " << j * yy		<< " " << 0 << "\n";
+                n.push_back(0);
+                n.push_back(0);
+                n.push_back(1);
+                t.push_back(i/l);
+                t.push_back(j/l);
+
+                file << i * xx		<< " " << j * yy + yy	<< " " << 0 << "\n";
+                n.push_back(0);
+                n.push_back(0);
+                n.push_back(1);
+                t.push_back(i/l);
+                t.push_back((j+1)/l);
+
+                file << i * xx + xx	<< " " << j * yy + yy	<< " " << 0 << "\n";
+                n.push_back(0);
+                n.push_back(0);
+                n.push_back(1);
+                t.push_back((i+1)/l);
+                t.push_back((j+1)/l);
 
                 //Cima:
-                file << " " << i * xx		<< " " << y << " " << j * zz		<< "\n";
-                file << " " << i * xx		<< " " << y << " " << j * zz + zz	<< "\n";
-                file << " " << i * xx + xx	<< " " << y << " " << j * zz		<< "\n";
+                file << i * xx		<< " " << y << " " << j * zz		<< "\n";
+                n.push_back(0);
+                n.push_back(1);
+                n.push_back(0);
+                t.push_back(i/l);
+                t.push_back(j/l);
 
-                file << " " << i * xx		<< " " << y << " " << j * zz + zz	<< "\n";
-                file << " " << i * xx + xx	<< " " << y << " " << j * zz + zz	<< "\n";
-                file << " " << i * xx + xx	<< " " << y << " " << j * zz		<< "\n";
+                file << i * xx		<< " " << y << " " << j * zz + zz	<< "\n";
+                n.push_back(0);
+                n.push_back(1);
+                n.push_back(0);
+                t.push_back(i/l);
+                t.push_back((j+1)/l);
+
+                file << i * xx + xx	<< " " << y << " " << j * zz		<< "\n";
+                n.push_back(0);
+                n.push_back(1);
+                n.push_back(0);
+                t.push_back((i+1)/l);
+                t.push_back(j/l);
+
+                file << i * xx		<< " " << y << " " << j * zz + zz	<< "\n";
+                n.push_back(0);
+                n.push_back(1);
+                n.push_back(0);
+                t.push_back(i/l);
+                t.push_back((j+1)/l);
+
+                file << i * xx + xx	<< " " << y << " " << j * zz + zz	<< "\n";
+                n.push_back(0);
+                n.push_back(1);
+                n.push_back(0);
+                t.push_back((i+1)/l);
+                t.push_back((j+1)/l);
+
+                file  << i * xx + xx	<< " " << y << " " << j * zz		<< "\n";
+                n.push_back(0);
+                n.push_back(1);
+                n.push_back(0);
+                t.push_back((i+1)/l);
+                t.push_back(j/l);
 
                 //Baixo:
-                file << " " << i * xx		<< " " << 0 << " " << j * zz		<< "\n";
-                file << " " << i * xx + xx	<< " " << 0 << " " << j * zz		<< "\n";
-                file << " " << i * xx		<< " " << 0 << " " << j * zz + zz	<< "\n";
+                file << i * xx		<< " " << 0 << " " << j * zz		<< "\n";
+                n.push_back(0);
+                n.push_back(1);
+                n.push_back(0);
+                t.push_back(i/l);
+                t.push_back(j/l);
 
-                file << " " << i * xx		<< " " << 0 << " " << j * zz + zz	<< "\n";
-                file << " " << i * xx + xx	<< " " << 0 << " " << j * zz		<< "\n";
-                file << " " << i * xx + xx	<< " " << 0 << " " << j * zz + zz	<< "\n";
+                file << i * xx + xx	<< " " << 0 << " " << j * zz		<< "\n";
+                n.push_back(0);
+                n.push_back(1);
+                n.push_back(0);
+                t.push_back((i+1)/l);
+                t.push_back(j/l);
+
+                file << i * xx		<< " " << 0 << " " << j * zz + zz	<< "\n";
+                n.push_back(0);
+                n.push_back(1);
+                n.push_back(0);
+                t.push_back(i/l);
+                t.push_back((j+1)/l);
+
+                file << i * xx		<< " " << 0 << " " << j * zz + zz	<< "\n";
+                n.push_back(0);
+                n.push_back(1);
+                n.push_back(0);
+                t.push_back(i/l);
+                t.push_back((j+1)/l);
+
+                file << i * xx + xx	<< " " << 0 << " " << j * zz		<< "\n";
+                n.push_back(0);
+                n.push_back(1);
+                n.push_back(0);
+                t.push_back((i+1)/l);
+                t.push_back(j/l);
+
+                file << i * xx + xx	<< " " << 0 << " " << j * zz + zz	<< "\n";
+                n.push_back(0);
+                n.push_back(1);
+                n.push_back(0);
+                t.push_back((i+1)/l);
+                t.push_back((j+1)/l);
 
                 //Direita:
-                file << " " << x << " " << j * yy		<< " " << i * zz		<< "\n";
-                file << " " << x << " " << j * yy + yy	<< " " << i * zz		<< "\n";
-                file << " " << x << " " << j * yy		<< " " << i * zz + zz	<< "\n";
+                file << x << " " << j * yy		<< " " << i * zz		<< "\n";
+                n.push_back(1);
+                n.push_back(0);
+                n.push_back(0);
+                t.push_back(j/l);
+                t.push_back(i/l);
 
-                file << " " << x << " " << j * yy + yy	<< " " << i * zz		<< "\n";
-                file << " " << x << " " << j * yy + yy	<< " " << i * zz + zz	<< "\n";
-                file << " " << x << " " << j * yy		<< " " << i * zz + zz	<< "\n";
+                file << x << " " << j * yy + yy	<< " " << i * zz		<< "\n";
+                n.push_back(1);
+                n.push_back(0);
+                n.push_back(0);
+                t.push_back((j+1)/l);
+                t.push_back(i/l);
+
+                file << x << " " << j * yy		<< " " << i * zz + zz	<< "\n";
+                n.push_back(1);
+                n.push_back(0);
+                n.push_back(0);
+                t.push_back(j/l);
+                t.push_back((j+1)/l);
+
+                file << x << " " << j * yy + yy	<< " " << i * zz		<< "\n";
+                n.push_back(1);
+                n.push_back(0);
+                n.push_back(0);
+                t.push_back((j+1)/l);
+                t.push_back(i/l);
+
+                file << x << " " << j * yy + yy	<< " " << i * zz + zz	<< "\n";
+                n.push_back(1);
+                n.push_back(0);
+                n.push_back(0);
+                t.push_back((j+1)/l);
+                t.push_back((i+1)/l);
+
+                file << x << " " << j * yy		<< " " << i * zz + zz	<< "\n";
+                n.push_back(1);
+                n.push_back(0);
+                n.push_back(0);
+                t.push_back(j/l);
+                t.push_back((i+1)/l);
 
                 //Esquerda:
-                file << " " << 0 << " " << j * yy		<< " " << i * zz		<< "\n";
-                file << " " << 0 << " " << j * yy		<< " " << i * zz + zz	<< "\n";
-                file << " " << 0 << " " << j * yy + yy	<< " " << i * zz		<< "\n";
+                file << 0 << " " << j * yy		<< " " << i * zz		<< "\n";
+                n.push_back(1);
+                n.push_back(0);
+                n.push_back(0);
+                t.push_back(j/l);
+                t.push_back(i/l);
 
-                file << " " << 0 << " " << j * yy + yy	<< " " << i * zz + zz	<< "\n";
-                file << " " << 0 << " " << j * yy + yy	<< " " << i * zz		<< "\n";
-                file << " " << 0 << " " << j * yy		<< " " << i * zz + zz	<< "\n";
+                file << 0 << " " << j * yy		<< " " << i * zz + zz	<< "\n";
+                n.push_back(1);
+                n.push_back(0);
+                n.push_back(0);
+                t.push_back(j/l);
+                t.push_back((i+1)/l);
 
+                file << 0 << " " << j * yy + yy	<< " " << i * zz		<< "\n";
+                n.push_back(1);
+                n.push_back(0);
+                n.push_back(0);
+                t.push_back((j+1)/l);
+                t.push_back(i/l);
+
+                file << 0 << " " << j * yy + yy	<< " " << i * zz + zz	<< "\n";
+                n.push_back(1);
+                n.push_back(0);
+                n.push_back(0);
+                t.push_back((j+1)/l);
+                t.push_back((i+1)/l);
+
+                file << 0 << " " << j * yy + yy	<< " " << i * zz		<< "\n";
+                n.push_back(1);
+                n.push_back(0);
+                n.push_back(0);
+                t.push_back((j+1)/l);
+                t.push_back(i/l);
+
+                file << 0 << " " << j * yy		<< " " << i * zz + zz	<< "\n";
+                n.push_back(1);
+                n.push_back(0);
+                n.push_back(0);
+                t.push_back(j/l);
+                t.push_back((i+1)/l);
             }
         }
+
+        file << "---\n";
+
+        for(int i = 0; i < n.size(); i+=3){
+            file << n.at(i) << " " << n.at(i+1) << " " << n.at(i+2);
+        }
+
+        file << "---\n";
+
+        for(int i = 0; i < t.size(); i+=3){
+            file << t.at(i) << " " << t.at(i+1) << " " << t.at(i+2);
+        }
+
+        file << "---\n";
     }
     file.close();
 }
@@ -151,12 +393,14 @@ void drawSphere(float radius, int slices, int stacks, string fileName) {
                 n.push_back(cos(theta) * sin(phi));
                 t.push_back(saltoH * i);
                 t.push_back(saltoV * j);
+
                 file << " " << dx << " " << dy << " " << dz << "\n";
                 n.push_back(sin(theta + deslocT) * sin(phi + deslocP));
                 n.push_back(cos(phi + deslocP));
                 n.push_back(cos(theta + deslocT) * sin(phi + deslocP));
                 t.push_back(saltoH * (i+1));
                 t.push_back(saltoV * (j+1));
+
                 file << " " << bx << " " << by << " " << bz << "\n";
                 n.push_back(sin(theta + deslocT) * sin(phi));
                 n.push_back(cos(phi));
@@ -170,12 +414,14 @@ void drawSphere(float radius, int slices, int stacks, string fileName) {
                 n.push_back(cos(theta) * sin(phi));
                 t.push_back(saltoH * i);
                 t.push_back(saltoV * j);
+
                 file << " " << cx << " " << cy << " " << cz << "\n";
                 n.push_back(sin(theta) * sin(phi + deslocP));
                 n.push_back(cos(phi + deslocP));
                 n.push_back(cos(theta) * sin(phi + deslocP));
                 t.push_back(saltoH * i);
                 t.push_back(saltoV * (j+1));
+
                 file << " " << dx << " " << dy << " " << dz << "\n";
                 n.push_back(sin(theta + deslocT) * sin(phi + deslocP));
                 n.push_back(cos(phi + deslocP));
@@ -185,102 +431,24 @@ void drawSphere(float radius, int slices, int stacks, string fileName) {
             }
             theta -= deslocT;
         }
-    }
-    file << "cucu" << endl;
 
-    for (int i = 0; i < n.size(); i += 3) {
-        file << n[i] << " " << n[i + 1] << " " << n[i + 2] << "\n";
-    }
-
-    file << "cucu\n";
-
-    for (int i = 0; i < t.size(); i += 2) {
-        file << t[i] << " " << t[i + 1] << "\n";
-    }
-
-    file << "cucu" << endl;
-    file.close();
-
-/*
-                v.push_back(radius * sin(theta) * sin(phi));
-                v.push_back(radius * cos(phi));
-                v.push_back(radius * cos(theta) * sin(phi));
-                n.push_back(sin(theta) * sin(phi));
-                n.push_back(cos(phi));
-                n.push_back(cos(theta) * sin(phi));
-                t.push_back(saltoH * i);
-                t.push_back(saltoV * j);
-
-                v.push_back(radius * sin(theta + deslocT) * sin(phi + deslocP));
-                v.push_back(radius * cos(phi + deslocP));
-                v.push_back(radius * cos(theta + deslocT) * sin(phi + deslocP));
-                n.push_back(sin(theta + deslocT) * sin(phi + deslocP));
-                n.push_back(cos(phi + deslocP));
-                n.push_back(cos(theta + deslocT) * sin(phi + deslocP));
-                t.push_back(saltoH * (i+1));
-                t.push_back(saltoV * (j+1));
-
-                v.push_back(radius * sin(theta + deslocT) * sin(phi));
-                v.push_back(radius * cos(phi));
-                v.push_back(radius * cos(theta + deslocT) * sin(phi));
-                n.push_back(sin(theta + deslocT) * sin(phi));
-                n.push_back(cos(phi));
-                n.push_back(cos(theta + deslocT) * sin(phi));
-                t.push_back(saltoH * (i+1));
-                t.push_back(saltoV * j);
-
-                v.push_back(radius * sin(theta) * sin(phi));
-                v.push_back(radius * cos(phi));
-                v.push_back(radius * cos(theta) * sin(phi));
-                n.push_back(sin(theta) * sin(phi));
-                n.push_back(cos(phi));
-                n.push_back(cos(theta) * sin(phi));
-                t.push_back(saltoH * i);
-                t.push_back(saltoV * j);
-
-                v.push_back(radius * sin(theta) * sin(phi + deslocP));
-                v.push_back(radius * cos(phi + deslocP));
-                v.push_back(radius * cos(theta) * sin(phi + deslocP));
-                n.push_back(sin(theta) * sin(phi + deslocP));
-                n.push_back(cos(phi + deslocP));
-                n.push_back(cos(theta) * sin(phi + deslocP));
-                t.push_back(saltoH * i);
-                t.push_back(saltoV * (j+1));
-
-                v.push_back(radius * sin(theta + deslocT) * sin(phi + deslocP));
-                v.push_back(radius * cos(phi + deslocP));
-                v.push_back(radius * cos(theta + deslocT) * sin(phi + deslocP));
-                n.push_back(sin(theta + deslocT) * sin(phi + deslocP));
-                n.push_back(cos(phi + deslocP));
-                n.push_back(cos(theta + deslocT) * sin(phi + deslocP));
-                t.push_back(saltoH * (i+1));
-                t.push_back(saltoV * (j+1));
-
-            }
-            theta -= deslocT;
-        }
-
-        for (int i = 0; i < v.size(); i += 3) {
-            file << v[i] << " " << v[i + 1] << " " << v[i + 2] << "\n";
-        }
-
-        file << "cucu\n";
+        file << "---\n";
 
         for (int i = 0; i < n.size(); i += 3) {
             file << n[i] << " " << n[i + 1] << " " << n[i + 2] << "\n";
         }
 
-        file << "cucu\n";
+        file << "---\n";
 
         for (int i = 0; i < t.size(); i += 2) {
             file << t[i] << " " << t[i + 1] << "\n";
         }
 
-        file << "cucu\n";
-
+        file << "---\n";
     }
+
+
     file.close();
-    */
 }
 
 void drawCone(float radius, float height, int slices, int stacks, string fileName) {
@@ -293,6 +461,8 @@ void drawCone(float radius, float height, int slices, int stacks, string fileNam
     float cx, cy, cz;
     float dx, dy, dz;
 
+    vector<float> n, t;
+
     ofstream file(fileName);
     if (file.is_open()) {
         for (int i = 0; i < slices; i++) {
@@ -300,8 +470,19 @@ void drawCone(float radius, float height, int slices, int stacks, string fileNam
             float base = 0.0f;
             //base
             file << " " << 0.0f << " " << base << " " << 0.0f << "\n";
+            n.push_back(0);
+            n.push_back(1);
+            n.push_back(0);
+
             file << " " << radius * sin(alfa + deslocA) << " " << base << " " << radius * cos(alfa + deslocA) << "\n";
+            n.push_back(0);
+            n.push_back(1);
+            n.push_back(0);
+
             file << " " << radius * sin(alfa) << " " << base << " " << radius * cos(alfa) << "\n";
+            n.push_back(0);
+            n.push_back(1);
+            n.push_back(0);
 
             for (int j = 0; j < stacks; j++) {
                 float rInferior = radius - rStack * j;
@@ -473,6 +654,9 @@ void drawTeapot(string str, int tessellation) {
             }
         }
     }
+
+    write << "---\n";
+
     write.close();
 }
 

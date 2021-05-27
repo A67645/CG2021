@@ -135,7 +135,7 @@ void Objeto::readFile() {
         getline(infile, buffer);
         std::stringstream ss(buffer);
         ss >> x >> y >> z;
-        if(x == "cucu")
+        if(x == "---")
             break;
         points.push_back(std::atof(x.data()));
         points.push_back(std::atof(y.data()));
@@ -146,7 +146,7 @@ void Objeto::readFile() {
         getline(infile, buffer);
         std::stringstream ss(buffer);
         ss >> x >> y >> z;
-        if(x == "cucu")
+        if(x == "---")
             break;
         normal.push_back(std::atof(x.data()));
         normal.push_back(std::atof(y.data()));
@@ -157,30 +157,13 @@ void Objeto::readFile() {
         getline(infile, buffer);
         std::stringstream ss(buffer);
         ss >> x >> y >> z;
-        if(x == "cucu")
+        if(x == "---")
             break;
         textura.push_back(std::atof(x.data()));
         textura.push_back(std::atof(y.data()));
         textura.push_back(std::atof(z.data()));
     }
 
-/*
-    while (infile >> x >> y >> z) {
-        points.push_back(x);
-        points.push_back(y);
-        points.push_back(z);         //TODO - separador de pontos
-    }
-    while (infile >> x >> y >> z) {
-        normal.push_back(x);
-        normal.push_back(y);
-        normal.push_back(z);
-    }
-    while (infile >> x >> y >> z) {
-        textura.push_back(x);
-        textura.push_back(y);
-        textura.push_back(z);
-    }
-*/
     glGenBuffers(3, buffers);
     glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(float), points.data(), GL_STATIC_DRAW);
@@ -188,7 +171,6 @@ void Objeto::readFile() {
     glBufferData(GL_ARRAY_BUFFER, normal.size() * sizeof(float), normal.data(), GL_STATIC_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, buffers[2]);
     glBufferData(GL_ARRAY_BUFFER, textura.size() * sizeof(float), textura.data(), GL_STATIC_DRAW);
-
 
     sizeP = points.size();
     sizeN = normal.size();
@@ -203,16 +185,19 @@ void Objeto::add(Objeto astro) {
 
 
 void Objeto::draw() {
+    glBindTexture(GL_TEXTURE_2D, texID);
+
     glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
     glVertexPointer(3, GL_FLOAT, 0, 0);
+
     glBindBuffer(GL_ARRAY_BUFFER,buffers[1]);
     glNormalPointer(GL_FLOAT,0,0);
 
     glBindBuffer(GL_ARRAY_BUFFER,buffers[2]);
     glTexCoordPointer(2,GL_FLOAT,0,0);
-    //glBindTexture(GL_TEXTURE_2D,texID);
+
     glDrawArrays(GL_TRIANGLES, 0, sizeP);
-    //glBindTexture(GL_TEXTURE_2D,0);
+    glBindTexture(GL_TEXTURE_2D,0);
 
 }
 

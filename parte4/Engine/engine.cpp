@@ -1,4 +1,3 @@
-
 #include <IL/il.h>
 
 #ifdef __APPLE__
@@ -267,11 +266,10 @@ void renderScene(void) {
 
     // put the geometric transformations here
 
-
-
     // put drawing instructions here
     int i = 0;
     for (Objeto a : lista) {
+        /*
         if(i==0){
             GLfloat pos[4] = { luzx, luzy, luzz, isPoint};
             GLfloat amb[3] = { 0.0, 0.0, 0.0 };
@@ -281,20 +279,20 @@ void renderScene(void) {
             glLightfv(GL_LIGHT0,GL_POSITION, pos);
 
             float dark[] = { 0.2, 0.2, 0.2, 1.0 };
-            float white[] = { 0.8, 0.8, 0.8, 1.0 };
+            float white[] = { 1, 1, 1, 1 };
             float red[] = { 0.8, 0.2, 0.2, 1.0 };
             float green[] = { 0.99, 0.72, 0.07, 1.0 };
 
 
             glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, white);
-            glMaterialfv(GL_FRONT, GL_SPECULAR, white);
-            glMaterialf(GL_FRONT, GL_SHININESS, 128);
+            //glMaterialfv(GL_FRONT, GL_SPECULAR, white);
+            //glMaterialf(GL_FRONT, GL_SHININESS, 128);
 
-            glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, matt);
+            //glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, matt);
         }else{
             GLfloat matt[3] = { 0, 0, 0 };
             glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, matt);
-        }
+        }*/
         draw(a);
         i++;
     }
@@ -490,10 +488,11 @@ void initGL() {
 
     glClearColor(0, 0, 0, 0);
 
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
+    //glEnable(GL_LIGHTING);
+    //glEnable(GL_LIGHT0);
 
-   //glEnable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
+
 }
 
 int main(int argc, char **argv) {
