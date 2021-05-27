@@ -5,7 +5,7 @@
 	</lights>
 	<group><!--Espaco-->
 		<colour R="1" G="0" B="0"/>
-		<scale X="10" Y="10" Z="10"/>
+		<scale X="15" Y="15" Z="15"/>
 		<models>
 			<model file="../../Generator/cmake-build-release/sphere.3d" texture="Texturas/2k_stars_milky_way.jpg"/>
 		</models>

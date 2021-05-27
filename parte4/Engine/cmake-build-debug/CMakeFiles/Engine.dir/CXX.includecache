@@ -36,22 +36,6 @@ GL/gl.h
 GL/glu.h
 -
 
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte4/Engine/Objeto.cpp
-iostream
--
-string
--
-list
--
-vector
--
-GL/glew.h
--
-IL/il.h
--
-Objeto.h
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte4/Engine/Objeto.h
-
 C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte4/Engine/Objeto.h
 list
 -

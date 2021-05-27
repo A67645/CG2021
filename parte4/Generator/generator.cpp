@@ -29,7 +29,7 @@ void drawPlane(float size, string fileName) {
 
         file << halfSize	<< " " << 0.0 << " " << -halfSize   << "\n";
         file << -halfSize	<< " " << 0.0 << " " << -halfSize   << "\n";
-        file << -halfSize	<< " " << 0.0 << " " << halfSize    << "\n";
+        file << -halfSize	<< " " << 0.0 << " " << halfSize    << "\n";s
     }
     file.close();
 }
@@ -186,7 +186,7 @@ void drawSphere(float radius, int slices, int stacks, string fileName) {
             theta -= deslocT;
         }
     }
-    file << "cucu\n";
+    file << "cucu" << endl;
 
     for (int i = 0; i < n.size(); i += 3) {
         file << n[i] << " " << n[i + 1] << " " << n[i + 2] << "\n";
@@ -198,7 +198,7 @@ void drawSphere(float radius, int slices, int stacks, string fileName) {
         file << t[i] << " " << t[i + 1] << "\n";
     }
 
-    file << "cucu\n";
+    file << "cucu" << endl;
     file.close();
 
 /*

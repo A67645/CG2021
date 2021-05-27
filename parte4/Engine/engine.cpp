@@ -184,23 +184,23 @@ void changeSize(int w, int h) {
     glMatrixMode(GL_MODELVIEW);
 }
 
-void draw(Objeto astro) {
-    if(astro.getTime() != 0) {
-        float t = glutGet(GLUT_ELAPSED_TIME) % (int) (astro.getTime() * 1000);
-        float tempo = t / (astro.getTime() * 1000.0);
+void draw(Objeto objeto) {
+    if(objeto.getTime() != 0) {
+        float t = glutGet(GLUT_ELAPSED_TIME) % (int) (objeto.getTime() * 1000);
+        float tempo = t / (objeto.getTime() * 1000.0);
 
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
         glPushMatrix();
 
-        if ((point_count = astro.getTranslate().size()) > 0) {
-            renderCatmullRomCurve(tempo, astro.getTranslate());
+        if ((point_count = objeto.getTranslate().size()) > 0) {
+            renderCatmullRomCurve(tempo, objeto.getTranslate());
             float X[3];
             static float Y[3] = {0, 1, 0};
             float Z[3];
             float pos[4];
             //glPushMatrix();
-            getGlobalCatmullRomPoint(tempo, astro.getTranslate(), pos, X);
+            getGlobalCatmullRomPoint(tempo, objeto.getTranslate(), pos, X);
             glTranslatef(pos[0], pos[1], pos[2]);
 
             cross(X, Y, Z);
@@ -213,20 +213,20 @@ void draw(Objeto astro) {
             glMultMatrixf(m);
         }
     }else{
-        glTranslatef(astro.getTranslateX(), astro.getTranslateY(), astro.getTranslateZ());
+        glTranslatef(objeto.getTranslateX(), objeto.getTranslateY(), objeto.getTranslateZ());
     }
 
-    glColor3f(astro.getRed(), astro.getGreen(), astro.getBlue());
-    glScalef(astro.getScaleX(), astro.getScaleY(), astro.getScaleZ());
-    glRotatef(astro.getAngle(), astro.getRotateX(), astro.getRotateY(), astro.getRotateZ());
+    glColor3f(objeto.getRed(), objeto.getGreen(), objeto.getBlue());
+    glScalef(objeto.getScaleX(), objeto.getScaleY(), objeto.getScaleZ());
+    glRotatef(objeto.getAngle(), objeto.getRotateX(), objeto.getRotateY(), objeto.getRotateZ());
 
-    astro.draw();
-    for (Objeto lua : astro.getLuas()) {
+    objeto.draw();
+    for (Objeto lua : objeto.getLuas()) {
         draw(lua);
     }
 
     glPushMatrix();
-    if (astro.getAnel()) {
+    if (objeto.getAnel()) {
         glRotatef(90.0f, 1, 0, 0);
         glColor3f(0.5f, 0.5f, 0.5f);
         glutSolidTorus(0.1, 3.5, 20, 20);
@@ -234,29 +234,6 @@ void draw(Objeto astro) {
 
     glPopMatrix();
     glPopMatrix();
-
-    /*
-      vector <float> points = astro.getPoints();
-glBegin(GL_TRIANGLES);
-    for(auto itPoints = points.begin(); itPoints != points.end(); itPoints++) {
-        x = *(itPoints++);
-        y = *(itPoints++);
-        z = *itPoints;
-        glVertex3f(x, y, z);
-    }
-glEnd();
-
-    for(Objeto lua : astro.getLuas()){
-        draw(lua);
-    }
-
-    if(b) {
-        glRotatef(90.0f,1,0,0);
-        glColor3f(0.5f,0.5f,0.5f);
-        glutSolidTorus(0.1,3.5,20,20);
-    }
-    glPopMatrix();
-*/
 }
 
 void renderScene(void) {
@@ -271,12 +248,7 @@ void renderScene(void) {
               0.0, 0.0, 0.0,
               0.0f, 1.0f, 0.0f);
 
-
-    GLfloat pos[4] = { luzx, luzy, luzz, isPoint};
-    glLightfv(GL_LIGHT0, GL_POSITION, pos);
-    float white[4] = { 1,1,0,1 };
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, white);
-
+    /*
     glBegin(GL_LINES);
     // X axis in red
     glColor3f(1.0f, 0.0f, 0.0f);
@@ -291,25 +263,47 @@ void renderScene(void) {
     glVertex3f(0.0f, 0.0f, 0.0f);
     glVertex3f(0.0f, 0.0f, 10.5f);
     glEnd();
-
+    */
 
     // put the geometric transformations here
-    glTranslatef(cx, cy, cz);
-    glRotatef(angle, 0.0f, 1.0f, 0.0f);
-    glRotatef(angle2, 0.0f, 0.0f, 1.0f);
-    glScalef(size, size, size);
+
 
 
     // put drawing instructions here
+    int i = 0;
     for (Objeto a : lista) {
+        if(i==0){
+            GLfloat pos[4] = { luzx, luzy, luzz, isPoint};
+            GLfloat amb[3] = { 0.0, 0.0, 0.0 };
+            GLfloat diff[4] = { 0.0f, 1.0f, 1.0f, 1.0f };
+            GLfloat matt[3] = { 5, 5, 5 };
+
+            glLightfv(GL_LIGHT0,GL_POSITION, pos);
+
+            float dark[] = { 0.2, 0.2, 0.2, 1.0 };
+            float white[] = { 0.8, 0.8, 0.8, 1.0 };
+            float red[] = { 0.8, 0.2, 0.2, 1.0 };
+            float green[] = { 0.99, 0.72, 0.07, 1.0 };
+
+
+            glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, white);
+            glMaterialfv(GL_FRONT, GL_SPECULAR, white);
+            glMaterialf(GL_FRONT, GL_SHININESS, 128);
+
+            glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, matt);
+        }else{
+            GLfloat matt[3] = { 0, 0, 0 };
+            glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, matt);
+        }
         draw(a);
+        i++;
     }
 
     // End of frame
     glutSwapBuffers();
 }
 
-Objeto readGroup(XMLElement *group, Objeto astro, boolean original) {
+Objeto readGroup(XMLElement *group, Objeto objeto, boolean original) {
     Objeto lua = Objeto();
     XMLElement *colour = group->FirstChildElement("colour");
     if (colour != nullptr) {
@@ -375,20 +369,22 @@ Objeto readGroup(XMLElement *group, Objeto astro, boolean original) {
         string file3d = model->Attribute("file");
         lua.setFilename(file3d);
         lua.readFile();
-        string texFile = model->Attribute("texture");
-        lua.setTexfilename(texFile);
+        if(model->Attribute("texture")) {
+            string texFile = model->Attribute("texture");
+            lua.setTexfilename(texFile);
+        }
     }
     if (original) {
-        astro = lua;
+        objeto = lua;
     } else {
-        astro.add(lua);
+        objeto.add(lua);
     }
 
     for (XMLElement *childGroup = group->FirstChildElement("group");
          childGroup != nullptr; childGroup = childGroup->NextSiblingElement("group")) {
-        astro = readGroup(childGroup, astro, FALSE);
+        objeto = readGroup(childGroup, objeto, FALSE);
     }
-    return astro;
+    return objeto;
 }
 
 bool readXML(string file) {
@@ -485,6 +481,8 @@ void initGL() {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE_MODE);
 
+    glEnable(GL_RESCALE_NORMAL);
+
     spherical2Cartesian();
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
@@ -495,7 +493,7 @@ void initGL() {
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 
-   glEnable(GL_TEXTURE_2D);
+   //glEnable(GL_TEXTURE_2D);
 }
 
 int main(int argc, char **argv) {
@@ -527,6 +525,7 @@ int main(int argc, char **argv) {
     glutKeyboardFunc(keyFunction);
     glutSpecialFunc(processSpecialKeys);
 
+    //  OpenGL settings
     glewInit();
     initGL();
 
@@ -534,9 +533,6 @@ int main(int argc, char **argv) {
         cout << "Ficheiro nao lido." << endl;
         return -1;
     }
-
-    //  OpenGL settings
-    glEnable(GL_DEPTH_TEST);
 
     spherical2Cartesian();
 
