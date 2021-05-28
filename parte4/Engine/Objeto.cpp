@@ -66,7 +66,7 @@ float Objeto::getTranslateX(){ return translateX; }
 float Objeto::getTranslateY(){ return translateY; }
 float Objeto::getTranslateZ(){ return translateZ; }
 
-std::list<Objeto> Objeto::getLuas() { return luas; }
+std::list<Objeto> Objeto::getDependencias() { return dependencias; }
 
 float Objeto::getTime() { return Objeto::time; }
 
@@ -179,13 +179,16 @@ void Objeto::readFile() {
     points.clear(); normal.clear(); textura.clear();
 }
 
-void Objeto::add(Objeto astro) {
-    luas.push_back(astro);
+void Objeto::add(Objeto objeto) {
+    dependencias.push_back(objeto);
 }
 
 
 void Objeto::draw() {
     glBindTexture(GL_TEXTURE_2D, texID);
+
+    glBindBuffer(GL_ARRAY_BUFFER,buffers[2]);
+    glTexCoordPointer(2,GL_FLOAT,0,0);
 
     glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
     glVertexPointer(3, GL_FLOAT, 0, 0);
@@ -193,8 +196,12 @@ void Objeto::draw() {
     glBindBuffer(GL_ARRAY_BUFFER,buffers[1]);
     glNormalPointer(GL_FLOAT,0,0);
 
-    glBindBuffer(GL_ARRAY_BUFFER,buffers[2]);
-    glTexCoordPointer(2,GL_FLOAT,0,0);
+    GLfloat matt[3] = { this->getRed(), this->getGreen(), this->getBlue() };
+    float white[] = { 1, 1, 1, 1 };
+
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matt);
+    //glMaterialfv(GL_FRONT, GL_SPECULAR, white);
+    glMaterialf(GL_FRONT, GL_SHININESS, 128);
 
     glDrawArrays(GL_TRIANGLES, 0, sizeP);
     glBindTexture(GL_TEXTURE_2D,0);
@@ -212,10 +219,12 @@ void Objeto::loadTexture() {
     ilGenImages(1,&t);
     ilBindImage(t);
     ilLoadImage((ILstring)texfilename.c_str());
+    std::cout << texfilename.c_str() << std::endl;
     tw = ilGetInteger(IL_IMAGE_WIDTH);
     th = ilGetInteger(IL_IMAGE_HEIGHT);
     ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
     texData = ilGetData();
+    printf("tw:%d - th:%d\n",tw,th);
 
     glGenTextures(1,&texID);
 

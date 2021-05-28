@@ -41,7 +41,7 @@ private:
     float blue;
     bool anel;
     float time;
-    std::list <Objeto> luas;
+    std::list <Objeto> dependencias;
     GLuint buffers[3];
     unsigned int texID;
 
@@ -75,9 +75,9 @@ public:
 
     void setScale(float x, float y, float z);
 
-    void add(Objeto astro);
+    void add(Objeto objeto);
 
-    std::list<Objeto> getLuas();
+    std::list<Objeto> getDependencias();
 
     void draw();
 

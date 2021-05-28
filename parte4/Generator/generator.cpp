@@ -405,8 +405,8 @@ void drawSphere(float radius, int slices, int stacks, string fileName) {
                 n.push_back(sin(theta + deslocT) * sin(phi));
                 n.push_back(cos(phi));
                 n.push_back(cos(theta + deslocT) * sin(phi));
-                t.push_back(saltoH * (i+1));
-                t.push_back(saltoV * j);
+                t.push_back(saltoH * (i));
+                t.push_back(saltoV * (j+1));
 
                 file << " " << ax << " " << ay << " " << az << "\n";
                 n.push_back(sin(theta) * sin(phi));
@@ -419,8 +419,8 @@ void drawSphere(float radius, int slices, int stacks, string fileName) {
                 n.push_back(sin(theta) * sin(phi + deslocP));
                 n.push_back(cos(phi + deslocP));
                 n.push_back(cos(theta) * sin(phi + deslocP));
-                t.push_back(saltoH * i);
-                t.push_back(saltoV * (j+1));
+                t.push_back(saltoH * (i+1));
+                t.push_back(saltoV * (j));
 
                 file << " " << dx << " " << dy << " " << dz << "\n";
                 n.push_back(sin(theta + deslocT) * sin(phi + deslocP));

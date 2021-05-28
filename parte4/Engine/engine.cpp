@@ -220,7 +220,7 @@ void draw(Objeto objeto) {
     glRotatef(objeto.getAngle(), objeto.getRotateX(), objeto.getRotateY(), objeto.getRotateZ());
 
     objeto.draw();
-    for (Objeto lua : objeto.getLuas()) {
+    for (Objeto lua : objeto.getDependencias()) {
         draw(lua);
     }
 
@@ -247,52 +247,12 @@ void renderScene(void) {
               0.0, 0.0, 0.0,
               0.0f, 1.0f, 0.0f);
 
-    /*
-    glBegin(GL_LINES);
-    // X axis in red
-    glColor3f(1.0f, 0.0f, 0.0f);
-    glVertex3f(0.0f, 0.0f, 0.0f);
-    glVertex3f(10.0f, 0.0f, 0.0f);
-    // Y Axis in Green
-    glColor3f(0.0f, 1.0f, 0.0f);
-    glVertex3f(0.0f, 0.0f, 0.0f);
-    glVertex3f(0.0f, 10.5f, 0.0f);
-    // Z Axis in Blue
-    glColor3f(0.0f, 0.0f, 1.0f);
-    glVertex3f(0.0f, 0.0f, 0.0f);
-    glVertex3f(0.0f, 0.0f, 10.5f);
-    glEnd();
-    */
-
-    // put the geometric transformations here
+    GLfloat pos[4] = { luzx, luzy, luzz, isPoint };
+    float white[] = { 1, 1, 1, 1 };
 
     // put drawing instructions here
     int i = 0;
     for (Objeto a : lista) {
-        /*
-        if(i==0){
-            GLfloat pos[4] = { luzx, luzy, luzz, isPoint};
-            GLfloat amb[3] = { 0.0, 0.0, 0.0 };
-            GLfloat diff[4] = { 0.0f, 1.0f, 1.0f, 1.0f };
-            GLfloat matt[3] = { 5, 5, 5 };
-
-            glLightfv(GL_LIGHT0,GL_POSITION, pos);
-
-            float dark[] = { 0.2, 0.2, 0.2, 1.0 };
-            float white[] = { 1, 1, 1, 1 };
-            float red[] = { 0.8, 0.2, 0.2, 1.0 };
-            float green[] = { 0.99, 0.72, 0.07, 1.0 };
-
-
-            glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, white);
-            //glMaterialfv(GL_FRONT, GL_SPECULAR, white);
-            //glMaterialf(GL_FRONT, GL_SHININESS, 128);
-
-            //glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, matt);
-        }else{
-            GLfloat matt[3] = { 0, 0, 0 };
-            glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, matt);
-        }*/
         draw(a);
         i++;
     }
@@ -302,14 +262,13 @@ void renderScene(void) {
 }
 
 Objeto readGroup(XMLElement *group, Objeto objeto, boolean original) {
-    Objeto lua = Objeto();
+    Objeto novo = Objeto();
     XMLElement *colour = group->FirstChildElement("colour");
     if (colour != nullptr) {
         float r = atof(colour->Attribute("R"));
         float g = atof(colour->Attribute("G"));
         float b = atof(colour->Attribute("B"));
-        printf("colour-%f %f %f\n", r, g, b);
-        lua.setColor(r, g, b);
+        novo.setColor(r, g, b);
     }
     XMLElement *translate = group->FirstChildElement("translate");
     if (translate != nullptr) {
@@ -317,7 +276,7 @@ Objeto readGroup(XMLElement *group, Objeto objeto, boolean original) {
         float tx = atof(translate->Attribute("X"));
         float ty = atof(translate->Attribute("Y"));
         float tz = atof(translate->Attribute("Z"));
-        lua.setTime(time);
+        novo.setTime(time);
 
         if(time) {
             vector<float *> translatePoints;
@@ -332,12 +291,11 @@ Objeto readGroup(XMLElement *group, Objeto objeto, boolean original) {
                 pontos[1] = py;
                 pontos[2] = pz;
                 translatePoints.push_back(pontos);
-                printf("translate-%f %f %f\n", px, py, pz);
                 i++;
             }
-            lua.setPointsTranslate(translatePoints);
+            novo.setPointsTranslate(translatePoints);
         }else{
-            lua.setTranslate(tx, ty, tz);
+            novo.setTranslate(tx, ty, tz);
         }
     }
     XMLElement *rotate = group->FirstChildElement("rotate");
@@ -346,36 +304,34 @@ Objeto readGroup(XMLElement *group, Objeto objeto, boolean original) {
         float rx = atof(rotate->Attribute("axisX"));
         float ry = atof(rotate->Attribute("axisY"));
         float rz = atof(rotate->Attribute("axisZ"));
-        printf("rotate-%f %f %f\n", rx, ry, rz);
-        lua.setRotate(a, rx, ry, rz);
+        novo.setRotate(a, rx, ry, rz);
     }
     XMLElement *scale = group->FirstChildElement("scale");
     if (scale != nullptr) {
         float sx = atof(scale->Attribute("X"));
         float sy = atof(scale->Attribute("Y"));
         float sz = atof(scale->Attribute("Z"));
-        printf("scale-%f %f %f\n", sx, sy, sz);
-        lua.setScale(sx, sy, sz);
+        novo.setScale(sx, sy, sz);
     }
     XMLElement *ring = group->FirstChildElement("ring");
     if (ring != nullptr) {
-        lua.setAnel(TRUE);
+        novo.setAnel(TRUE);
     }
     XMLElement *models = group->FirstChildElement("models");
     for (XMLElement *model = models->FirstChildElement("model");
         model != nullptr; model = model->NextSiblingElement("model")) {
         string file3d = model->Attribute("file");
-        lua.setFilename(file3d);
-        lua.readFile();
+        novo.setFilename(file3d);
         if(model->Attribute("texture")) {
             string texFile = model->Attribute("texture");
-            lua.setTexfilename(texFile);
+            novo.setTexfilename(texFile);
         }
+        novo.readFile();
     }
     if (original) {
-        objeto = lua;
+        objeto = novo;
     } else {
-        objeto.add(lua);
+        objeto.add(novo);
     }
 
     for (XMLElement *childGroup = group->FirstChildElement("group");
@@ -488,8 +444,8 @@ void initGL() {
 
     glClearColor(0, 0, 0, 0);
 
-    //glEnable(GL_LIGHTING);
-    //glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
 
     glEnable(GL_TEXTURE_2D);
 

@@ -7,14 +7,14 @@
 		<colour R="1" G="0" B="0"/>
 		<scale X="15" Y="15" Z="15"/>
 		<models>
-			<model file="../../Generator/cmake-build-release/sphere.3d" texture="Texturas/2k_stars_milky_way.jpg"/>
+			<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_stars_milky_way.jpg"/>
 		</models>
 	</group>
 
 	<group><!--sol-->
 		<colour R="0.99" G="0.72" B="0.07"/>
 		<models>
-				<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_sun.jpg"/>
+				<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_sun.jpg"/>
 		</models>
 	</group>
 
@@ -36,7 +36,7 @@
 		</translate>
 		<scale X="0.0034" Y="0.0034" Z="0.0034"/>
 		<models>
-			<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_mercury.jpg"/>
+			<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_mercury.jpg"/>
 		</models>
 	</group>
 
@@ -58,7 +58,7 @@
 		</translate>
 		<scale X="0.0087" Y="0.0087" Z="0.0087"/>
 		<models>
-				<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_venus_surface.jpg"/>
+				<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_venus_surface.jpg"/>
 		</models>
 	</group>
 
@@ -80,7 +80,7 @@
 		</translate>
 		<scale X="0.0091" Y="0.0091" Z="0.0091"/>
 		<models>
-				<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_earth_day_map.jpg"/>
+				<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_earth_daymap.jpg"/>
 		</models>
 		<group><!--lua-->
 			<colour R="0.9" G="0.9" B="0.9"/>
@@ -100,7 +100,7 @@
 			</translate>
 			<scale X="0.27" Y="0.27" Z="0.27"/>
 			<models>
-					<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_moon.jpg"/>
+					<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_moon.jpg"/>
 			</models>
 		</group>
 	</group>
@@ -123,7 +123,7 @@
 		</translate>
 		<scale X="0.0048" Y="0.0048" Z="0.0048"/>
 		<models>
-				<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_mars.jpg"/>
+				<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_mars.jpg"/>
 		</models>
 	</group>
 
@@ -145,7 +145,7 @@
 		</translate>
 		<scale X="0.1026" Y="0.1026" Z="0.1026"/>
 		<models>
-				<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_jupiter.jpg"/>
+				<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_jupiter.jpg"/>
 		</models>
 		<group><!--lua Ganimedes-->
 			<colour R="0.5" G="0.58" B="0.65"/>
@@ -165,7 +165,7 @@
 			</translate>
 			<scale X="0.038" Y="0.038" Z="0.038"/>
 			<models>
-				<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_eris_fictional.jpg"/>
+				<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_eris_fictional.jpg"/>
 			</models>
 		</group>
 		<group><!--lua Calisto-->
@@ -187,7 +187,7 @@
 
 			<scale X="0.034" Y="0.034" Z="0.034"/>
 			<models>
-				<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_ceres_fictional.jpg"/>
+				<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_ceres_fictional.jpg"/>
 			</models>
 		</group>
 		<group><!--lua IO-->
@@ -208,7 +208,7 @@
 			</translate>
 			<scale X="0.026" Y="0.026" Z="0.026"/>
 			<models>
-				<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_haumea_fictional.jpg"/>
+				<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_haumea_fictional.jpg"/>
 			</models>
 		</group>
 	</group>
@@ -232,7 +232,7 @@
 		<scale X="0.0862" Y="0.0862" Z="0.0862"/>
 		<ring/>
 		<models>
-				<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_saturn.jpg"/>
+				<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_saturn.jpg"/>
 		</models>
 		<group><!--lua Titan-->
 			<colour R="0.55" G="0.69" B="0.23"/>
@@ -252,7 +252,7 @@
 			</translate>
 			<scale X="0.044" Y="0.044" Z="0.044"/>
 			<models>
-				<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_makemake_fictional.jpg"/>
+				<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_makemake_fictional.jpg"/>
 			</models>
 		</group>
 	</group>
@@ -275,7 +275,7 @@
 		</translate>
 		<scale X="0.0370" Y="0.0370" Z="0.0370"/>
 		<models>
-				<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_uranus.jpg"/>
+				<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_uranus.jpg"/>
 		</models>
 	</group>
 
@@ -297,7 +297,7 @@
 		</translate>
 		<scale X="0.0355" Y="0.0355" Z="0.0355"/>
 		<models>
-				<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_neptune.jpg"/>
+				<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_neptune.jpg"/>
 		</models>
 		<group><!--lua Triton-->
 			<colour R="0.47" G="0.78" B="0.8"/>
@@ -317,7 +317,7 @@
 			</translate>
 			<scale X="0.055" Y="0.055" Z="0.055"/>
 			<models>
-				<model file="../../Generator/cmake-build-release/sun.3d" texture="Texturas/2k_eris_fictional.jpg"/>
+				<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_eris_fictional.jpg"/>
 			</models>
 		</group>
 	</group>
