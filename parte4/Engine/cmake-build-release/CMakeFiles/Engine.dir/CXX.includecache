@@ -6,37 +6,7 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/melan/Desktop/Aulas/CG/.toolkits/devil/IL/il.h
-stdio.h
--
-limits.h
--
-wchar.h
--
-
-C:/Users/melan/Desktop/Aulas/CG/.toolkits/glew/GL/glew.h
-stddef.h
--
-inttypes.h
--
-stdint.h
--
-inttypes.h
--
-OpenGL/glu.h
--
-GL/glu.h
--
-
-C:/Users/melan/Desktop/Aulas/CG/.toolkits/glut/GL/glut.h
-windows.h
--
-GL/gl.h
--
-GL/glu.h
--
-
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte4/Engine/Objeto.cpp
+C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/Objeto.cpp
 iostream
 -
 cstring
@@ -54,9 +24,9 @@ IL/il.h
 sstream
 -
 Objeto.h
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte4/Engine/Objeto.h
+C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/Objeto.h
 
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte4/Engine/Objeto.h
+C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/Objeto.h
 list
 -
 vector
@@ -78,7 +48,7 @@ vector
 GL/glew.h
 -
 
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte4/Engine/engine.cpp
+C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/engine.cpp
 IL/il.h
 -
 GLUT/glut.h
@@ -96,13 +66,27 @@ iostream
 string
 -
 tinyxml2.h
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte4/Engine/tinyxml2.h
+C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/tinyxml2.h
 Objeto.h
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte4/Engine/Objeto.h
+C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/Objeto.h
 vector
 -
 
-C:/Users/melan/Desktop/GIT/ProjetoCG/CG2021/parte4/Engine/tinyxml2.h
+C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/tinyxml2.cpp
+tinyxml2.h
+C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/tinyxml2.h
+new
+-
+stddef.h
+-
+stdarg.h
+-
+cstddef
+-
+cstdarg
+-
+
+C:/Computacao Grafica/Projeto/CG2021/parte4/Engine/tinyxml2.h
 ctype.h
 -
 limits.h
@@ -130,5 +114,35 @@ stdint.h
 android/log.h
 -
 assert.h
+-
+
+C:/Computacao Grafica/toolkits/devil/IL/il.h
+stdio.h
+-
+limits.h
+-
+wchar.h
+-
+
+C:/Computacao Grafica/toolkits/glew/GL/glew.h
+stddef.h
+-
+inttypes.h
+-
+stdint.h
+-
+inttypes.h
+-
+OpenGL/glu.h
+-
+GL/glu.h
+-
+
+C:/Computacao Grafica/toolkits/glut/GL/glut.h
+windows.h
+-
+GL/gl.h
+-
+GL/glu.h
 -
 
