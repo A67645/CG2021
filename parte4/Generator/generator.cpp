@@ -348,49 +348,44 @@ void drawBox(float x, float y, float z, int l, string fileName) { //TODO - rever
 
 void drawSphere(float radius, int slices, int stacks, string fileName) {
     float phi = 0, deslocP = M_PI / stacks;
-    float theta = 0, deslocT = 2 * M_PI / slices;
+    float theta = 0, deslocT = (2 * M_PI) / slices;
 
     float ax, ay, az;
     float bx, by, bz;
     float cx, cy, cz;
     float dx, dy, dz;
 
-    float saltoH = 1.0/slices;
-    float saltoV = 1.0/stacks;
+    float saltoH = 1.0f/slices;
+    float saltoV = 1.0f/stacks;
 
     vector<float> n;
     vector<float> t;
 
     ofstream file(fileName);
     if (file.is_open()) {
-        int i = 0;
-
         for (int i = 0; i < slices; i++) {
-            phi = M_PI;
             for (int j = 0; j < stacks; j++) {
+                phi = j * deslocP;
+
                 //inferior direito
                 ax = radius * sin(theta) * sin(phi);
                 ay = radius * cos(phi);
                 az = radius * cos(theta) * sin(phi);
-                printf("(%.2f,%.2f,%.2f)\n", ax, ay, az);
 
                 //inferior esquerdo
                 bx = radius * sin(theta + deslocT) * sin(phi);
                 by = radius * cos(phi);
                 bz = radius * cos(theta + deslocT) * sin(phi);
-                printf("(%.2f,%.2f,%.2f)\n", bx, by, bz);
 
                 //superior direito
-                cx = radius * sin(theta) * sin(phi - deslocP);
-                cy = radius * cos(phi - deslocP);
-                cz = radius * cos(theta) * sin(phi - deslocP);
-                printf("(%.2f,%.2f,%.2f)\n", cx, cy, cz);
+                cx = radius * sin(theta) * sin(phi + deslocP);
+                cy = radius * cos(phi + deslocP);
+                cz = radius * cos(theta) * sin(phi + deslocP);
 
                 //superior esquerdo
-                dx = radius * sin(theta + deslocT) * sin(phi - deslocP);
-                dy = radius * cos(phi - deslocP);
-                dz = radius * cos(theta + deslocT) * sin(phi - deslocP);
-                printf("(%.2f,%.2f,%.2f)\n", dx, dy, dz);
+                dx = radius * sin(theta + deslocT) * sin(phi + deslocP);
+                dy = radius * cos(phi + deslocP);
+                dz = radius * cos(theta + deslocT) * sin(phi + deslocP);
 
                 file << ax << " " << ay << " " << az << "\n";
                 n.push_back(sin(theta) * sin(phi));
@@ -403,38 +398,36 @@ void drawSphere(float radius, int slices, int stacks, string fileName) {
                 n.push_back(sin(theta + deslocT) * sin(phi));
                 n.push_back(cos(phi));
                 n.push_back(cos(theta + deslocT) * sin(phi));
-                t.push_back(saltoH * (i+1));
+                t.push_back(saltoH * i + saltoH);
+                t.push_back(saltoV * j);
+
+                file << cx << " " << cy << " " << cz << "\n";
+                n.push_back(sin(theta) * sin(phi + deslocP));
+                n.push_back(cos(phi + deslocP));
+                n.push_back(cos(theta) * sin(phi + deslocP));
+                t.push_back(saltoH * i);
+                t.push_back(saltoV * j + saltoV);
+
+                file << bx << " " << by << " " << bz << "\n";
+                n.push_back(sin(theta + deslocT) * sin(phi));
+                n.push_back(cos(phi));
+                n.push_back(cos(theta + deslocT) * sin(phi));
+                t.push_back(saltoH * i + saltoH);
                 t.push_back(saltoV * j);
 
                 file << dx << " " << dy << " " << dz << "\n";
-                n.push_back(sin(theta + deslocT) * sin(phi - deslocP));
-                n.push_back(cos(phi - deslocP));
-                n.push_back(cos(theta + deslocT) * sin(phi - deslocP));
-                t.push_back(saltoH * (i+1));
-                t.push_back(saltoV * (j+1));
-
-                file << ax << " " << ay << " " << az << "\n";
-                n.push_back(sin(theta) * sin(phi));
-                n.push_back(cos(phi));
-                n.push_back(cos(theta) * sin(phi));
-                t.push_back(saltoV * i);
-                t.push_back(saltoH * j);
-
-                file << dx << " " << dy << " " << dz << "\n";
-                n.push_back(sin(theta + deslocT) * sin(phi - deslocP));
-                n.push_back(cos(phi - deslocP));
-                n.push_back(cos(theta + deslocT) * sin(phi - deslocP));
-                t.push_back(saltoH * (i+1));
-                t.push_back(saltoV * (j+1));
+                n.push_back(sin(theta + deslocT) * sin(phi + deslocP));
+                n.push_back(cos(phi + deslocP));
+                n.push_back(cos(theta + deslocT) * sin(phi + deslocP));
+                t.push_back(saltoH * i + saltoH);
+                t.push_back(saltoV * j + saltoV);
 
                 file << cx << " " << cy << " " << cz << "\n";
-                n.push_back(sin(theta) * sin(phi - deslocP));
-                n.push_back(cos(phi - deslocP));
-                n.push_back(cos(theta) * sin(phi - deslocP));
+                n.push_back(sin(theta) * sin(phi + deslocP));
+                n.push_back(cos(phi + deslocP));
+                n.push_back(cos(theta) * sin(phi + deslocP));
                 t.push_back(saltoH * i);
-                t.push_back(saltoV * (j+1));
-
-                phi -= deslo    cP;
+                t.push_back(saltoV * j + saltoV);
             }
             theta += deslocT;
         }

@@ -7,17 +7,14 @@
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
-      <configuration PROFILE_NAME="Release" CONFIG_NAME="Release" GENERATION_OPTIONS="-DTOOLKITS_FOLDER=&quot;C:/Computacao Grafica/toolkits&quot;" ENABLED="true" />
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" GENERATION_OPTIONS="-DTOOLKITS_FOLDER=&quot;C:/Computacao Grafica/toolkits&quot;" ENABLED="true" />
+      <configuration PROFILE_NAME="Release" CONFIG_NAME="Release" GENERATION_OPTIONS="-DTOOLKITS_FOLDER=&quot;C:\Users\melan\Desktop\Aulas\CG\.toolkits&quot;" ENABLED="true" />
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" GENERATION_OPTIONS="-DTOOLKITS_FOLDER=&quot;C:\Users\melan\Desktop\Aulas\CG\.toolkits&quot;" ENABLED="true" />
     </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="514e64a5-774f-4c70-bc4f-ee31c9a3372d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Engine/.idea/Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/.idea/Engine.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/Objeto.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/Objeto.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine/Objeto.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/Objeto.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeCache.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/3.19.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/3.19.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/3.19.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/3.19.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
@@ -25,26 +22,17 @@
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/3.19.2/CompilerIdCXX/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/3.19.2/CompilerIdCXX/a.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/CXX.includecache" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/Objeto.cpp.obj" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/depend.internal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/engine.cpp.obj" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/includes_CXX.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/includes_CXX.rsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/linklibs.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/linklibs.rsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/objects.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/tinyxml2.cpp.obj" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/Engine.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/Engine.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/Engine.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeCache.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/3.19.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/3.19.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
@@ -55,9 +43,11 @@
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/CMakeOutput.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/Objeto.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/Objeto.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/build.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/depend.internal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/engine.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/engine.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/includes_CXX.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/includes_CXX.rsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/linklibs.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/linklibs.rsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/objects.a" afterDir="false" />
@@ -73,11 +63,7 @@
       <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/config2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/config2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine/tinyxml2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/tinyxml2.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine/tinyxml2.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/tinyxml2.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Generator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Generator.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.19.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.19.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.19.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.19.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
@@ -90,6 +76,7 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Generator.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Generator.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
@@ -110,6 +97,7 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/clion-environment.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/clion-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/Generator.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Generator.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/Generator.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Generator.exe" afterDir="false" />
@@ -117,9 +105,7 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-release/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/sun.3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/teapot.3d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/generator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/generator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teapot.patch" beforeDir="false" afterPath="$PROJECT_DIR$/teapot.patch" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,12 +136,12 @@
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="Generator" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="$Prompt$" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Generator" TARGET_NAME="Generator" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="Generator" RUN_TARGET_NAME="Generator">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Generator" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="$Prompt$" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Generator" TARGET_NAME="Generator" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="Generator" RUN_TARGET_NAME="Generator">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -175,10 +161,22 @@
       <option name="presentableId" value="Default" />
       <updated>1622298013204</updated>
       <workItem from="1622298018183" duration="4998000" />
+      <workItem from="1622317058043" duration="7737000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

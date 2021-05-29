@@ -156,12 +156,11 @@ void Objeto::readFile() {
     while (true) {
         getline(infile, buffer);
         std::stringstream ss(buffer);
-        ss >> x >> y >> z;
+        ss >> x >> y;
         if(x == "---")
             break;
         textura.push_back(std::atof(x.data()));
         textura.push_back(std::atof(y.data()));
-        textura.push_back(std::atof(z.data()));
     }
 
     glGenBuffers(3, buffers);
@@ -200,6 +199,7 @@ void Objeto::draw() {
     float white[] = { 1, 1, 1, 1 };
 
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matt);
+    glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION,matt);
     //glMaterialfv(GL_FRONT, GL_SPECULAR, white);
     glMaterialf(GL_FRONT, GL_SHININESS, 128);
 

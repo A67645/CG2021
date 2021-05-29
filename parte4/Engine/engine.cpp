@@ -35,7 +35,7 @@ int point_count = 0;
 string tipoLuz;
 float luzx,luzy,luzz;
 
-float alpha = 45.0f, beta = 90.0f;
+float alpha = 0.75f, beta = 1.0f;
 float cameraRadius = 15.0f;
 
 float xmove = 0;
@@ -248,7 +248,8 @@ void renderScene(void) {
               0.0f, 1.0f, 0.0f);
 
     GLfloat pos[4] = { luzx, luzy, luzz, isPoint };
-    float white[] = { 1, 1, 1, 1 };
+
+    glLightfv(GL_LIGHT0,GL_POSITION,pos);
 
     // put drawing instructions here
     int i = 0;
