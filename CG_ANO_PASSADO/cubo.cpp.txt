@@ -1,0 +1,56 @@
+```
+c++
+//Frente:
+file << "" << ixx << " " jyy << " " << z << "\n";
+file <<  "" << ixx+xx << " " << jyy << " " << z << "\n";
+file << "" << ixx+xx << " " jyy+yy << " " << z << "\n";
+
+file << "" << ixx << " " << jyy << " " << z << "\n";
+file << "" << ixx+xx << " " << jyy+yy << " " << z << "\n";
+file << "" << ixx << " " << jyy+yy << " " << z << "\n";
+
+//Tras:
+file << "" << ixx << " " jyy << " " << 0 << "\n";
+file << "" << ixx+xx << " " jyy+yy << " " << 0 << "\n";
+file <<  "" << ixx+xx << " " << jyy << " " << 0 << "\n";
+
+file << "" << ixx << " " << jyy << " " << 0 << "\n";
+file << "" << ixx << " " << jyy+yy << " " << 0 << "\n";
+file << "" << ixx+xx << " " << jyy+yy << " " << 0 << "\n";
+
+//Cima:
+file << "" << i*xx << " " y << " " << j*zz << "\n";
+file <<  "" << i*xx  << " " << y << " " << j*zz+zz << "\n";
+file << "" << i*xx+xx << " " y << " " << j*zz << "\n";
+
+file << "" << i*xx << " " << y << " " << j*zz+zz << "\n";
+file << "" << i*xx+xx << " " << y << " " << j*zz+zz << "\n";
+file << "" << i*xx+xx << " " << y << " " << j*zz << "\n";
+
+//Baixo:
+file << "" << i*xx << " " 0 << " " << j*zz << "\n";
+file << "" << i*xx+xx << " " 0 << " " << j*zz << "\n";
+file <<  "" << i*xx  << " " << 0 << " " << j*zz+zz << "\n";
+
+file << "" << i*xx+xx << " " << 0 << " " << j*zz << "\n";
+file << "" << i*xx << " " << 0 << " " << j*zz+zz << "\n";
+file << "" << i*xx+xx << " " << 0 << " " << j*zz+zz << "\n";
+
+//Direita:
+file << "" << x << " " << j*yy << " " << i*zz << "\n";
+file << "" << x << " " << j*yy+yy << " " << i*zz << "\n";
+file << "" << x << " " << j*yy << " " << i*zz+zz << "\n";
+
+file << "" << x << " " << j*yy+yy << " " << i*zz << "\n";
+file << "" << x << " " << j*yy +yy<< " " << i*zz+zz << "\n";
+file << "" << x << " " << j*yy << " " << i*zz+zz << "\n";
+
+//Esquerda:
+file << "" << 0 << " " << j*yy << " " << i*zz << "\n";
+file << "" << 0 << " " << j*yy << " " << i*zz+zz << "\n";
+file << "" << 0 << " " << j*yy+yy << " " << i*zz << "\n";
+
+file << "" << 0 << " " << j*yy << " " << i*zz+zz << "\n";
+file << "" << 0 << " " << j*yy +yy << " " << i*zz+zz << "\n";
+file << "" << 0 << " " << j*yy+yy << " " << i*zz << "\n";
+```
