@@ -14,22 +14,9 @@
   <component name="ChangeListManager">
     <list default="true" id="72f5e500-9a50-4a38-8e85-77ca836e2a1b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Objeto.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Objeto.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Engine.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Engine.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Engine.dir/Objeto.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Engine.dir/Objeto.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Engine.dir/engine.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Engine.dir/engine.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Engine.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Engine.dir/objects.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release/Engine.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Engine.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Generator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Generator/cmake-build-release/CMakeFiles/Generator.dir/generator.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/cmake-build-release/CMakeFiles/Generator.dir/generator.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Generator/cmake-build-release/CMakeFiles/Generator.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/cmake-build-release/CMakeFiles/Generator.dir/objects.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Generator/cmake-build-release/Generator.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/cmake-build-release/Generator.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Generator/cmake-build-release/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/cmake-build-release/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Generator/cmake-build-release/teapot.3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Generator/generator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/generator.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +66,7 @@
       <workItem from="1622330474389" duration="438000" />
       <workItem from="1622373732981" duration="1854000" />
       <workItem from="1622388076025" duration="2556000" />
+      <workItem from="1622390934474" duration="250000" />
     </task>
     <servers />
   </component>
