@@ -410,7 +410,7 @@ bool readXML(string file) {
             glEnable(GL_LIGHTING);
             glEnable(GL_LIGHT0);
         }
-        cout << lights << endl;
+
         for (XMLElement *group = firstElem->FirstChildElement("group");
             group != nullptr; group = group->NextSiblingElement("group")) {
             Objeto astro = Objeto();

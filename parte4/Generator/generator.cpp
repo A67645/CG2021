@@ -809,7 +809,6 @@ void drawTeapot(string str, int tessellation) {
     for(int i = 0; i < patches; i++){
         for(int xx = 0; xx < tessellation; xx++ ) {
             for(int yy = 0; yy < tessellation; yy++) {
-
                 float x1 = increment * xx;
                 float x2 = increment * ( xx+1 );
 
@@ -828,6 +827,8 @@ void drawTeapot(string str, int tessellation) {
                 n.push_back(normalBezier(pontos,x1,y1)[2]);
                 t.push_back(x1);
                 t.push_back(y1);
+
+
                 write << resultPoints.at(2)[0] << " " << resultPoints.at(2)[1] << " " << resultPoints.at(2)[2] << endl;
                 n.push_back(normalBezier(pontos,x2,y1)[0]);
                 n.push_back(normalBezier(pontos,x2,y1)[1]);

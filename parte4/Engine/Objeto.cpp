@@ -285,7 +285,7 @@ void Objeto::readFile() {
     sizeP = points.size();
     sizeN = normal.size();
     sizeT = textura.size();
-std::cout << sizeT << std::endl;
+
     points.clear(); normal.clear(); textura.clear();
 }
 

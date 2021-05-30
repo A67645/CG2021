@@ -337,9 +337,10 @@
 			 <point X="3.9829290942159634" Y="0" Z="-5.17397425322757"/>
 			 <point X="6.8986323376367595" Y="0" Z="-2.9871968206619726"/>
 		</translate>
+		<rotate angle="-90" axisX="1" axisY="0" axisZ="0"/>
 		<scale X="0.055" Y="0.055" Z="0.055"/>
 		<models>
-			<model file="../../Generator/cmake-build-release/teapot.3d" texture="../Texturas/2k_ceres_fictional.jpg"/>
+			<model file="../../Generator/cmake-build-release/teapot.3d" texture="../Texturas/code_texture.png"/>
 		</models>
 	</group>
 </scene>
