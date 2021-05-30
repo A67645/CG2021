@@ -36,7 +36,7 @@
 		</translate>
 		<scale X="0.0034" Y="0.0034" Z="0.0034"/>
 		<models>
-			<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_mercury.jpg"/>
+			<model file="../../Generator/cmake-build-release/sun.3d" texture="../Texturas/2k_mercury.jpg" />
 		</models>
 	</group>
 

@@ -328,6 +328,55 @@ Objeto readGroup(XMLElement *group, Objeto objeto, boolean original) {
             novo.setTexfilename(texFile);
         }
         novo.readFile();
+
+        if(model->Attribute("diffR")) {
+            string diffR = model->Attribute("diffR");
+            novo.setDiffR(atof(diffR.c_str()));
+        }
+        if(model->Attribute("diffG")) {
+            string diffG = model->Attribute("diffG");
+            novo.setDiffG(atof(diffG.c_str()));
+        }
+        if(model->Attribute("diffB")) {
+            string diffB = model->Attribute("diffB");
+            novo.setDiffB(atof(diffB.c_str()));
+        }
+        if(model->Attribute("specR")) {
+            string specR = model->Attribute("specR");
+            novo.setSpecR(atof(specR.c_str()));
+        }
+        if(model->Attribute("specG")) {
+            string specG = model->Attribute("specG");
+            novo.setSpecG(atof(specG.c_str()));
+        }
+        if(model->Attribute("specB")) {
+            string specB = model->Attribute("specB");
+            novo.setSpecB(atof(specB.c_str()));
+        }
+        if(model->Attribute("emiR")) {
+            string emiR = model->Attribute("emiR");
+            novo.setEmiR(atof(emiR.c_str()));
+        }
+        if(model->Attribute("emiG")) {
+            string emiG = model->Attribute("emiG");
+            novo.setEmiG(atof(emiG.c_str()));
+        }
+        if(model->Attribute("emiB")) {
+            string emiB = model->Attribute("emiB");
+            novo.setEmiB(atof(emiB.c_str()));
+        }
+        if(model->Attribute("ambR")) {
+            string ambR = model->Attribute("ambR");
+            novo.setAmbR(atof(ambR.c_str()));
+        }
+        if(model->Attribute("ambG")) {
+            string ambG = model->Attribute("ambG");
+            novo.setAmbG(atof(ambG.c_str()));
+        }
+        if(model->Attribute("ambB")) {
+            string ambB = model->Attribute("ambB");
+            novo.setAmbB(atof(ambB.c_str()));
+        }
     }
     if (original) {
         objeto = novo;
@@ -348,14 +397,20 @@ bool readXML(string file) {
     if (!doc.LoadFile(file.c_str())) {
         firstElem = doc.FirstChildElement("scene");
         XMLElement *lights = firstElem->FirstChildElement("lights");
-        for (XMLElement *light = lights->FirstChildElement("light");
-            light != nullptr; light = light->NextSiblingElement("light")) {
-            tipoLuz = light->Attribute("type");
-            if(tipoLuz=="POINT") isPoint=0.0; else isPoint=1.0;
-            luzx = atof(light->Attribute("posX"));
-            luzy = atof(light->Attribute("posY"));
-            luzx = atof(light->Attribute("posZ"));
+        if(lights){
+            for (XMLElement *light = lights->FirstChildElement("light");
+                light != nullptr; light = light->NextSiblingElement("light")) {
+                tipoLuz = light->Attribute("type");
+                if(tipoLuz=="POINT") isPoint=0.0; else isPoint=1.0;
+                luzx = atof(light->Attribute("posX"));
+                luzy = atof(light->Attribute("posY"));
+                luzx = atof(light->Attribute("posZ"));
+            }
+
+            glEnable(GL_LIGHTING);
+            glEnable(GL_LIGHT0);
         }
+        cout << lights << endl;
         for (XMLElement *group = firstElem->FirstChildElement("group");
             group != nullptr; group = group->NextSiblingElement("group")) {
             Objeto astro = Objeto();
@@ -444,9 +499,6 @@ void initGL() {
 
     glClearColor(0, 0, 0, 0);
 
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-
     glEnable(GL_TEXTURE_2D);
 
 }
@@ -488,6 +540,8 @@ int main(int argc, char **argv) {
         cout << "Ficheiro nao lido." << endl;
         return -1;
     }
+
+
 
     spherical2Cartesian();
 

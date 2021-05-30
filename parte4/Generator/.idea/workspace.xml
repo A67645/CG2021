@@ -13,6 +13,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="514e64a5-774f-4c70-bc4f-ee31c9a3372d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Engine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine/Objeto.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/Objeto.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine/Objeto.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/Objeto.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-debug/CMakeFiles/Engine.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/Objeto.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/Objeto.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/engine.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/engine.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/CMakeFiles/Engine.dir/objects.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/Engine.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/Engine.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine/cmake-build-release/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/cmake-build-release/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine/config2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/config2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine/engine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Testing/Temporary/LastTest.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,6 +82,7 @@
       <workItem from="1622317058043" duration="7737000" />
       <workItem from="1622375624141" duration="9985000" />
       <workItem from="1622390881077" duration="27000" />
+      <workItem from="1622393466796" duration="1784000" />
     </task>
     <servers />
   </component>

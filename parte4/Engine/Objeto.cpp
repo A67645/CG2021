@@ -16,9 +16,6 @@ Objeto::Objeto() {
     filename = "";
     texfilename = "";
     texture = "";
-    diffR = 0.0f;
-    diffG = 0.0f;
-    diffB = 0.0f;
     rotateAngle = 0.0f;
     translateX = 0.0f;
     translateY = 0.0f;
@@ -32,6 +29,18 @@ Objeto::Objeto() {
     red = 0.0f;
     green = 0.0f;
     blue = 0.0f;
+    diffR = 1.0f;
+    diffG = 1.0f;
+    diffB = 1.0f;
+    specR = 1.0f;
+    specG = 1.0f;
+    specB = 1.0f;
+    emiR = 1.0f;
+    emiG = 1.0f;
+    emiB = 1.0f;
+    ambR = 1.0f;
+    ambG = 1.0f;
+    ambB = 1.0f;
     anel = false;
     time = 0.1;
 }
@@ -59,6 +68,54 @@ float Objeto::getRed() { return red; }
 float Objeto::getGreen() { return green; }
 
 float Objeto::getBlue() { return blue; }
+
+float Objeto::getDiffR() const {
+    return diffR;
+}
+
+float Objeto::getDiffG() const {
+    return diffG;
+}
+
+float Objeto::getDiffB() const {
+    return diffB;
+}
+
+float Objeto::getSpecR() const {
+    return specR;
+}
+
+float Objeto::getSpecG() const {
+    return specG;
+}
+
+float Objeto::getSpecB() const {
+    return specB;
+}
+
+float Objeto::getEmiR() const {
+    return emiR;
+}
+
+float Objeto::getEmiG() const {
+    return emiG;
+}
+
+float Objeto::getEmiB() const {
+    return emiB;
+}
+
+float Objeto::getAmbR() const {
+    return ambR;
+}
+
+float Objeto::getAmbG() const {
+    return ambG;
+}
+
+float Objeto::getAmbB() const {
+    return ambB;
+}
 
 bool Objeto::getAnel() { return anel; }
 
@@ -97,6 +154,54 @@ void Objeto::setScale(float x, float y, float z) {
     Objeto::scaleZ = z;
 }
 
+void Objeto::setDiffR(float diffR) {
+    Objeto::diffR = diffR;
+}
+
+void Objeto::setDiffG(float diffG) {
+    Objeto::diffG = diffG;
+}
+
+void Objeto::setDiffB(float diffB) {
+    Objeto::diffB = diffB;
+}
+
+void Objeto::setSpecR(float specR) {
+    Objeto::specR = specR;
+}
+
+void Objeto::setSpecG(float specG) {
+    Objeto::specG = specG;
+}
+
+void Objeto::setSpecB(float specB) {
+    Objeto::specB = specB;
+}
+
+void Objeto::setEmiR(float emiR) {
+    Objeto::emiR = emiR;
+}
+
+void Objeto::setEmiG(float emiG) {
+    Objeto::emiG = emiG;
+}
+
+void Objeto::setEmiB(float emiB) {
+    Objeto::emiB = emiB;
+}
+
+void Objeto::setAmbR(float ambR) {
+    Objeto::ambR = ambR;
+}
+
+void Objeto::setAmbG(float ambG) {
+    Objeto::ambG = ambG;
+}
+
+void Objeto::setAmbB(float ambB) {
+    Objeto::ambB = ambB;
+}
+
 void Objeto::setAnel(bool anel) {
     Objeto::anel = anel;
 }
@@ -128,7 +233,9 @@ void Objeto::readFile() {
         return;
     }
 
-    loadTexture();
+    if (this->texfilename!="") {
+        loadTexture();
+    }
 
     std::string buffer;
     while (true) {
@@ -153,14 +260,16 @@ void Objeto::readFile() {
         normal.push_back(std::atof(z.data()));
     }
 
-    while (true) {
-        getline(infile, buffer);
-        std::stringstream ss(buffer);
-        ss >> x >> y;
-        if(x == "---")
-            break;
-        textura.push_back(std::atof(x.data()));
-        textura.push_back(std::atof(y.data()));
+    if (this->texfilename!="") {
+        while (true) {
+            getline(infile, buffer);
+            std::stringstream ss(buffer);
+            ss >> x >> y;
+            if (x == "---")
+                break;
+            textura.push_back(std::atof(x.data()));
+            textura.push_back(std::atof(y.data()));
+        }
     }
 
     glGenBuffers(3, buffers);
@@ -168,13 +277,15 @@ void Objeto::readFile() {
     glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(float), points.data(), GL_STATIC_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, buffers[1]);
     glBufferData(GL_ARRAY_BUFFER, normal.size() * sizeof(float), normal.data(), GL_STATIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, buffers[2]);
-    glBufferData(GL_ARRAY_BUFFER, textura.size() * sizeof(float), textura.data(), GL_STATIC_DRAW);
+    if(textura.size()!=0) {
+        glBindBuffer(GL_ARRAY_BUFFER, buffers[2]);
+        glBufferData(GL_ARRAY_BUFFER, textura.size() * sizeof(float), textura.data(), GL_STATIC_DRAW);
+    }
 
     sizeP = points.size();
     sizeN = normal.size();
     sizeT = textura.size();
-
+std::cout << sizeT << std::endl;
     points.clear(); normal.clear(); textura.clear();
 }
 
@@ -184,24 +295,30 @@ void Objeto::add(Objeto objeto) {
 
 
 void Objeto::draw() {
-    glBindTexture(GL_TEXTURE_2D, texID);
 
-    glBindBuffer(GL_ARRAY_BUFFER,buffers[2]);
-    glTexCoordPointer(2,GL_FLOAT,0,0);
+    if(sizeT!=0) {
+        glBindTexture(GL_TEXTURE_2D, texID);
 
+        glBindBuffer(GL_ARRAY_BUFFER, buffers[2]);
+        glTexCoordPointer(2, GL_FLOAT, 0, 0);
+    }
     glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
     glVertexPointer(3, GL_FLOAT, 0, 0);
 
     glBindBuffer(GL_ARRAY_BUFFER,buffers[1]);
     glNormalPointer(GL_FLOAT,0,0);
 
-    GLfloat matt[3] = { this->getRed(), this->getGreen(), this->getBlue() };
-    float white[] = { 1, 1, 1, 1 };
 
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matt);
-    glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION,matt);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, white);
-    glMaterialf(GL_FRONT, GL_SHININESS, 128);
+    float diff[3] = { this->diffR, this->diffG, this->diffB };
+    float spec[3] = { this->specR, this->specG, this->specB };
+    float emi[3] = { this->emiR, this->emiG, this->emiB};
+    float amb[3] = { this->ambR, this->ambG, this->ambB };
+
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+    glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION, emi);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 128);
 
     glDrawArrays(GL_TRIANGLES, 0, sizeP);
     glBindTexture(GL_TEXTURE_2D,0);
@@ -238,5 +355,8 @@ void Objeto::loadTexture() {
 
     glBindTexture(GL_TEXTURE_2D, 0);
 }
+
+
+
 
 //glgeterror()

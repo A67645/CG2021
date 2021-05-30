@@ -22,9 +22,6 @@ private:
     int sizeT;
     int td;
     int tw;
-    float diffR;
-    float diffG;
-    float diffB;
     std::vector<float*> translate;
     float translateX;
     float translateY;
@@ -39,6 +36,44 @@ private:
     float red;
     float green;
     float blue;
+    float diffR;
+public:
+    float getDiffR() const;
+
+    float getDiffG() const;
+
+    float getDiffB() const;
+
+    float getSpecR() const;
+
+    float getSpecG() const;
+
+    float getSpecB() const;
+
+    float getEmiR() const;
+
+    float getEmiG() const;
+
+    float getEmiB() const;
+
+    float getAmbR() const;
+
+    float getAmbG() const;
+
+    float getAmbB() const;
+
+private:
+    float diffG;
+    float diffB;
+    float specR;
+    float specG;
+    float specB;
+    float emiR;
+    float emiG;
+    float emiB;
+    float ambR;
+    float ambG;
+    float ambB;
     bool anel;
     float time;
     std::list <Objeto> dependencias;
@@ -74,6 +109,30 @@ public:
     void setRotate(float angle, float x, float y, float z);
 
     void setScale(float x, float y, float z);
+
+    void setDiffR(float diffR);
+
+    void setDiffG(float diffG);
+
+    void setDiffB(float diffB);
+
+    void setSpecR(float specR);
+
+    void setSpecG(float specG);
+
+    void setSpecB(float specB);
+
+    void setEmiR(float emiR);
+
+    void setEmiG(float emiG);
+
+    void setEmiB(float emiB);
+
+    void setAmbR(float ambR);
+
+    void setAmbG(float ambG);
+
+    void setAmbB(float ambB);
 
     void add(Objeto objeto);
 
