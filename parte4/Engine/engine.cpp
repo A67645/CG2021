@@ -345,7 +345,6 @@ Objeto readGroup(XMLElement *group, Objeto objeto, boolean original) {
 bool readXML(string file) {
     XMLDocument doc;
     XMLElement *firstElem;
-    printf("%s\n", file.c_str());
     if (!doc.LoadFile(file.c_str())) {
         firstElem = doc.FirstChildElement("scene");
         XMLElement *lights = firstElem->FirstChildElement("lights");

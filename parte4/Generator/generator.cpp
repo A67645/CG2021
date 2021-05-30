@@ -473,16 +473,22 @@ void drawCone(float radius, float height, int slices, int stacks, string fileNam
             n.push_back(0);
             n.push_back(1);
             n.push_back(0);
+            t.push_back(0.5);
+            t.push_back(0.5);
 
             file << " " << radius * sin(alfa + deslocA) << " " << base << " " << radius * cos(alfa + deslocA) << "\n";
             n.push_back(0);
             n.push_back(1);
             n.push_back(0);
+            t.push_back(0.5+0.5*sin(alfa + deslocA));
+            t.push_back(0.5+0.5*cos(alfa + deslocA));
 
             file << " " << radius * sin(alfa) << " " << base << " " << radius * cos(alfa) << "\n";
             n.push_back(0);
             n.push_back(1);
             n.push_back(0);
+            t.push_back(0.5+0.5*sin(alfa));
+            t.push_back(0.5+0.5*cos(alfa));
 
             for (int j = 0; j < stacks; j++) {
                 float rInferior = radius - rStack * j;
@@ -510,18 +516,68 @@ void drawCone(float radius, float height, int slices, int stacks, string fileNam
 
 
                 file << " " << ax << " " << ay << " " << az << "\n";
+                n.push_back(sin(alfa));
+                n.push_back(base);
+                n.push_back(cos(alfa));
+                t.push_back((i*1.0)/slices);
+                t.push_back((j*1.0)/stacks);
+
                 file << " " << bx << " " << by << " " << bz << "\n";
+                n.push_back(sin(alfa + deslocA));
+                n.push_back(base);
+                n.push_back(cos(alfa + deslocA));
+                t.push_back((i+1.0)/slices);
+                t.push_back((j*1.0)/stacks);
+
                 file << " " << cx << " " << cy << " " << cz << "\n";
+                n.push_back(sin(alfa+deslocA));
+                n.push_back(base+hStack);
+                n.push_back(cos(alfa+deslocA));
+                t.push_back((i+1.0)/slices);
+                t.push_back((j+1.0)/stacks);
 
                 file << " " << ax << " " << ay << " " << az << "\n";
+                n.push_back(sin(alfa));
+                n.push_back(base);
+                n.push_back(cos(alfa));
+                t.push_back((i*1.0)/slices);
+                t.push_back((j*1.0)/stacks);
+
                 file << " " << cx << " " << cy << " " << cz << "\n";
+                n.push_back(sin(alfa+deslocA));
+                n.push_back(base+hStack);
+                n.push_back(cos(alfa+deslocA));
+                t.push_back((i+1.0)/slices);
+                t.push_back((j+1.0)/stacks);
+
                 file << " " << dx << " " << dy << " " << dz << "\n";
+                n.push_back(sin(alfa));
+                n.push_back(base+hStack);
+                n.push_back(cos(alfa));
+                t.push_back((i*1.0)/slices);
+                t.push_back((j+1.0)/stacks);
 
                 base += hStack;
             }
             alfa += deslocA;
         }
+        file << "---\n";
+
+        for (int i = 0; i < n.size(); i += 3) {
+            file << n[i] << " " << n[i + 1] << " " << n[i + 2] << "\n";
+        }
+
+        file << "---\n";
+
+        for (int i = 0; i < t.size(); i += 2) {
+            file << t[i] << " " << t[i + 1] << "\n";
+        }
+
+        file << "---\n";
     }
+
+
+
     file.close();
 }
 
@@ -578,11 +634,136 @@ float* bezier(float n, float m, vector<float> points, int* index){
     return result;
 }
 
+
+void cross(float *a, float *b, float *res) {
+
+    res[0] = a[1] * b[2] - a[2] * b[1];
+    res[1] = a[2] * b[0] - a[0] * b[2];
+    res[2] = a[0] * b[1] - a[1] * b[0];
+}
+
+void normalize(float *a) {
+
+    float l = sqrt(a[0] * a[0] + a[1] * a[1] + a[2] * a[2]);
+    a[0] = a[0] / l;
+    a[1] = a[1] / l;
+    a[2] = a[2] / l;
+}
+
+
+void multMatrixVector(float *m, float *v, float *res) {
+
+    for (int j = 0; j < 4; ++j) {
+        res[j] = 0;
+        for (int k = 0; k < 4; ++k) {
+            res[j] += v[k] * m[j * 4 + k];
+        }
+    }
+
+}
+
+float* derivateUBezier(vector<float>& patch_points, float u, float v, float* vector) {
+
+    float M[16] = { -1, 3, -3, 1, 3, -6, 3, 0, -3, 3, 0, 0, 1, 0, 0, 0 };
+
+    float U[4] = { 3 * u * u, 2 * u, 1, 0 };
+    float V[4] = { v * v * v, v * v, v, 1 };
+
+    float UM[4];
+    float MV[4];
+    float UMPontos[3][4];
+
+    //U x M
+    multMatrixVector(M, U, UM);
+    //M x V
+    multMatrixVector(M, V, MV);
+
+    for (int j = 0; j < 4; j++) {
+        UMPontos[0][j] = UM[0] * patch_points[3 * j * 4 + 0] + UM[1] * patch_points[3 * j * 4 + 3]
+                         + UM[2] * patch_points[3 * j * 4 + 6] + UM[3] * patch_points[3 * j * 4 + 9];
+        UMPontos[1][j] = UM[0] * patch_points[3 * j * 4 + 0 + 1] + UM[1] * patch_points[3 * j * 4 + 3 + 1]
+                         + UM[2] * patch_points[3 * j * 4 + 6 + 1] + UM[3] * patch_points[3 * j * 4 + 9 + 1];
+        UMPontos[2][j] = UM[0] * patch_points[3 * j * 4 + 0 + 2] + UM[1] * patch_points[3 * j * 4 + 3 + 2]
+                         + UM[2] * patch_points[3 * j * 4 + 6 + 2] + UM[3] * patch_points[3 * j * 4 + 9 + 2];
+    }
+
+    //UMcoordenadasXYZ x MV
+    for (int i = 0; i < 3; i++) {
+        vector[i] = UMPontos[i][0] * MV[0] + UMPontos[i][1] * MV[1] + UMPontos[i][2] * MV[2] + UMPontos[i][3] * MV[3];
+    }
+
+    return vector;
+}
+
+float* derivateVBezier(vector<float>& patch_points, float u, float v, float* vector) {
+
+    float M[16] = { -1, 3, -3, 1, 3, -6, 3, 0, -3, 3, 0, 0, 1, 0, 0, 0 };
+
+    float U[4] = { 3 * u * u, 2 * u, 1, 0 };
+    float V[4] = { v * v * v, v * v, v, 1 };
+
+    float UM[4];
+    float MV[4];
+    float UMPontos[3][4];
+
+    //U x M
+    multMatrixVector(M, U, UM);
+    //M x V
+    multMatrixVector(M, V, MV);
+
+    for (int j = 0; j < 4; j++) {
+        UMPontos[0][j] = UM[0] * patch_points[3 * j * 4 + 0] + UM[1] * patch_points[3 * j * 4 + 3]
+                         + UM[2] * patch_points[3 * j * 4 + 6] + UM[3] * patch_points[3 * j * 4 + 9];
+        UMPontos[1][j] = UM[0] * patch_points[3 * j * 4 + 0 + 1] + UM[1] * patch_points[3 * j * 4 + 3 + 1]
+                         + UM[2] * patch_points[3 * j * 4 + 6 + 1] + UM[3] * patch_points[3 * j * 4 + 9 + 1];
+        UMPontos[2][j] = UM[0] * patch_points[3 * j * 4 + 0 + 2] + UM[1] * patch_points[3 * j * 4 + 3 + 2]
+                         + UM[2] * patch_points[3 * j * 4 + 6 + 2] + UM[3] * patch_points[3 * j * 4 + 9 + 2];
+    }
+
+    //UMcoordenadasXYZ x MV
+    for (int i = 0; i < 3; i++) {
+        vector[i] = UMPontos[i][0] * MV[0] + UMPontos[i][1] * MV[1] + UMPontos[i][2] * MV[2] + UMPontos[i][3] * MV[3];
+    }
+
+    return vector;
+}
+
+float* normalBezier(vector<float>& patch_points, float u, float v) {
+
+    float* vetorU = new float[3];
+    float* vetorV = new float[3];
+    float* normal = new float[3];
+
+    for(int i=0;i<3;i++){
+        vetorU[i]=0.0f;
+        vetorV[i]=0.0f;
+        normal[i]=0.0f;
+    }
+
+    vetorU = derivateUBezier(patch_points, u, v,vetorU);
+    vetorV = derivateVBezier(patch_points, u, v,vetorV);
+
+    // normaliza os vetores
+    normalize(vetorU);
+    normalize(vetorV);
+
+    // calcula o produto vetorial
+    cross(vetorU, vetorV, normal);
+
+    // normaliza a normal
+    normalize(normal);
+
+    return normal;
+
+}
+
 void drawTeapot(string str, int tessellation) {
     std::ifstream infile(str);
 
     float x, y, z;
     int patches;
+
+    vector<float> n, t;
 
     if (!infile) {
         std::cout << "Ocorreu um erro na leitura do ficheiro." << std::endl;
@@ -628,6 +809,7 @@ void drawTeapot(string str, int tessellation) {
     for(int i = 0; i < patches; i++){
         for(int xx = 0; xx < tessellation; xx++ ) {
             for(int yy = 0; yy < tessellation; yy++) {
+
                 float x1 = increment * xx;
                 float x2 = increment * ( xx+1 );
 
@@ -639,13 +821,44 @@ void drawTeapot(string str, int tessellation) {
                 resultPoints.push_back(bezier(x2, y1, pontos, matrizIndices[i]));
                 resultPoints.push_back(bezier(x2, y2, pontos, matrizIndices[i]));
 
-                write << resultPoints.at(0)[0] << " " << resultPoints.at(0)[1] << " " << resultPoints.at(0)[2] << endl;
-                write << resultPoints.at(2)[0] << " " << resultPoints.at(2)[1] << " " << resultPoints.at(2)[2] << endl;
-                write << resultPoints.at(3)[0] << " " << resultPoints.at(3)[1] << " " << resultPoints.at(3)[2] << endl;
 
                 write << resultPoints.at(0)[0] << " " << resultPoints.at(0)[1] << " " << resultPoints.at(0)[2] << endl;
+                n.push_back(normalBezier(pontos,x1,y1)[0]);
+                n.push_back(normalBezier(pontos,x1,y1)[1]);
+                n.push_back(normalBezier(pontos,x1,y1)[2]);
+                t.push_back(x1);
+                t.push_back(y1);
+                write << resultPoints.at(2)[0] << " " << resultPoints.at(2)[1] << " " << resultPoints.at(2)[2] << endl;
+                n.push_back(normalBezier(pontos,x2,y1)[0]);
+                n.push_back(normalBezier(pontos,x2,y1)[1]);
+                n.push_back(normalBezier(pontos,x2,y1)[2]);
+                t.push_back(x2);
+                t.push_back(y1);
                 write << resultPoints.at(3)[0] << " " << resultPoints.at(3)[1] << " " << resultPoints.at(3)[2] << endl;
+                n.push_back(normalBezier(pontos,x2,y2)[0]);
+                n.push_back(normalBezier(pontos,x2,y2)[1]);
+                n.push_back(normalBezier(pontos,x2,y2)[2]);
+                t.push_back(x2);
+                t.push_back(y2);
+
+                write << resultPoints.at(0)[0] << " " << resultPoints.at(0)[1] << " " << resultPoints.at(0)[2] << endl;
+                n.push_back(normalBezier(pontos,x1,y1)[0]);
+                n.push_back(normalBezier(pontos,x1,y1)[1]);
+                n.push_back(normalBezier(pontos,x1,y1)[2]);
+                t.push_back(x1);
+                t.push_back(y1);
+                write << resultPoints.at(3)[0] << " " << resultPoints.at(3)[1] << " " << resultPoints.at(3)[2] << endl;
+                n.push_back(normalBezier(pontos,x2,y2)[0]);
+                n.push_back(normalBezier(pontos,x2,y2)[1]);
+                n.push_back(normalBezier(pontos,x2,y2)[2]);
+                t.push_back(x2);
+                t.push_back(y2);
                 write << resultPoints.at(1)[0] << " " << resultPoints.at(1)[1] << " " << resultPoints.at(1)[2] << endl;
+                n.push_back(normalBezier(pontos,x1,y2)[0]);
+                n.push_back(normalBezier(pontos,x1,y2)[1]);
+                n.push_back(normalBezier(pontos,x1,y2)[2]);
+                t.push_back(x1);
+                t.push_back(y2);
 
                 resultPoints.pop_back();
                 resultPoints.pop_back();
@@ -657,19 +870,32 @@ void drawTeapot(string str, int tessellation) {
 
     write << "---\n";
 
+    for (int i = 0; i < n.size(); i += 3) {
+        write << n[i] << " " << n[i + 1] << " " << n[i + 2] << "\n";
+    }
+
+    write << "---\n";
+
+    for (int i = 0; i < t.size(); i += 2) {
+        write << t[i] << " " << t[i + 1] << "\n";
+    }
+
+    write << "---\n";
+
     write.close();
 }
 
 int main(int argc, char **argv) {
 
-    if (strcmp(argv[1], "teapot.patch") == 0 && argc == 3){
+    if (strcmp(argv[1], "teapot") == 0 && argc == 3){
         string path = "../";
-        path += argv[1];
+        string extension = ".patch";
+        path += argv[1] + extension;
 
         drawTeapot(path, atoi(argv[2]));
     }
 
-    else if (strcmp(argv[1], "plane.xml") == 0 && argc == 4)
+    else if (strcmp(argv[1], "plane") == 0 && argc == 4)
         drawPlane(atof(argv[2]), argv[3]);
 
     else if (strcmp(argv[1], "box") == 0 && argc == 6)
@@ -680,7 +906,7 @@ int main(int argc, char **argv) {
     else if (strcmp(argv[1], "sphere") == 0 && argc == 6)
         drawSphere(atof(argv[2]), atoi(argv[3]), atoi(argv[4]), argv[5]);
 
-    else if (strcmp(argv[1], "cone.xml") == 0 && argc == 7)
+    else if (strcmp(argv[1], "cone") == 0 && argc == 7)
         drawCone(atof(argv[2]), atof(argv[3]), atoi(argv[4]), atoi(argv[5]), argv[6]);
 
     else printf("Invalid input format\n");

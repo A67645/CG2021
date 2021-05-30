@@ -200,7 +200,7 @@ void Objeto::draw() {
 
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matt);
     glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION,matt);
-    //glMaterialfv(GL_FRONT, GL_SPECULAR, white);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, white);
     glMaterialf(GL_FRONT, GL_SHININESS, 128);
 
     glDrawArrays(GL_TRIANGLES, 0, sizeP);
@@ -219,12 +219,10 @@ void Objeto::loadTexture() {
     ilGenImages(1,&t);
     ilBindImage(t);
     ilLoadImage((ILstring)texfilename.c_str());
-    std::cout << texfilename.c_str() << std::endl;
     tw = ilGetInteger(IL_IMAGE_WIDTH);
     th = ilGetInteger(IL_IMAGE_HEIGHT);
     ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
     texData = ilGetData();
-    printf("tw:%d - th:%d\n",tw,th);
 
     glGenTextures(1,&texID);
 
